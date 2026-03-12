@@ -1,0 +1,1574 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Article - ProCom Solution</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root {
+    --primary: #509ea4;
+    --dark: #112338;
+    --white: #ffffff;
+    --primary-light: #6db5ba;
+    --primary-ultra-light: #eef6f7;
+    --dark-light: #1e3a5f;
+    --grey: #f4f7f8;
+    --grey-mid: #e0eaeb;
+    --text: #2d3748;
+    --text-light: #718096;
+    --shadow: 0 4px 24px rgba(17,35,56,0.10);
+    --shadow-hover: 0 8px 32px rgba(80,158,164,0.18);
+    --radius: 14px;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--grey);
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  /* PROGRESS BAR */
+  #progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    width: 0%;
+    z-index: 9999;
+    transition: width 0.1s;
+  }
+
+  /* NAV */
+  nav {
+    background: var(--dark);
+    padding: 0 40px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 16px rgba(17,35,56,0.18);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .nav-logo-circle {
+    width: 38px; height: 38px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; color: white; font-weight: 700;
+  }
+
+  .nav-logo span {
+    color: white;
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: 0.3px;
+  }
+
+  .nav-links {
+    display: flex; gap: 28px; align-items: center;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--primary-light); }
+
+  .nav-links .btn-nav {
+    background: var(--primary);
+    color: white !important;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: 600;
+    transition: background 0.2s, transform 0.2s !important;
+  }
+
+  .nav-links .btn-nav:hover {
+    background: var(--primary-light);
+    transform: translateY(-1px);
+  }
+
+  /* ADMIN BAR */
+  #admin-bar {
+    background: linear-gradient(90deg, var(--dark), var(--dark-light));
+    padding: 10px 40px;
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid var(--primary);
+  }
+
+  #admin-bar.visible { display: flex; }
+
+  #admin-bar span {
+    color: rgba(255,255,255,0.8);
+    font-size: 13px;
+  }
+
+  #admin-bar .admin-actions {
+    display: flex; gap: 10px;
+  }
+
+  .btn-admin {
+    padding: 7px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+  }
+
+  .btn-admin-edit {
+    background: var(--primary);
+    color: white;
+  }
+
+  .btn-admin-edit:hover { background: var(--primary-light); }
+
+  .btn-admin-delete {
+    background: rgba(239,68,68,0.15);
+    color: #ef4444;
+    border: 1px solid rgba(239,68,68,0.3);
+  }
+
+  .btn-admin-delete:hover { background: rgba(239,68,68,0.25); }
+
+  /* BREADCRUMB */
+  .breadcrumb {
+    background: var(--white);
+    padding: 12px 40px;
+    border-bottom: 1px solid var(--grey-mid);
+  }
+
+  .breadcrumb-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; color: var(--text-light);
+  }
+
+  .breadcrumb-inner a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .breadcrumb-inner a:hover { text-decoration: underline; }
+
+  .breadcrumb-inner i { font-size: 10px; color: var(--grey-mid); }
+
+  /* LAYOUT */
+  .page-wrapper {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 30px;
+    align-items: start;
+  }
+
+  /* ARTICLE */
+  article {
+    background: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  /* HERO IMAGE */
+  .article-hero {
+    position: relative;
+    height: 340px;
+    background: linear-gradient(135deg, var(--dark) 0%, var(--dark-light) 50%, #1a4a6e 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .article-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(circle at 20% 50%, rgba(80,158,164,0.2) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(80,158,164,0.15) 0%, transparent 40%);
+  }
+
+  .article-hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0.25;
+  }
+
+  .article-hero-content {
+    position: relative;
+    text-align: center;
+    padding: 30px;
+    z-index: 2;
+  }
+
+  .article-hero-logo {
+    display: flex; align-items: center; justify-content: center;
+    gap: 10px; margin-bottom: 20px;
+  }
+
+  .article-hero-logo-circle {
+    width: 44px; height: 44px;
+    background: rgba(255,255,255,0.15);
+    border: 2px solid rgba(255,255,255,0.4);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; color: white; font-weight: 700;
+  }
+
+  .article-hero-logo span {
+    color: white; font-size: 16px; font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .article-hero-eyebrow {
+    color: var(--primary-light);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .article-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    color: white;
+    line-height: 1.3;
+    max-width: 600px;
+    margin: 0 auto 20px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  }
+
+  .article-hero-badge {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    padding: 10px 28px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 16px rgba(80,158,164,0.4);
+  }
+
+  /* META */
+  .article-meta-bar {
+    padding: 20px 36px;
+    background: var(--primary-ultra-light);
+    border-bottom: 1px solid var(--grey-mid);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .article-meta-left {
+    display: flex; align-items: center; gap: 16px;
+  }
+
+  .article-author-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--dark));
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-weight: 700; font-size: 16px;
+    border: 2px solid var(--white);
+    box-shadow: 0 2px 8px rgba(80,158,164,0.3);
+    overflow: hidden;
+  }
+
+  .article-author-avatar img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+
+  .article-author-info {}
+
+  .article-author-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--dark);
+  }
+
+  .article-author-role {
+    font-size: 12px;
+    color: var(--text-light);
+  }
+
+  .article-meta-right {
+    display: flex; gap: 16px; align-items: center;
+  }
+
+  .meta-chip {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 12px; color: var(--text-light);
+    background: var(--white);
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--grey-mid);
+  }
+
+  .meta-chip i { color: var(--primary); font-size: 11px; }
+
+  /* CATEGORY TAG */
+  .article-category-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  /* BODY */
+  .article-body {
+    padding: 36px;
+  }
+
+  .article-body h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--dark);
+    margin: 28px 0 12px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-ultra-light);
+  }
+
+  .article-body h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--dark);
+    margin: 20px 0 8px;
+  }
+
+  .article-body p {
+    font-size: 15.5px;
+    color: var(--text);
+    margin-bottom: 16px;
+    line-height: 1.8;
+  }
+
+  .article-body strong { color: var(--dark); }
+
+  .article-body a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid var(--primary-light);
+    transition: color 0.2s;
+  }
+
+  .article-body a:hover { color: var(--dark); }
+
+  /* HIGHLIGHT BOX */
+  .highlight-box {
+    background: linear-gradient(135deg, var(--primary-ultra-light), rgba(80,158,164,0.08));
+    border-left: 4px solid var(--primary);
+    padding: 20px 24px;
+    border-radius: 0 10px 10px 0;
+    margin: 24px 0;
+  }
+
+  .highlight-box p {
+    margin: 0;
+    color: var(--dark);
+    font-style: italic;
+    font-size: 16px;
+  }
+
+  /* INFO BOX */
+  .info-box {
+    background: var(--grey);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin: 24px 0;
+    border: 1px solid var(--grey-mid);
+  }
+
+  .info-box-title {
+    font-weight: 700;
+    color: var(--dark);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .info-box-title i { color: var(--primary); }
+
+  .info-box ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .info-box ul li {
+    padding: 5px 0;
+    font-size: 14px;
+    color: var(--text);
+    display: flex; align-items: flex-start; gap: 10px;
+  }
+
+  .info-box ul li::before {
+    content: '→';
+    color: var(--primary);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* CTA */
+  .article-cta {
+    background: linear-gradient(135deg, var(--dark), var(--dark-light));
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    margin: 32px 0;
+  }
+
+  .article-cta h3 {
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+
+  .article-cta p {
+    color: rgba(255,255,255,0.7);
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  .btn-cta {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white;
+    padding: 12px 32px;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    transition: all 0.2s;
+    box-shadow: 0 4px 16px rgba(80,158,164,0.4);
+  }
+
+  .btn-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(80,158,164,0.5);
+    border-bottom: none;
+    color: white;
+  }
+
+  /* TAGS */
+  .article-tags {
+    padding: 0 36px 28px;
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  }
+
+  .article-tags span {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .tag-chip {
+    background: var(--primary-ultra-light);
+    color: var(--primary);
+    border: 1px solid var(--grey-mid);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+
+  .tag-chip:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+  }
+
+  /* SHARE */
+  .article-share {
+    padding: 24px 36px;
+    border-top: 1px solid var(--grey-mid);
+    background: var(--grey);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .share-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .share-btn {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+
+  .share-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
+  .share-fb { background: #1877f2; }
+  .share-tw { background: #1da1f2; }
+  .share-li { background: #0a66c2; }
+  .share-wa { background: #25d366; }
+  .share-copy { background: var(--primary); }
+
+  /* COMMENTS */
+  .comments-section {
+    padding: 30px 36px;
+    border-top: 1px solid var(--grey-mid);
+  }
+
+  .comments-toggle {
+    width: 100%;
+    background: var(--white);
+    border: 2px solid var(--grey-mid);
+    border-radius: 10px;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--dark);
+    transition: all 0.2s;
+    margin-bottom: 20px;
+  }
+
+  .comments-toggle:hover {
+    border-color: var(--primary);
+    background: var(--primary-ultra-light);
+  }
+
+  .comments-toggle i { color: var(--primary); transition: transform 0.3s; }
+  .comments-toggle.open i { transform: rotate(180deg); }
+
+  .comments-list { display: none; }
+  .comments-list.visible { display: block; }
+
+  .comment-item {
+    display: flex; gap: 14px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--grey-mid);
+  }
+
+  .comment-item:last-child { border-bottom: none; }
+
+  .comment-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--dark));
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-weight: 700; font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .comment-content {}
+
+  .comment-header {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 6px;
+  }
+
+  .comment-name { font-weight: 600; font-size: 14px; color: var(--dark); }
+
+  .comment-date { font-size: 12px; color: var(--text-light); }
+
+  .comment-text { font-size: 14px; color: var(--text); line-height: 1.6; }
+
+  /* LEAVE COMMENT */
+  .leave-comment {
+    margin-top: 24px;
+  }
+
+  .leave-comment h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--dark);
+    margin-bottom: 20px;
+  }
+
+  .comment-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .comment-form .full-width { grid-column: 1 / -1; }
+
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+
+  .form-group label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--dark);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 11px 14px;
+    border: 1.5px solid var(--grey-mid);
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    background: var(--white);
+    transition: border-color 0.2s;
+    outline: none;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(80,158,164,0.1);
+  }
+
+  .form-group textarea { resize: vertical; min-height: 100px; }
+
+  .checkbox-group {
+    display: flex; align-items: flex-start; gap: 10px;
+    grid-column: 1 / -1;
+  }
+
+  .checkbox-group input[type="checkbox"] {
+    width: 16px; height: 16px; margin-top: 2px;
+    accent-color: var(--primary);
+    flex-shrink: 0;
+  }
+
+  .checkbox-group label {
+    font-size: 13px; color: var(--text-light);
+    text-transform: none; letter-spacing: 0;
+    font-weight: 400;
+    cursor: pointer;
+  }
+
+  .btn-submit-comment {
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex; align-items: center; gap: 8px;
+    margin-top: 4px;
+    grid-column: 1 / -1;
+  }
+
+  .btn-submit-comment:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(80,158,164,0.4);
+  }
+
+  /* RELATED ARTICLES */
+  .related-section {
+    margin-top: 30px;
+  }
+
+  .related-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--dark);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary);
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  .related-section h2::before {
+    content: '';
+    width: 4px; height: 22px;
+    background: var(--primary);
+    border-radius: 2px;
+    display: none;
+  }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .related-card {
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: all 0.3s;
+    text-decoration: none;
+    display: block;
+  }
+
+  .related-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .related-card-img {
+    height: 120px;
+    background: linear-gradient(135deg, var(--dark), var(--dark-light));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .related-card-img img {
+    width: 100%; height: 100%; object-fit: cover;
+    opacity: 0.5;
+  }
+
+  .related-card-img-icon {
+    position: absolute;
+    font-size: 36px;
+  }
+
+  .related-card-body { padding: 14px; }
+
+  .related-card-cat {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+
+  .related-card-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--dark);
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .related-card-meta {
+    font-size: 11px;
+    color: var(--text-light);
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  /* SIDEBAR */
+  .sidebar { display: flex; flex-direction: column; gap: 20px; }
+
+  .sidebar-widget {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+  }
+
+  .sidebar-widget.sticky {
+    position: sticky;
+    top: 84px;
+  }
+
+  .widget-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    color: var(--dark);
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--primary);
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .widget-title i { color: var(--primary); font-size: 14px; }
+
+  /* SHARE WIDGET */
+  .share-widget {
+    display: flex; flex-direction: column; gap: 8px;
+  }
+
+  .share-widget-btn {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    color: white;
+  }
+
+  .share-widget-btn:hover { transform: translateX(3px); filter: brightness(1.1); }
+  .share-widget-btn i { width: 16px; text-align: center; }
+  .swb-fb { background: #1877f2; }
+  .swb-tw { background: #1da1f2; }
+  .swb-li { background: #0a66c2; }
+  .swb-wa { background: #25d366; }
+
+  /* MORE POSTS */
+  .more-posts { display: flex; flex-direction: column; gap: 0; }
+
+  .more-post-item {
+    display: flex; gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--grey-mid);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .more-post-item:last-child { border-bottom: none; }
+  .more-post-item:hover .more-post-title { color: var(--primary); }
+
+  .more-post-thumb {
+    width: 60px; height: 60px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--dark), var(--primary));
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    overflow: hidden;
+  }
+
+  .more-post-thumb img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+
+  .more-post-info {}
+
+  .more-post-cat {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 3px;
+  }
+
+  .more-post-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--dark);
+    line-height: 1.4;
+    transition: color 0.2s;
+  }
+
+  .more-post-date {
+    font-size: 11px;
+    color: var(--text-light);
+    margin-top: 4px;
+  }
+
+  /* CONTACT WIDGET */
+  .contact-widget-form {
+    display: flex; flex-direction: column; gap: 10px;
+  }
+
+  .contact-widget-form input,
+  .contact-widget-form textarea {
+    padding: 10px 13px;
+    border: 1.5px solid var(--grey-mid);
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .contact-widget-form input:focus,
+  .contact-widget-form textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(80,158,164,0.1);
+  }
+
+  .contact-widget-form textarea { resize: none; height: 80px; }
+
+  .btn-send {
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white;
+    border: none;
+    padding: 11px;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+
+  .btn-send:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(80,158,164,0.35);
+  }
+
+  /* MODALE ADMIN */
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(17,35,56,0.6);
+    backdrop-filter: blur(4px);
+    z-index: 9998;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-overlay.visible { display: flex; }
+
+  .modal {
+    background: var(--white);
+    border-radius: 16px;
+    width: 90%; max-width: 740px;
+    max-height: 88vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(17,35,56,0.25);
+  }
+
+  .modal-header {
+    padding: 24px 28px;
+    background: linear-gradient(135deg, var(--dark), var(--dark-light));
+    border-radius: 16px 16px 0 0;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .modal-header h2 {
+    color: white;
+    font-size: 18px;
+    font-family: 'Playfair Display', serif;
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  .modal-header h2 i { color: var(--primary-light); }
+
+  .modal-close {
+    width: 34px; height: 34px;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+
+  .modal-close:hover { background: rgba(255,255,255,0.2); }
+
+  .modal-body { padding: 28px; }
+
+  .modal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .modal-grid .full { grid-column: 1 / -1; }
+
+  .modal-form-group {
+    display: flex; flex-direction: column; gap: 6px;
+  }
+
+  .modal-form-group label {
+    font-size: 12px; font-weight: 600;
+    color: var(--dark); text-transform: uppercase; letter-spacing: 0.3px;
+  }
+
+  .modal-form-group input,
+  .modal-form-group select,
+  .modal-form-group textarea {
+    padding: 10px 13px;
+    border: 1.5px solid var(--grey-mid);
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .modal-form-group input:focus,
+  .modal-form-group select:focus,
+  .modal-form-group textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(80,158,164,0.1);
+  }
+
+  .modal-form-group textarea { resize: vertical; min-height: 180px; }
+
+  .modal-footer {
+    padding: 20px 28px;
+    border-top: 1px solid var(--grey-mid);
+    display: flex; justify-content: flex-end; gap: 10px;
+  }
+
+  .btn-cancel {
+    padding: 10px 22px;
+    border: 1.5px solid var(--grey-mid);
+    border-radius: 8px;
+    background: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px; font-weight: 600;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-cancel:hover { border-color: var(--primary); color: var(--primary); }
+
+  .btn-save-modal {
+    padding: 10px 22px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    border: none;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px; font-weight: 600;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .btn-save-modal:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(80,158,164,0.4);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 50px;
+    font-size: 13px;
+  }
+
+  footer a { color: var(--primary-light); text-decoration: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .page-wrapper { grid-template-columns: 1fr; }
+    .sidebar { order: -1; }
+    .sidebar-widget.sticky { position: static; }
+    .related-grid { grid-template-columns: 1fr 1fr; }
+    .modal-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    nav { padding: 0 16px; }
+    .nav-links { display: none; }
+    .article-hero h1 { font-size: 22px; }
+    .article-body { padding: 20px; }
+    .article-tags,
+    .article-share,
+    .comments-section { padding-left: 20px; padding-right: 20px; }
+    .related-grid { grid-template-columns: 1fr; }
+    .comment-form { grid-template-columns: 1fr; }
+    .breadcrumb { padding: 10px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-circle">P</div>
+    <span>ProCom Solution</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Accueil</a>
+    <a href="index.html#services">Services</a>
+    <a href="temoignages.html">Témoignages</a>
+    <a href="ressources.html">Ressources</a>
+    <a href="index.html#contact" class="btn-nav">Contact</a>
+  </div>
+</nav>
+
+<!-- ADMIN BAR -->
+<div id="admin-bar">
+  <span><i class="fas fa-shield-alt" style="color:var(--primary-light);margin-right:8px"></i>Mode Administration</span>
+  <div class="admin-actions">
+    <button class="btn-admin btn-admin-edit" onclick="openEditModal()">
+      <i class="fas fa-edit"></i> Modifier l'article
+    </button>
+    <button class="btn-admin btn-admin-delete" onclick="deleteArticle()">
+      <i class="fas fa-trash"></i> Supprimer
+    </button>
+    <a href="admin.html" class="btn-admin btn-admin-edit" style="text-decoration:none">
+      <i class="fas fa-cog"></i> Admin
+    </a>
+  </div>
+</div>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="index.html"><i class="fas fa-home"></i> Accueil</a>
+    <i class="fas fa-chevron-right"></i>
+    <a href="temoignages.html">Témoignages</a>
+    <i class="fas fa-chevron-right"></i>
+    <span id="bc-title">Article</span>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="page-wrapper">
+
+  <!-- ARTICLE -->
+  <main>
+    <article>
+
+      <!-- HERO -->
+      <div class="article-hero">
+        <img class="article-hero-img" id="article-hero-img" src="" alt="" onerror="this.style.display='none'">
+        <div class="article-hero-content">
+          <div class="article-hero-logo">
+            <div class="article-hero-logo-circle">P</div>
+            <span>ProCom Solution</span>
+          </div>
+          <div class="article-hero-eyebrow" id="article-category">Témoignage</div>
+          <h1 id="article-title">Chargement...</h1>
+          <div class="article-hero-badge" id="article-badge">Audrey Duval-Lebret</div>
+        </div>
+      </div>
+
+      <!-- META -->
+      <div class="article-meta-bar">
+        <div class="article-meta-left">
+          <div class="article-author-avatar" id="author-avatar-wrap">
+            <span id="author-initial">A</span>
+          </div>
+          <div class="article-author-info">
+            <div class="article-author-name" id="author-name">Audrey Duval-Lebret</div>
+            <div class="article-author-role">Community Manager • Audiologie</div>
+          </div>
+        </div>
+        <div class="article-meta-right">
+          <div class="meta-chip">
+            <i class="fas fa-calendar"></i>
+            <span id="article-date">—</span>
+          </div>
+          <div class="meta-chip">
+            <i class="fas fa-clock"></i>
+            <span id="article-read-time">5 min</span>
+          </div>
+          <div class="meta-chip">
+            <i class="fas fa-eye"></i>
+            <span id="article-views">—</span>
+          </div>
+          <div class="article-category-tag" id="article-cat-tag">
+            <i class="fas fa-tag"></i>
+            <span id="cat-label">Témoignage</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- BODY -->
+      <div class="article-body" id="article-body">
+        <p>Chargement de l'article...</p>
+      </div>
+
+      <!-- TAGS -->
+      <div class="article-tags" id="article-tags-wrap">
+        <span>Tags :</span>
+      </div>
+
+      <!-- SHARE -->
+      <div class="article-share">
+        <span class="share-label"><i class="fas fa-share-alt"></i> Partager</span>
+        <a href="#" class="share-btn share-fb" id="share-fb" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="share-btn share-tw" id="share-tw" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="share-btn share-li" id="share-li" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" class="share-btn share-wa" id="share-wa" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <button class="share-btn share-copy" onclick="copyLink()" title="Copier le lien"><i class="fas fa-link"></i></button>
+      </div>
+
+      <!-- COMMENTS -->
+      <div class="comments-section">
+        <button class="comments-toggle" id="comments-toggle" onclick="toggleComments()">
+          <span id="comments-toggle-label"><i class="fas fa-comments" style="color:var(--primary)"></i> Afficher les commentaires <span id="comments-count" style="background:var(--primary);color:white;padding:2px 8px;border-radius:10px;font-size:12px">0</span></span>
+          <i class="fas fa-chevron-down"></i>
+        </button>
+
+        <div class="comments-list" id="comments-list">
+          <!-- commentaires dynamiques -->
+        </div>
+
+        <!-- LEAVE A COMMENT -->
+        <div class="leave-comment">
+          <h3><i class="fas fa-pen" style="color:var(--primary);font-size:18px"></i> Laisser un commentaire</h3>
+          <form class="comment-form" onsubmit="submitComment(event)">
+            <div class="form-group">
+              <label>Votre nom *</label>
+              <input type="text" id="comment-name" placeholder="Marie Dupont" required>
+            </div>
+            <div class="form-group">
+              <label>Votre email *</label>
+              <input type="email" id="comment-email" placeholder="marie@email.com" required>
+            </div>
+            <div class="form-group full-width">
+              <label>Votre commentaire *</label>
+              <textarea id="comment-text" placeholder="Partagez votre avis..." required></textarea>
+            </div>
+            <div class="checkbox-group">
+              <input type="checkbox" id="comment-consent" required>
+              <label for="comment-consent">J'accepte que mes données soient enregistrées pour ce commentaire.</label>
+            </div>
+            <button type="submit" class="btn-submit-comment">
+              <i class="fas fa-paper-plane"></i> Publier le commentaire
+            </button>
+          </form>
+        </div>
+      </div>
+
+    </article>
+
+    <!-- RELATED -->
+    <div class="related-section">
+      <h2><i class="fas fa-newspaper" style="color:var(--primary)"></i> Articles similaires</h2>
+      <div class="related-grid" id="related-grid">
+        <!-- dynamique -->
+      </div>
+    </div>
+  </main>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <!-- SHARE WIDGET -->
+    <div class="sidebar-widget sticky">
+      <div class="widget-title"><i class="fas fa-share-nodes"></i> Partager l'article</div>
+      <div class="share-widget">
+        <a href="#" id="sw-fb" class="share-widget-btn swb-fb" target="_blank">
+          <i class="fab fa-facebook-f"></i> Partager sur Facebook
+        </a>
+        <a href="#" id="sw-tw" class="share-widget-btn swb-tw" target="_blank">
+          <i class="fab fa-twitter"></i> Partager sur Twitter
+        </a>
+        <a href="#" id="sw-li" class="share-widget-btn swb-li" target="_blank">
+          <i class="fab fa-linkedin-in"></i> Partager sur LinkedIn
+        </a>
+        <a href="#" id="sw-wa" class="share-widget-btn swb-wa" target="_blank">
+          <i class="fab fa-whatsapp"></i> Partager sur WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- MORE POSTS -->
+    <div class="sidebar-widget">
+      <div class="widget-title"><i class="fas fa-list-ul"></i> Autres articles</div>
+      <div class="more-posts" id="more-posts">
+        <!-- dynamique -->
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="sidebar-widget">
+      <div class="widget-title"><i class="fas fa-envelope"></i> Nous contacter</div>
+      <form class="contact-widget-form" onsubmit="sendContact(event)">
+        <input type="text" placeholder="Nom *" required>
+        <input type="email" placeholder="Email *" required>
+        <textarea placeholder="Message..."></textarea>
+        <button type="submit" class="btn-send">
+          <i class="fas fa-paper-plane"></i> Envoyer
+        </button>
+      </form>
+    </div>
+
+  </aside>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2024 <strong style="color:var(--primary-light)">ProCom Solution</strong> — Audrey Duval-Lebret · <a href="index.html">Accueil</a> · <a href="admin.html">Admin</a></p>
+</footer>
+
+<!-- MODALE EDIT -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h2><i class="fas fa-edit"></i> Modifier l'article</h2>
+      <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-grid">
+        <div class="modal-form-group full">
+          <label>Titre de l'article</label>
+          <input type="text" id="edit-titre" placeholder="Titre...">
+        </div>
+        <div class="modal-form-group">
+          <label>Catégorie</label>
+          <select id="edit-categorie">
+            <option>Témoignage</option>
+            <option>Interview</option>
+            <option>Conseil</option>
+            <option>Actualité</option>
+            <option>Ressource</option>
+          </select>
+        </div>
+        <div class="modal-form-group">
+          <label>Auteur</label>
+          <input type="text" id="edit-auteur" placeholder="Audrey Duval-Lebret">
+        </div>
+        <div class="modal-form-group">
+          <label>Date</label>
+          <input type="date" id="edit-date">
+        </div>
+        <div class="modal-form-group">
+          <label>Temps de lecture</label>
+          <input type="text" id="edit-read-time" placeholder="5 min">
+        </div>
+        <div class="modal-form-group full">
+          <label>Badge hero (ex: Audrey Duval-Lebret)</label>
+          <input type="text" id="edit-badge" placeholder="Badge...">
+        </div>
+        <div class="modal-form-group full">
+          <label>Tags (séparés par des virgules)</label>
+          <input type="text" id="edit-tags" placeholder="audiologie, témoignage, santé">
+        </div>
+        <div class="modal-form-group full">
+          <label>Contenu HTML de l'article</label>
+          <textarea id="edit-contenu" style="min-height:260px;font-family:monospace;font-size:13px"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="closeModal()">Annuler</button>
+      <button class="btn-save-modal" onclick="saveArticle()">
+        <i class="fas fa-save"></i> Sauvegarder
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+// =====================
+// CONFIG & STATE
+// =====================
+let currentArticleId = 1;
+let allArticles = [];
+let currentArticle = null;
+
+// DEMO DATA (à remplacer par config.json)
+const demoArticles = [
+  {
+    id: 1,
+    titre: "Ton enfant pleure en se frottant l'oreille ? Pas de panique, ça pourrait être une otite !",
+    categorie: "Conseil",
+    auteur: "Audrey Duval-Lebret",
+    date: "2024-03-15",
+    readTime: "4 min",
+    views: "1 243",
+    badge: "Un jour, une question",
+    tags: ["audiologie", "otite", "enfant", "santé"],
+    image: "",
+    contenu: `
+      <div class="highlight-box">
+        <p>Rassure-toi, l'otite n'est pas contagieuse.</p>
+      </div>
+      <p>Mais attention, l'infection qui l'a provoquée peut l'être.</p>
+      <p>Savais-tu qu'il existe trois types d'otites différents ?<br>
+      Enfin, on pourrait même en trouver 6 !<br>
+      Mais on va faire simple et les répartir en 3.</p>
+      <p>Et c'est ces différentes variations que nous allons voir aujourd'hui.<br>
+      On garde les explications simples et accessibles, mais ne néglige pas les symptômes.</p>
+      <div class="info-box">
+        <div class="info-box-title"><i class="fas fa-info-circle"></i> Les 3 types d'otites</div>
+        <ul>
+          <li>L'otite externe : infection du conduit auditif externe</li>
+          <li>L'otite moyenne aiguë : infection de l'oreille moyenne</li>
+          <li>L'otite séreuse : accumulation de liquide sans infection</li>
+        </ul>
+      </div>
+      <h2>Les symptômes à surveiller</h2>
+      <p>Une douleur à l'oreille ou une sensation d'oreille bouchée ? Il est temps de consulter ton médecin.</p>
+      <p>Chez les nourrissons, les signes peuvent être moins évidents : irritabilité, troubles du sommeil, fièvre légère ou tendance à se tirer l'oreille.</p>
+      <h2>Quand consulter en urgence ?</h2>
+      <p>Si ton enfant présente une forte fièvre (au-dessus de 39°C), des pleurs intenses et inconsolables, ou un écoulement de l'oreille, consulte rapidement un médecin.</p>
+      <div class="article-cta">
+        <h3>Tu veux en savoir plus ?</h3>
+        <p>Découvre toutes mes ressources sur la santé auditive des enfants</p>
+        <a href="ressources.html" class="btn-cta"><i class="fas fa-book-open"></i> Voir les ressources gratuites</a>
+      </div>
+      <h2>Mon rôle en tant que Community Manager Audiologie</h2>
+      <p>Mon travail, c'est de te donner accès à des informations claires, vérifiées et compréhensibles sur la santé auditive. Sans jargon médical inutile.</p>
+      <p>Parce que <strong>mieux comprendre, c'est mieux prévenir</strong>.</p>
+    `
+  },
+  {
+    id: 2,
+    titre: "Entretien avec Xavier Carriou, Fondateur d'Acoustivia",
+    categorie: "Interview",
+    auteur: "Audrey Duval-Lebret",
+    date: "2024-02-28",
+    readTime: "6 min",
+    views: "892",
+    badge: "Interview Exclusive",
+    tags: ["audiologie", "interview", "acoustique"],
+    image: "",
+    contenu: `
+      <p>Rencontre avec Xavier Carriou, fondateur d'Acoustivia, pionnier de l'innovation auditive en France.</p>
+      <div class="highlight-box">
+        <p>« L'audiologie de demain sera personnalisée, préventive et digitale. »</p>
+      </div>
+      <h2>Pouvez-vous vous présenter ?</h2>
+      <p>Je suis Xavier Carriou, fondateur d'Acoustivia, entreprise spécialisée dans les solutions auditives innovantes. Après 15 ans dans le secteur, j'ai voulu créer quelque chose de différent.</p>
+      <h2>Qu'est-ce qui vous a amené vers l'audiologie ?</h2>
+      <p>Personnellement touché par une perte auditive légère à 30 ans, j'ai réalisé le manque d'accessibilité des informations et des solutions. C'est devenu ma mission.</p>
+      <div class="article-cta">
+        <h3>Tu veux lire d'autres interviews ?</h3>
+        <p>Découvre tous mes entretiens avec des professionnels de l'audiologie</p>
+        <a href="temoignages.html" class="btn-cta"><i class="fas fa-microphone"></i> Voir tous les témoignages</a>
+      </div>
+    `
+  },
+  {
+    id: 3,
+    titre: "Hyperacousie ou la dualité du silence : entre refuge et isolement",
+    categorie: "Témoignage",
+    auteur: "Audrey Duval-Lebret",
+    date: "2024-02-10",
+    readTime: "5 min",
+    views: "1 541",
+    badge: "Témoignage",
+    tags: ["hyperacousie", "témoignage", "santé auditive"],
+    image: "",
+    contenu: `
+      <p>L'hyperacousie, c'est cette hypersensibilité aux sons du quotidien qui transforme la vie ordinaire en véritable épreuve.</p>
+      <div class="highlight-box">
+        <p>« Chaque bruit, même le plus léger, devient une larme de raison que j'entends dans ma tête. J'ai dû apprendre. »</p>
+      </div>
+      <h2>Qu'est-ce que l'hyperacousie ?</h2>
+      <p>L'hyperacousie est une intolérance aux sons de l'environnement ordinaire. Les bruits du quotidien — une voiture qui passe, une conversation normale — deviennent douloureux.</p>
+      <div class="article-cta">
+        <h3>Tu vis avec l'hyperacousie ?</h3>
+        <p>Retrouve mes ressources et témoignages sur ce sujet</p>
+        <a href="ressources.html" class="btn-cta"><i class="fas fa-heart"></i> Ressources gratuites</a>
+      </div>
+    `
+  },
+  {
+    id: 4,
+    titre: "Entretien avec Azdine Ezzahti, audioprothésiste",
+    categorie: "Interview",
+    auteur: "Audrey Duval-Lebret",
+    date: "2024-01-20",
+    readTime: "7 min",
+    views: "678",
+    badge: "Interview Pro",
+    tags: ["audioprothèse", "interview", "professionnel"],
+    image: "",
+    contenu: `
+      <p>Azdine Ezzahti casse les codes : "Je ne suis pas tombé dans l'audiologie par hasard, mais presque."</p>
+      <h2>Votre parcours vers l'audioprothèse ?</h2>
+      <p>Tout a commencé par une rencontre fortuite avec un patient appareillé. J'ai été touché par l'impact que l'audioprothèse pouvait avoir sur la qualité de vie.</p>
+      <div class="article-cta">
+        <h3>Tu cherches un professionnel de confiance ?</h3>
+        <p>Retrouve mes recommandations</p>
+        <a href="index.html#contact" class="btn-cta"><i class="fas fa-search"></i> Me contacter</a>
+      </div>
+    `
+  }
+];
+
+// =====================
+// INIT
+// =====================
+document.addEventListener('DOMContentLoaded', () => {
+  // ID depuis URL
+  const params = new URLSearchParams(window.location.search);
+  currentArticleId = parseInt(params.get('id')) || 1;
+
+  // Charger config.json ou utiliser demo
+  loadArticles();
+
+  // Admin check
+  if(sessionStorage.getItem('procom_admin') === 'true') {
+    document.getElementById('admin-bar').classList.add('visible');
+  }
+
+  // Progress bar
+  window.addEventListener('scroll', updateProgress);
+});
+
+function updateProgress() {
+  const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (winScroll / height) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+}
+
+// =====================
+// LOAD ARTICLES
+// =====================
+async function loadArticles() {
+  try {
+    const res = await fetch('config.json?' + Date.now());
+    if(res.ok) {
+      const config = await res.json();
+      allArticles = config.articles || demoArtic
+les;
+    } else {
+      console.warn('config.json non trouvé, utilisation des données de démonstration');
+      allArticles = demoArticles;
+    }
+    } catch (error) {
+      console.error('Erreur lors du chargement des articles :', error);
+      allArticles = demoArticles;
+    }
+
+
+    displayArticle();}
