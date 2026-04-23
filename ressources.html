@@ -7,342 +7,120 @@
   <link rel="icon" href="assets/logo-court.png" type="image/png"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --turquoise: #509ea4;
-      --navy:      #112338;
-      --white:     #ffffff;
-      --light-bg:  #f4f8f9;
-      --text-dark: #112338;
-      --text-mid:  #3a5068;
-      --text-light:#6b8a9a;
-      --radius:    12px;
-      --shadow:    0 4px 24px rgba(17,35,56,0.10);
-      --transition:0.3s ease;
-    }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; color: var(--text-dark); background: var(--white); line-height: 1.6; overflow-x: hidden; }
-    img { max-width: 100%; display: block; }
-    a { text-decoration: none; color: inherit; }
-    .container { width: 90%; max-width: 1100px; margin: 0 auto; }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root { --turquoise:#509ea4; --navy:#112338; --white:#ffffff; --light-bg:#f4f8f9; --text-dark:#112338; --text-mid:#3a5068; --text-light:#6b8a9a; --radius:12px; --shadow:0 4px 24px rgba(17,35,56,0.10); --transition:0.3s ease; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Inter',sans-serif; color:var(--text-dark); background:var(--white); line-height:1.6; overflow-x:hidden; }
+    img { max-width:100%; display:block; }
+    a { text-decoration:none; color:inherit; }
+    .container { width:90%; max-width:1100px; margin:0 auto; }
+    header { position:sticky; top:0; z-index:100; background:var(--white); border-bottom:1px solid rgba(17,35,56,0.08); transition:box-shadow var(--transition); }
+    nav { display:flex; align-items:center; justify-content:space-between; padding:18px 0; }
+    .nav-logo img { height:44px; }
+    .nav-links { display:flex; align-items:center; gap:36px; list-style:none; }
+    .nav-links a { font-size:0.92rem; font-weight:500; color:var(--text-mid); transition:color var(--transition); }
+    .nav-links a:hover, .nav-links a.active { color:var(--turquoise); }
+    .nav-cta { background:var(--turquoise); color:var(--white)!important; padding:10px 24px; border-radius:50px; font-size:0.88rem; font-weight:600; transition:background var(--transition); }
+    .nav-cta:hover { background:var(--navy); }
+    .burger { display:none; flex-direction:column; gap:5px; cursor:pointer; }
+    .burger span { width:24px; height:2px; background:var(--navy); border-radius:2px; }
+    .mobile-menu { display:none; flex-direction:column; gap:16px; padding:20px; background:var(--white); border-top:1px solid rgba(17,35,56,0.08); }
+    .mobile-menu.open { display:flex; }
+    .mobile-menu a { font-size:0.95rem; font-weight:500; color:var(--text-mid); }
 
-    /* ── NAV ── */
-    header { position: sticky; top: 0; z-index: 100; background: var(--white); border-bottom: 1px solid rgba(17,35,56,0.08); transition: box-shadow var(--transition); }
-    nav { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
-    .nav-logo img { height: 44px; }
-    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
-    .nav-links a { font-size: 0.92rem; font-weight: 500; color: var(--text-mid); transition: color var(--transition); }
-    .nav-links a:hover, .nav-links a.active { color: var(--turquoise); }
-    .nav-cta { background: var(--turquoise); color: var(--white); padding: 10px 24px; border-radius: 50px; font-size: 0.88rem; font-weight: 600; transition: background var(--transition); }
-    .nav-cta:hover { background: var(--navy); color: var(--white); }
-    .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-    .burger span { width: 24px; height: 2px; background: var(--navy); border-radius: 2px; }
-    .mobile-menu { display: none; flex-direction: column; gap: 16px; padding: 20px; background: var(--white); border-top: 1px solid rgba(17,35,56,0.08); }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a { font-size: 0.95rem; font-weight: 500; color: var(--text-mid); }
+    .page-hero { background:linear-gradient(135deg,var(--navy) 0%,#1a3a5c 100%); padding:80px 0 60px; text-align:center; position:relative; overflow:hidden; }
+    .page-hero::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 30% 50%,rgba(80,158,164,0.15) 0%,transparent 60%); }
+    .page-hero .section-label { display:inline-block; font-size:0.78rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--turquoise); background:rgba(80,158,164,0.12); padding:6px 16px; border-radius:50px; margin-bottom:20px; }
+    .page-hero h1 { font-size:clamp(2rem,4vw,3rem); font-weight:700; color:var(--white); margin-bottom:16px; }
+    .page-hero p { font-size:1.05rem; color:rgba(255,255,255,0.72); max-width:540px; margin:0 auto; }
 
-    /* ── HERO ── */
-    .page-hero {
-      background: linear-gradient(135deg, var(--navy) 0%, #1a3a5c 100%);
-      padding: 80px 0 60px; text-align: center; position: relative; overflow: hidden;
-    }
-    .page-hero::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(circle at 30% 50%, rgba(80,158,164,0.15) 0%, transparent 60%);
-    }
-    .page-hero .section-label {
-      display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--turquoise); background: rgba(80,158,164,0.12);
-      padding: 6px 16px; border-radius: 50px; margin-bottom: 20px;
-    }
-    .page-hero h1 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--white); margin-bottom: 16px; }
-    .page-hero p { font-size: 1.05rem; color: rgba(255,255,255,0.72); max-width: 540px; margin: 0 auto; }
+    .info-banner { background:rgba(80,158,164,0.08); border-left:4px solid var(--turquoise); padding:18px 24px; border-radius:0 var(--radius) var(--radius) 0; margin:48px 0 0; display:flex; align-items:center; gap:14px; font-size:0.92rem; color:var(--text-mid); }
+    .info-banner .icon { font-size:1.4rem; flex-shrink:0; }
 
-    /* ── BANNIÈRE INFO ── */
-    .info-banner {
-      background: rgba(80,158,164,0.08);
-      border-left: 4px solid var(--turquoise);
-      padding: 18px 24px;
-      border-radius: 0 var(--radius) var(--radius) 0;
-      margin: 48px 0 0;
-      display: flex; align-items: center; gap: 14px;
-      font-size: 0.92rem; color: var(--text-mid);
-    }
-    .info-banner .icon { font-size: 1.4rem; flex-shrink: 0; }
+    .ressources-section { padding:40px 0 100px; }
+    .ressources-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:32px; margin-top:48px; }
+    .ressource-card { display:flex; flex-direction:column; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); transition:transform var(--transition),box-shadow var(--transition); }
+    .ressource-card:hover { transform:translateY(-8px); box-shadow:0 16px 48px rgba(17,35,56,0.18); }
+    .ressource-cover { position:relative; aspect-ratio:3/4; overflow:hidden; background:linear-gradient(135deg,var(--navy) 0%,#1a3a5c 100%); }
+    .ressource-cover img { width:100%; height:100%; object-fit:cover; transition:transform 0.4s ease; }
+    .ressource-card:hover .ressource-cover img { transform:scale(1.04); }
+    .ressource-cover-placeholder { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:24px; text-align:center; }
+    .cover-title { font-size:1.1rem; font-weight:800; color:var(--white); text-transform:uppercase; letter-spacing:0.05em; line-height:1.3; margin-bottom:8px; }
+    .cover-sub { font-size:0.75rem; color:rgba(255,255,255,0.6); text-transform:uppercase; letter-spacing:0.1em; }
+    .ressource-badge { position:absolute; top:12px; right:12px; background:var(--turquoise); color:var(--white); font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; padding:4px 10px; border-radius:50px; }
+    .ressource-body { padding:20px; background:var(--white); flex:1; display:flex; flex-direction:column; gap:10px; }
+    .ressource-body h3 { font-size:0.95rem; font-weight:700; color:var(--navy); line-height:1.4; }
+    .ressource-body p { font-size:0.83rem; color:var(--text-light); line-height:1.6; flex:1; }
+    .btn-download { display:flex; align-items:center; justify-content:center; gap:8px; background:var(--navy); color:var(--white); padding:12px; border-radius:8px; font-size:0.88rem; font-weight:600; transition:background var(--transition); margin-top:4px; }
+    .btn-download:hover { background:var(--turquoise); }
+    .btn-download svg { width:16px; height:16px; fill:currentColor; flex-shrink:0; }
 
-    /* ── GRILLE RESSOURCES ── */
-    .ressources-section { padding: 40px 0 100px; }
-    .ressources-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 32px;
-      margin-top: 48px;
-    }
+    .cta-section { background:linear-gradient(135deg,var(--navy) 0%,#1a3a5c 100%); padding:80px 0; text-align:center; }
+    .cta-section h2 { font-size:clamp(1.6rem,3vw,2.2rem); font-weight:700; color:var(--white); margin-bottom:16px; }
+    .cta-section p { font-size:1rem; color:rgba(255,255,255,0.7); max-width:480px; margin:0 auto 32px; }
+    .btn-cta { display:inline-block; padding:16px 40px; border-radius:50px; background:var(--turquoise); color:var(--white); font-weight:700; font-size:1rem; transition:background var(--transition),transform var(--transition); }
+    .btn-cta:hover { background:var(--white); color:var(--navy); transform:translateY(-2px); }
 
-    .ressource-card {
-      display: flex; flex-direction: column;
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: transform var(--transition), box-shadow var(--transition);
-    }
-    .ressource-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 16px 48px rgba(17,35,56,0.18);
-    }
-    .ressource-cover {
-      position: relative;
-      aspect-ratio: 3/4;
-      overflow: hidden;
-      background: linear-gradient(135deg, var(--navy) 0%, #1a3a5c 100%);
-    }
-    .ressource-cover img {
-      width: 100%; height: 100%; object-fit: cover;
-      transition: transform 0.4s ease;
-    }
-    .ressource-card:hover .ressource-cover img { transform: scale(1.04); }
-    .ressource-cover-placeholder {
-      width: 100%; height: 100%;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      padding: 24px; text-align: center;
-    }
-    .ressource-cover-placeholder .cover-title {
-      font-size: 1.1rem; font-weight: 800; color: var(--white);
-      text-transform: uppercase; letter-spacing: 0.05em; line-height: 1.3;
-      margin-bottom: 8px;
-    }
-    .ressource-cover-placeholder .cover-sub {
-      font-size: 0.75rem; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.1em;
-    }
-    .ressource-badge {
-      position: absolute; top: 12px; right: 12px;
-      background: var(--turquoise); color: var(--white);
-      font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
-      padding: 4px 10px; border-radius: 50px;
-    }
-    .ressource-body {
-      padding: 20px;
-      background: var(--white);
-      flex: 1; display: flex; flex-direction: column; gap: 10px;
-    }
-    .ressource-body h3 { font-size: 0.95rem; font-weight: 700; color: var(--navy); line-height: 1.4; }
-    .ressource-body p { font-size: 0.83rem; color: var(--text-light); line-height: 1.6; flex: 1; }
-    .btn-download {
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-      background: var(--navy); color: var(--white);
-      padding: 12px; border-radius: 8px;
-      font-size: 0.88rem; font-weight: 600;
-      transition: background var(--transition);
-      margin-top: 4px;
-    }
-    .btn-download:hover { background: var(--turquoise); }
-    .btn-download svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
+    footer { background:var(--navy); color:var(--white); padding:60px 0 0; }
+    .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr; gap:48px; padding-bottom:48px; border-bottom:1px solid rgba(255,255,255,0.1); }
+    .footer-brand img { height:40px; margin-bottom:16px; filter:brightness(0) invert(1); }
+    .footer-brand p { font-size:0.9rem; color:rgba(255,255,255,0.6); line-height:1.7; max-width:280px; }
+    .footer-col h4 { font-size:0.88rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--turquoise); margin-bottom:18px; }
+    .footer-col ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
+    .footer-col ul a { font-size:0.9rem; color:rgba(255,255,255,0.65); transition:color var(--transition); }
+    .footer-col ul a:hover { color:var(--turquoise); }
+    .footer-bottom { display:flex; align-items:center; justify-content:space-between; padding:22px 0; font-size:0.82rem; color:rgba(255,255,255,0.45); flex-wrap:wrap; gap:12px; }
+    .footer-bottom a { color:rgba(255,255,255,0.45); transition:color var(--transition); }
+    .footer-bottom a:hover { color:var(--turquoise); }
 
-    /* ── CTA BAS ── */
-    .cta-section {
-      background: linear-gradient(135deg, var(--navy) 0%, #1a3a5c 100%);
-      padding: 80px 0; text-align: center;
-    }
-    .cta-section h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; color: var(--white); margin-bottom: 16px; }
-    .cta-section p { font-size: 1rem; color: rgba(255,255,255,0.7); max-width: 480px; margin: 0 auto 32px; }
-    .btn-cta {
-      display: inline-block; padding: 16px 40px; border-radius: 50px;
-      background: var(--turquoise); color: var(--white);
-      font-weight: 700; font-size: 1rem;
-      transition: background var(--transition), transform var(--transition);
-    }
-    .btn-cta:hover { background: var(--white); color: var(--navy); transform: translateY(-2px); }
-
-    /* ── FOOTER ── */
-    footer { background: var(--navy); color: var(--white); padding: 60px 0 0; }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-    .footer-brand img { height: 40px; margin-bottom: 16px; filter: brightness(0) invert(1); }
-    .footer-brand p { font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.7; max-width: 280px; }
-    .footer-col h4 { font-size: 0.88rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--turquoise); margin-bottom: 18px; }
-    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .footer-col ul a { font-size: 0.9rem; color: rgba(255,255,255,0.65); transition: color var(--transition); }
-    .footer-col ul a:hover { color: var(--turquoise); }
-    .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; font-size: 0.82rem; color: rgba(255,255,255,0.45); flex-wrap: wrap; gap: 12px; }
-    .footer-bottom a { color: rgba(255,255,255,0.45); transition: color var(--transition); }
-    .footer-bottom a:hover { color: var(--turquoise); }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      .nav-links, .nav-cta-wrap { display: none; }
-      .burger { display: flex; }
-      .ressources-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
-      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-    }
-    @media (max-width: 480px) {
-      .ressources-grid { grid-template-columns: 1fr; }
-    }
+    @media (max-width:768px) { .nav-links,.nav-cta-wrap { display:none; } .burger { display:flex; } .ressources-grid { grid-template-columns:1fr 1fr; gap:20px; } .footer-grid { grid-template-columns:1fr; gap:32px; } }
+    @media (max-width:480px) { .ressources-grid { grid-template-columns:1fr; } }
   </style>
 </head>
-<body>
+<body data-page="ressources">
 
-  <!-- ── NAV ── -->
   <header>
     <div class="container">
       <nav>
-        <a href="index.html" class="nav-logo">
-          <img src="assets/logo-long.png" alt="Procom Solution"/>
-        </a>
+        <a href="index.html" class="nav-logo"><img src="assets/logo-long.png" alt="Procom Solution"/></a>
         <ul class="nav-links">
           <li><a href="index.html">Accueil</a></li>
           <li><a href="index.html#offres">Offres</a></li>
           <li><a href="portfolio.html">Portfolio</a></li>
           <li><a href="ressources.html" class="active">Ressources</a></li>
-          <li><a href="temoignages.html">Témoignages</a></li>
           <li><a href="index.html#contact">Contact</a></li>
         </ul>
-        <div class="nav-cta-wrap">
-          <a href="index.html#contact" class="nav-cta">Prendre RDV</a>
-        </div>
-        <div class="burger" onclick="toggleMenu()">
-          <span></span><span></span><span></span>
-        </div>
+        <div class="nav-cta-wrap"><a href="index.html#contact" class="nav-cta">Prendre RDV</a></div>
+        <div class="burger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
       </nav>
     </div>
     <div class="mobile-menu" id="mobileMenu">
-      <a href="index.html">Accueil</a>
-      <a href="index.html#offres">Offres</a>
-      <a href="portfolio.html">Portfolio</a>
-      <a href="ressources.html">Ressources</a>
-      <a href="temoignages.html">Témoignages</a>
+      <a href="index.html">Accueil</a><a href="index.html#offres">Offres</a>
+      <a href="portfolio.html">Portfolio</a><a href="ressources.html">Ressources</a>
       <a href="index.html#contact">Contact</a>
     </div>
   </header>
 
-  <!-- ── HERO ── -->
   <section class="page-hero">
     <div class="container">
-      <span class="section-label">Ressources Gratuites</span>
-      <h1>Des guides pratiques<br/>offerts par Audrey</h1>
-      <p>Télécharge gratuitement nos guides, mini-fiches et ressources pour mieux comprendre l'audiologie et booster ta communication digitale.</p>
+      <span class="section-label" id="ressources-page-label">Ressources Gratuites</span>
+      <h1 id="ressources-page-title">Des guides pratiques<br/>offerts par Audrey</h1>
+      <p id="ressources-page-sub">Télécharge gratuitement nos guides, mini-fiches et ressources pour mieux comprendre l'audiologie et booster ta communication digitale.</p>
     </div>
   </section>
 
-  <!-- ── RESSOURCES ── -->
   <section class="ressources-section">
     <div class="container">
-
       <div class="info-banner">
         <span class="icon">📥</span>
         <span>Tous les fichiers sont <strong>100% gratuits</strong> — un clic suffit pour télécharger directement le PDF.</span>
       </div>
-
-      <div class="ressources-grid">
-
-        <!-- Mini Fiches Vocabulaire -->
-        <div class="ressource-card">
-          <div class="ressource-cover">
-            <img src="assets/mini-fiches-vocabulaire.jpg" alt="Mini Fiches Vocabulaire Audiologie"
-              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
-            <div class="ressource-cover-placeholder" style="display:none;">
-              <div class="cover-title">Collection<br/>Mini Fiches<br/>Vocabulaire Audiologie</div>
-              <div class="cover-sub">Guide pratique</div>
-            </div>
-            <span class="ressource-badge">Gratuit</span>
-          </div>
-          <div class="ressource-body">
-            <h3>Collection Mini Fiches — Vocabulaire Audiologie</h3>
-            <p>Tous les termes clés de l'audiologie expliqués simplement. Idéal pour les patients et les professionnels.</p>
-            <a href="assets/mini-fiches-vocabulaire.pdf" download class="btn-download">
-              <svg viewBox="0 0 24 24"><path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 2h14v2H5v-2z"/></svg>
-              Télécharger
-            </a>
-          </div>
-        </div>
-
-        <!-- Briser le Silence -->
-        <div class="ressource-card">
-          <div class="ressource-cover">
-            <img src="assets/briser-le-silence.jpg" alt="Briser le Silence"
-              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
-            <div class="ressource-cover-placeholder" style="display:none;">
-              <div class="cover-title">Briser<br/>Le Silence</div>
-              <div class="cover-sub">Comprendre et prévenir le syndrome de presbyacousie</div>
-            </div>
-            <span class="ressource-badge">Gratuit</span>
-          </div>
-          <div class="ressource-body">
-            <h3>Briser le Silence</h3>
-            <p>Comprendre et prévenir le syndrome de perte auditive liée à l'âge. Un guide accessible à tous.</p>
-            <a href="assets/briser-le-silence.pdf" download class="btn-download">
-              <svg viewBox="0 0 24 24"><path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 2h14v2H5v-2z"/></svg>
-              Télécharger
-            </a>
-          </div>
-        </div>
-
-        <!-- Synaptopathie cochléaire -->
-        <div class="ressource-card">
-          <div class="ressource-cover">
-            <img src="assets/synaptopathie-cochleaire.jpg" alt="Synaptopathie Cochléaire"
-              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
-            <div class="ressource-cover-placeholder" style="display:none;">
-              <div class="cover-title">Synaptopathie<br/>Cochléaire<br/>ou Surdité Cachée</div>
-              <div class="cover-sub">Guide pratique</div>
-            </div>
-            <span class="ressource-badge">Gratuit</span>
-          </div>
-          <div class="ressource-body">
-            <h3>Synaptopathie Cochléaire ou Surdité Cachée</h3>
-            <p>Tout comprendre sur cette surdité invisible qui touche des millions de personnes sans qu'elles le sachent.</p>
-            <a href="assets/synaptopathie-cochleaire.pdf" download class="btn-download">
-              <svg viewBox="0 0 24 24"><path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 2h14v2H5v-2z"/></svg>
-              Télécharger
-            </a>
-          </div>
-        </div>
-
-        <!-- Cholestéatome -->
-        <div class="ressource-card">
-          <div class="ressource-cover">
-            <img src="assets/cholesteatome.jpg" alt="Cholestéatome"
-              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
-            <div class="ressource-cover-placeholder" style="display:none;">
-              <div class="cover-title">Cholestéatome</div>
-              <div class="cover-sub">Guide pratique</div>
-            </div>
-            <span class="ressource-badge">Gratuit</span>
-          </div>
-          <div class="ressource-body">
-            <h3>Cholestéatome</h3>
-            <p>Un guide clair pour comprendre le cholestéatome, ses symptômes, ses risques et les traitements disponibles.</p>
-            <a href="assets/cholesteatome.pdf" download class="btn-download">
-              <svg viewBox="0 0 24 24"><path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 2h14v2H5v-2z"/></svg>
-              Télécharger
-            </a>
-          </div>
-        </div>
-
-        <!-- Fiche Google My Business -->
-        <div class="ressource-card">
-          <div class="ressource-cover">
-            <img src="assets/mini-guide-google-my-business.jpg" alt="Mini Guide Google My Business"
-              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
-            <div class="ressource-cover-placeholder" style="display:none;">
-              <div class="cover-title">Mini Guide<br/>Google My Business</div>
-              <div class="cover-sub">Boostez votre visibilité en ligne</div>
-            </div>
-            <span class="ressource-badge">Gratuit</span>
-          </div>
-          <div class="ressource-body">
-            <h3>Mini Guide — Optimiser votre fiche Google My Business</h3>
-            <p>Le guide pas-à-pas pour optimiser votre fiche Google et attirer plus de patients localement.</p>
-            <a href="assets/mini-guide-google-my-business.pdf" download class="btn-download">
-              <svg viewBox="0 0 24 24"><path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 2h14v2H5v-2z"/></svg>
-              Télécharger
-            </a>
-          </div>
-        </div>
-
+      <div class="ressources-grid" id="ressources-grid">
+        <p style="color:var(--text-light);padding:40px">Chargement des ressources...</p>
       </div>
     </div>
   </section>
 
-  <!-- ── CTA ── -->
   <section class="cta-section">
     <div class="container">
       <h2>Tu veux aller plus loin ?</h2>
@@ -351,13 +129,12 @@
     </div>
   </section>
 
-  <!-- ── FOOTER ── -->
   <footer>
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
           <img src="assets/logo-long.png" alt="Procom Solution"/>
-          <p>Community Manager spécialisée en audiologie. Audrey Duval-Lebret accompagne les professionnels de santé dans leur communication digitale.</p>
+          <p>Community Manager spécialisée en audiologie.</p>
         </div>
         <div class="footer-col">
           <h4>Navigation</h4>
@@ -366,45 +143,20 @@
             <li><a href="index.html#offres">Offres</a></li>
             <li><a href="portfolio.html">Portfolio</a></li>
             <li><a href="ressources.html">Ressources</a></li>
-            <li><a href="temoignages.html">Témoignages</a></li>
           </ul>
         </div>
         <div class="footer-col">
           <h4>Légal</h4>
-          <ul>
-            <li><a href="#">Mentions légales</a></li>
-            <li><a href="#">Confidentialité</a></li>
-          </ul>
+          <ul><li><a href="#">Mentions légales</a></li><li><a href="#">Confidentialité</a></li></ul>
         </div>
       </div>
       <div class="footer-bottom">
         <p>© 2026 Procom Solution. Tous droits réservés.</p>
-        <div style="display:flex;gap:20px;">
-          <a href="#">Mentions légales</a>
-          <a href="#">Confidentialité</a>
-        </div>
+        <div style="display:flex;gap:20px;"><a href="#">Mentions légales</a><a href="#">Confidentialité</a></div>
       </div>
     </div>
   </footer>
 
-  <script>
-    function toggleMenu() {
-      document.getElementById('mobileMenu').classList.toggle('open');
-    }
-    window.addEventListener('scroll', () => {
-      const h = document.querySelector('header');
-      h.style.boxShadow = window.scrollY > 20 ? '0 4px 24px rgba(17,35,56,0.12)' : 'none';
-    });
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }
-      });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.ressource-card').forEach(el => {
-      el.style.opacity='0'; el.style.transform='translateY(24px)';
-      el.style.transition='opacity 0.5s ease, transform 0.5s ease';
-      observer.observe(el);
-    });
-  </script>
+  <script src="site.js"></script>
 </body>
 </html>

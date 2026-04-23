@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Procom Solution – Community Manager Audiologie</title>
+  <title id="meta-title">Procom Solution</title>
+  <meta name="description" id="meta-desc" content=""/>
   <link rel="icon" href="assets/logo-court.png" type="image/png"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
@@ -25,46 +26,24 @@
     img { max-width: 100%; display: block; }
     a { text-decoration: none; color: inherit; }
     .container { width: 90%; max-width: 1100px; margin: 0 auto; }
-
-    /* ── NAV ── */
-    header {
-      position: sticky; top: 0; z-index: 100;
-      background: var(--white);
-      border-bottom: 1px solid rgba(17,35,56,0.08);
-      transition: box-shadow var(--transition);
-    }
+    header { position: sticky; top: 0; z-index: 100; background: var(--white); border-bottom: 1px solid rgba(17,35,56,0.08); transition: box-shadow var(--transition); }
     nav { display: flex; align-items: center; justify-content: space-between; height: 72px; width: 90%; max-width: 1100px; margin: 0 auto; }
     .nav-logo img { height: 44px; }
     .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
     .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--text-mid); transition: color var(--transition); }
     .nav-links a:hover { color: var(--turquoise); }
-    .nav-links .btn-nav {
-      background: var(--turquoise); color: var(--white) !important;
-      padding: 10px 22px; border-radius: 50px; font-weight: 600;
-      transition: background var(--transition), transform var(--transition);
-    }
+    .nav-links .btn-nav { background: var(--turquoise); color: var(--white) !important; padding: 10px 22px; border-radius: 50px; font-weight: 600; transition: background var(--transition), transform var(--transition); }
     .nav-links .btn-nav:hover { background: var(--navy); transform: translateY(-1px); }
     .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
-    .hamburger span { width: 24px; height: 2px; background: var(--navy); border-radius: 2px; transition: var(--transition); }
+    .hamburger span { width: 24px; height: 2px; background: var(--navy); border-radius: 2px; }
     .mobile-menu { display: none; flex-direction: column; background: var(--white); border-top: 1px solid rgba(17,35,56,0.08); padding: 20px 5%; gap: 16px; }
     .mobile-menu.open { display: flex; }
     .mobile-menu a { font-size: 1rem; font-weight: 500; color: var(--text-mid); padding: 8px 0; border-bottom: 1px solid rgba(17,35,56,0.05); }
-    .mobile-menu .btn-nav { background: var(--turquoise); color: var(--white) !important; padding: 12px 20px; border-radius: 50px; text-align: center; border: none; }
-
-    /* ── HERO ── */
-    .hero {
-      background: linear-gradient(135deg, #f4f8f9 0%, #e8f4f5 100%);
-      padding: 80px 0 60px;
-      overflow: hidden;
-    }
+    .mobile-menu .btn-nav { background: var(--turquoise); color: var(--white) !important; padding: 12px 20px; border-radius: 50px; text-align: center; }
+    .hero { background: linear-gradient(135deg, #f4f8f9 0%, #e8f4f5 100%); padding: 80px 0 60px; overflow: hidden; }
     .hero-inner { display: flex; align-items: center; gap: 60px; }
     .hero-text { flex: 1; }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(80,158,164,0.12); color: var(--turquoise);
-      padding: 8px 16px; border-radius: 50px; font-size: 0.82rem; font-weight: 600;
-      margin-bottom: 24px; letter-spacing: 0.5px; text-transform: uppercase;
-    }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(80,158,164,0.12); color: var(--turquoise); padding: 8px 16px; border-radius: 50px; font-size: 0.82rem; font-weight: 600; margin-bottom: 24px; letter-spacing: 0.5px; text-transform: uppercase; }
     .hero-text h1 { font-size: clamp(2.2rem,5vw,3.4rem); font-weight: 700; line-height: 1.15; color: var(--navy); margin-bottom: 20px; }
     .hero-text h1 span { color: var(--turquoise); }
     .hero-text p { font-size: 1.05rem; color: var(--text-mid); max-width: 500px; margin-bottom: 36px; }
@@ -74,109 +53,94 @@
     .btn-outline { border: 2px solid var(--navy); color: var(--navy); padding: 12px 28px; border-radius: 50px; font-weight: 600; font-size: 0.95rem; transition: var(--transition); }
     .btn-outline:hover { background: var(--navy); color: var(--white); transform: translateY(-2px); }
     .hero-stats { display: flex; gap: 32px; margin-top: 44px; flex-wrap: wrap; }
-    .stat { text-align: center; }
     .stat strong { display: block; font-size: 1.8rem; font-weight: 700; color: var(--turquoise); }
     .stat span { font-size: 0.78rem; color: var(--text-light); font-weight: 500; line-height: 1.3; }
     .hero-image { flex: 0 0 380px; position: relative; }
     .hero-image img { width: 100%; border-radius: 24px; box-shadow: var(--shadow); }
-    .hero-tag {
-      position: absolute; bottom: -16px; left: 50%; transform: translateX(-50%);
-      background: var(--white); border-radius: var(--radius);
-      padding: 12px 20px; box-shadow: var(--shadow);
-      display: flex; align-items: center; gap: 10px; white-space: nowrap;
-    }
+    .hero-tag { position: absolute; bottom: -16px; left: 50%; transform: translateX(-50%); background: var(--white); border-radius: var(--radius); padding: 12px 20px; box-shadow: var(--shadow); display: flex; align-items: center; gap: 10px; white-space: nowrap; }
     .hero-tag .emoji { font-size: 1.4rem; }
     .hero-tag p { font-size: 0.8rem; font-weight: 600; color: var(--navy); line-height: 1.2; }
     .hero-tag span { color: var(--text-light); font-weight: 400; }
-
-    /* ── SECTION BASE ── */
     section { padding: 80px 0; }
     .section-label { font-size: 0.78rem; font-weight: 700; color: var(--turquoise); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; }
     .section-title { font-size: clamp(1.7rem,3.5vw,2.4rem); font-weight: 700; color: var(--navy); line-height: 1.2; margin-bottom: 16px; }
     .section-sub { font-size: 1rem; color: var(--text-mid); max-width: 560px; }
-
-    /* ── OFFRES ── */
     #offres { background: var(--light-bg); }
     .offres-header { text-align: center; margin-bottom: 52px; }
     .offres-header .section-sub { margin: 0 auto; }
     .offres-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
-    .offre-card {
-      background: var(--white); border-radius: 20px; padding: 36px 28px;
-      box-shadow: var(--shadow); position: relative; transition: transform var(--transition), box-shadow var(--transition);
-      display: flex; flex-direction: column;
-    }
+    .offre-card { background: var(--white); border-radius: 20px; padding: 36px 28px; box-shadow: var(--shadow); position: relative; transition: transform var(--transition), box-shadow var(--transition); display: flex; flex-direction: column; }
     .offre-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(17,35,56,0.14); }
     .offre-card.featured { border: 2px solid var(--turquoise); }
-    .badge-recommande {
-      position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
-      background: var(--turquoise); color: var(--white);
-      font-size: 0.72rem; font-weight: 700; padding: 5px 16px; border-radius: 50px;
-      text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap;
-    }
+    .badge-recommande { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--turquoise); color: var(--white); font-size: 0.72rem; font-weight: 700; padding: 5px 16px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
     .offre-icon { font-size: 2rem; margin-bottom: 8px; }
     .offre-tag { font-size: 0.72rem; font-weight: 700; color: var(--turquoise); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
     .offre-card h3 { font-size: 1.3rem; font-weight: 700; color: var(--navy); margin-bottom: 14px; }
-    .offre-card p { font-size: 0.9rem; color: var(--text-mid); margin-bottom: 24px; }
+    .offre-card > p { font-size: 0.9rem; color: var(--text-mid); margin-bottom: 24px; }
     .offre-card ul { list-style: none; flex: 1; margin-bottom: 28px; display: flex; flex-direction: column; gap: 10px; }
     .offre-card ul li { font-size: 0.88rem; color: var(--text-mid); display: flex; align-items: flex-start; gap: 10px; }
     .offre-card ul li::before { content: '✓'; color: var(--turquoise); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
     .offre-card .btn-primary, .offre-card .btn-outline { width: 100%; text-align: center; display: block; }
-
-    /* ── À PROPOS ── */
     #apropos { background: var(--white); }
     .apropos-inner { display: flex; align-items: center; gap: 72px; }
-    .apropos-image { flex: 0 0 380px; position: relative; }
+    .apropos-image { flex: 0 0 380px; }
     .apropos-image img { width: 100%; border-radius: 24px; box-shadow: var(--shadow); }
     .apropos-tags { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0; }
     .tag { background: rgba(80,158,164,0.1); color: var(--turquoise); font-size: 0.8rem; font-weight: 600; padding: 6px 14px; border-radius: 50px; }
     .apropos-text { flex: 1; }
     .apropos-text p { color: var(--text-mid); font-size: 0.97rem; margin-bottom: 16px; }
     .apropos-text strong { color: var(--navy); }
-
-    /* ── TÉMOIGNAGES ── */
     #temoignages { background: var(--light-bg); }
     .temoignages-header { text-align: center; margin-bottom: 48px; }
-    .temoignages-header .section-sub { margin: 0 auto; }
     .temoignages-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-bottom: 40px; }
-    .temoignage-card {
-      background: var(--white); border-radius: 16px; padding: 28px;
-      box-shadow: var(--shadow); transition: transform var(--transition);
-    }
+    .temoignage-card { background: var(--white); border-radius: 16px; padding: 28px; box-shadow: var(--shadow); transition: transform var(--transition); }
     .temoignage-card:hover { transform: translateY(-4px); }
     .stars { color: #f59e0b; font-size: 1rem; letter-spacing: 2px; margin-bottom: 14px; }
     .temoignage-card blockquote { font-size: 0.9rem; color: var(--text-mid); font-style: italic; line-height: 1.7; margin-bottom: 20px; }
     .temoignage-author { display: flex; align-items: center; gap: 12px; }
-    .avatar {
-      width: 42px; height: 42px; border-radius: 50%;
-      background: var(--turquoise); color: var(--white);
-      font-size: 0.85rem; font-weight: 700;
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    }
+    .avatar { width: 42px; height: 42px; border-radius: 50%; background: var(--turquoise); color: var(--white); font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .author-info strong { font-size: 0.88rem; color: var(--navy); display: block; }
     .author-info span { font-size: 0.78rem; color: var(--text-light); }
     .temoignages-footer { text-align: center; }
-    .google-badge {
-      display: inline-flex; align-items: center; gap: 16px;
-      background: var(--white); padding: 16px 28px; border-radius: var(--radius);
-      box-shadow: var(--shadow); margin-bottom: 24px;
-    }
+    .google-badge { display: inline-flex; align-items: center; gap: 16px; background: var(--white); padding: 16px 28px; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 24px; }
     .google-badge .stars { margin: 0; font-size: 1.1rem; }
     .google-badge p { font-size: 0.85rem; color: var(--text-mid); text-align: left; }
     .google-badge strong { color: var(--navy); }
-
-    /* ── BLOG ── */
+    #ressources-preview { background: linear-gradient(135deg, var(--navy) 0%, #1a3a5c 100%); padding: 80px 0; overflow: hidden; }
+    .ressources-preview-header { text-align: center; margin-bottom: 48px; }
+    .ressources-preview-header .section-label { color: rgba(80,158,164,0.9); }
+    .ressources-preview-header .section-title { color: var(--white); }
+    .ressources-preview-header .section-sub { color: rgba(255,255,255,0.65); margin: 0 auto; }
+    .carousel-wrapper { position: relative; overflow: hidden; }
+    .carousel-track { display: flex; gap: 24px; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); will-change: transform; }
+    .carousel-slide { flex: 0 0 calc((100% - 48px) / 3); background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; overflow: hidden; transition: transform var(--transition), background var(--transition); }
+    .carousel-slide:hover { transform: translateY(-6px); background: rgba(255,255,255,0.12); }
+    .carousel-slide-img { height: 220px; overflow: hidden; position: relative; }
+    .carousel-slide-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .carousel-slide:hover .carousel-slide-img img { transform: scale(1.06); }
+    .carousel-slide-badge { position: absolute; top: 12px; left: 12px; background: var(--turquoise); color: var(--white); font-size: 0.68rem; font-weight: 700; padding: 4px 10px; border-radius: 50px; text-transform: uppercase; }
+    .carousel-slide-body { padding: 20px; }
+    .carousel-slide-body h4 { font-size: 0.95rem; font-weight: 700; color: var(--white); margin-bottom: 8px; line-height: 1.4; }
+    .carousel-slide-body p { font-size: 0.8rem; color: rgba(255,255,255,0.6); line-height: 1.5; margin-bottom: 16px; }
+    .carousel-slide-body a { display: inline-flex; align-items: center; gap: 6px; font-size: 0.82rem; font-weight: 600; color: var(--turquoise); transition: gap var(--transition); }
+    .carousel-slide-body a:hover { gap: 10px; }
+    .carousel-controls { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 36px; }
+    .carousel-btn { width: 46px; height: 46px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.25); background: transparent; color: var(--white); font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background var(--transition), border-color var(--transition); }
+    .carousel-btn:hover { background: var(--turquoise); border-color: var(--turquoise); }
+    .carousel-dots { display: flex; gap: 8px; }
+    .carousel-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.3); border: none; cursor: pointer; transition: background var(--transition), transform var(--transition); }
+    .carousel-dot.active { background: var(--turquoise); transform: scale(1.3); }
+    .ressources-cta { text-align: center; margin-top: 44px; }
+    .btn-white { background: var(--white); color: var(--navy); padding: 14px 32px; border-radius: 50px; font-weight: 700; font-size: 0.95rem; transition: transform var(--transition), box-shadow var(--transition); display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
     #blog { background: var(--white); }
     .blog-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; flex-wrap: wrap; gap: 16px; }
     .blog-link { font-size: 0.9rem; font-weight: 600; color: var(--turquoise); display: flex; align-items: center; gap: 6px; transition: gap var(--transition); }
     .blog-link:hover { gap: 10px; }
     .blog-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
-    .blog-card {
-      background: var(--white); border-radius: 16px; overflow: hidden;
-      box-shadow: var(--shadow); transition: transform var(--transition), box-shadow var(--transition);
-      display: flex; flex-direction: column;
-    }
+    .blog-card { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); transition: transform var(--transition), box-shadow var(--transition); display: flex; flex-direction: column; }
     .blog-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(17,35,56,0.14); }
-    .blog-card-img { height: 200px; overflow: hidden; }
+    .blog-card-img { height: 200px; overflow: hidden; background: linear-gradient(135deg, var(--navy), #1a3a5c); display: flex; align-items: center; justify-content: center; }
     .blog-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
     .blog-card:hover .blog-card-img img { transform: scale(1.06); }
     .blog-card-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
@@ -184,134 +148,29 @@
     .blog-tag { font-size: 0.72rem; font-weight: 700; color: var(--turquoise); background: rgba(80,158,164,0.1); padding: 4px 10px; border-radius: 50px; }
     .blog-date { font-size: 0.72rem; color: var(--text-light); }
     .blog-card h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; line-height: 1.4; }
-    .blog-card p { font-size: 0.85rem; color: var(--text-mid); flex: 1; margin-bottom: 18px; }
-    .blog-card-link { font-size: 0.85rem; font-weight: 600; color: var(--turquoise); display: flex; align-items: center; gap: 6px; transition: gap var(--transition); }
-    .blog-card-link:hover { gap: 10px; }
-
-    /* ══════════════════════════════════
-       ── SECTION RESSOURCES CARROUSEL ──
-    ══════════════════════════════════ */
-    #ressources-preview {
-      background: linear-gradient(135deg, var(--navy) 0%, #1a3a5c 100%);
-      padding: 80px 0;
-      overflow: hidden;
-    }
-    .ressources-preview-header { text-align: center; margin-bottom: 48px; }
-    .ressources-preview-header .section-label { color: rgba(80,158,164,0.9); }
-    .ressources-preview-header .section-title { color: var(--white); }
-    .ressources-preview-header .section-sub { color: rgba(255,255,255,0.65); margin: 0 auto; }
-
-    /* Carrousel */
-    .carousel-wrapper { position: relative; overflow: hidden; }
-    .carousel-track {
-      display: flex;
-      gap: 24px;
-      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      will-change: transform;
-    }
-    .carousel-slide {
-      flex: 0 0 calc((100% - 48px) / 3);
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 20px;
-      overflow: hidden;
-      transition: transform var(--transition), background var(--transition);
-      cursor: pointer;
-    }
-    .carousel-slide:hover {
-      transform: translateY(-6px);
-      background: rgba(255,255,255,0.12);
-    }
-    .carousel-slide-img {
-      height: 220px;
-      overflow: hidden;
-      position: relative;
-    }
-    .carousel-slide-img img {
-      width: 100%; height: 100%; object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-    .carousel-slide:hover .carousel-slide-img img { transform: scale(1.06); }
-    .carousel-slide-badge {
-      position: absolute; top: 12px; left: 12px;
-      background: var(--turquoise); color: var(--white);
-      font-size: 0.68rem; font-weight: 700; padding: 4px 10px;
-      border-radius: 50px; text-transform: uppercase; letter-spacing: 0.5px;
-    }
-    .carousel-slide-body { padding: 20px; }
-    .carousel-slide-body h4 { font-size: 0.95rem; font-weight: 700; color: var(--white); margin-bottom: 8px; line-height: 1.4; }
-    .carousel-slide-body p { font-size: 0.8rem; color: rgba(255,255,255,0.6); line-height: 1.5; margin-bottom: 16px; }
-    .carousel-slide-body a {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 0.82rem; font-weight: 600; color: var(--turquoise);
-      transition: gap var(--transition);
-    }
-    .carousel-slide-body a:hover { gap: 10px; }
-
-    /* Contrôles */
-    .carousel-controls {
-      display: flex; align-items: center; justify-content: center;
-      gap: 16px; margin-top: 36px;
-    }
-    .carousel-btn {
-      width: 46px; height: 46px; border-radius: 50%;
-      border: 2px solid rgba(255,255,255,0.25);
-      background: transparent; color: var(--white);
-      font-size: 1.1rem; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      transition: background var(--transition), border-color var(--transition), transform var(--transition);
-    }
-    .carousel-btn:hover { background: var(--turquoise); border-color: var(--turquoise); transform: scale(1.08); }
-    .carousel-dots { display: flex; gap: 8px; }
-    .carousel-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: rgba(255,255,255,0.3); border: none; cursor: pointer;
-      transition: background var(--transition), transform var(--transition);
-    }
-    .carousel-dot.active { background: var(--turquoise); transform: scale(1.3); }
-
-    /* CTA sous carrousel */
-    .ressources-cta { text-align: center; margin-top: 44px; }
-    .btn-white {
-      background: var(--white); color: var(--navy);
-      padding: 14px 32px; border-radius: 50px;
-      font-weight: 700; font-size: 0.95rem;
-      transition: transform var(--transition), box-shadow var(--transition);
-      display: inline-flex; align-items: center; gap: 8px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-    }
-    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
-
-    /* ── CONTACT ── */
+    .blog-card > a > .blog-card-body > p, .blog-card p.excerpt { font-size: 0.85rem; color: var(--text-mid); flex: 1; margin-bottom: 18px; }
+    .blog-card-link { font-size: 0.85rem; font-weight: 600; color: var(--turquoise); display: flex; align-items: center; gap: 6px; margin-top: auto; }
     #contact { background: var(--light-bg); }
     .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
     .contact-info h2 { font-size: clamp(1.7rem,3vw,2.2rem); font-weight: 700; color: var(--navy); margin-bottom: 16px; }
-    .contact-info p { color: var(--text-mid); margin-bottom: 32px; font-size: 0.97rem; }
+    .contact-info > p { color: var(--text-mid); margin-bottom: 32px; font-size: 0.97rem; }
     .contact-items { display: flex; flex-direction: column; gap: 20px; }
     .contact-item { display: flex; align-items: center; gap: 16px; }
     .contact-icon { width: 48px; height: 48px; background: rgba(80,158,164,0.12); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
     .contact-item strong { display: block; font-size: 0.8rem; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }
-    .contact-item a, .contact-item span { font-size: 0.95rem; color: var(--navy); font-weight: 500; }
+    .contact-item a { font-size: 0.95rem; color: var(--navy); font-weight: 500; }
     .contact-item a:hover { color: var(--turquoise); }
     .contact-form { background: var(--white); border-radius: 20px; padding: 36px; box-shadow: var(--shadow); }
     .contact-form h3 { font-size: 1.2rem; font-weight: 700; color: var(--navy); margin-bottom: 24px; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
     .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
     .form-group label { font-size: 0.8rem; font-weight: 600; color: var(--text-mid); }
-    .form-group input, .form-group textarea, .form-group select {
-      padding: 12px 16px; border: 1.5px solid rgba(17,35,56,0.12); border-radius: 10px;
-      font-family: inherit; font-size: 0.9rem; color: var(--navy);
-      outline: none; transition: border-color var(--transition), box-shadow var(--transition);
-      background: var(--white);
-    }
-    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
-      border-color: var(--turquoise); box-shadow: 0 0 0 3px rgba(80,158,164,0.12);
-    }
+    .form-group input, .form-group textarea, .form-group select { padding: 12px 16px; border: 1.5px solid rgba(17,35,56,0.12); border-radius: 10px; font-family: inherit; font-size: 0.9rem; color: var(--navy); outline: none; transition: border-color var(--transition), box-shadow var(--transition); background: var(--white); }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--turquoise); box-shadow: 0 0 0 3px rgba(80,158,164,0.12); }
     .form-group textarea { resize: vertical; min-height: 120px; }
     .form-submit { width: 100%; padding: 14px; background: var(--turquoise); color: var(--white); border: none; border-radius: 50px; font-family: inherit; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: background var(--transition), transform var(--transition); }
     .form-submit:hover { background: var(--navy); transform: translateY(-1px); }
-
-    /* ── FOOTER ── */
+    .form-success { display: none; text-align: center; padding: 16px; color: #16a34a; font-weight: 600; background: #dcfce7; border-radius: 10px; margin-top: 12px; }
     footer { background: var(--navy); color: rgba(255,255,255,0.75); padding: 60px 0 0; }
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.08); }
     .footer-brand img { height: 40px; margin-bottom: 16px; filter: brightness(0) invert(1); }
@@ -326,8 +185,6 @@
     .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; font-size: 0.82rem; flex-wrap: wrap; gap: 12px; }
     .footer-bottom a { transition: color var(--transition); }
     .footer-bottom a:hover { color: var(--turquoise); }
-
-    /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       .nav-links { display: none; }
       .hamburger { display: flex; }
@@ -343,10 +200,7 @@
       .footer-grid { grid-template-columns: 1fr; gap: 32px; }
     }
     @media (max-width: 600px) {
-      .hero-stats { gap: 20px; }
       .hero-btns { flex-direction: column; }
-      .btn-primary, .btn-outline { text-align: center; }
-      .blog-header { flex-direction: column; align-items: flex-start; }
       .form-row { grid-template-columns: 1fr; }
       .carousel-slide { flex: 0 0 80%; }
       .footer-bottom { flex-direction: column; text-align: center; }
@@ -355,533 +209,400 @@
 </head>
 <body>
 
-  <!-- ── HEADER ── -->
-  <header>
-    <nav>
-      <a class="nav-logo" href="index.html">
-        <img src="assets/logo-long.png" alt="Procom Solution"/>
-      </a>
-      <ul class="nav-links">
-        <li><a href="#offres">Nos offres</a></li>
-        <li><a href="#apropos">À propos</a></li>
-        <li><a href="#temoignages">Témoignages</a></li>
-        <li><a href="portfolio.html">Articles</a></li>
-        <li><a href="ressources.html">Ressources</a></li>
-        <li><a href="#contact" class="btn-nav">Prendre RDV</a></li>
-      </ul>
-      <div class="hamburger" onclick="toggleMenu()">
-        <span></span><span></span><span></span>
-      </div>
-    </nav>
-    <div class="mobile-menu" id="mobileMenu">
-      <a href="#offres" onclick="toggleMenu()">Nos offres</a>
-      <a href="#apropos" onclick="toggleMenu()">À propos</a>
-      <a href="#temoignages" onclick="toggleMenu()">Témoignages</a>
-      <a href="portfolio.html" onclick="toggleMenu()">Articles</a>
-      <a href="ressources.html" onclick="toggleMenu()">Ressources</a>
-      <a href="#contact" class="btn-nav" onclick="toggleMenu()">Prendre RDV</a>
-    </div>
-  </header>
+<header>
+  <nav>
+    <a class="nav-logo" href="index.html">
+      <img id="nav-logo-img" src="assets/logo-long.png" alt="Procom Solution"/>
+    </a>
+    <ul class="nav-links" id="nav-links-desktop"></ul>
+    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu"></div>
+</header>
 
-  <!-- ── HERO ── -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-inner">
-        <div class="hero-text">
-          <div class="hero-badge">🎧 Community Manager Audiologie</div>
-          <h1>Booste ta<br/><span>patientèle</span><br/>dès aujourd'hui</h1>
-          <p>Communication digitale sur mesure pour les audioprothésistes indépendants. Fidélise tes patients et génère de nouveaux rendez-vous grâce à une com qui te ressemble.</p>
-          <div class="hero-btns">
-            <a href="#contact" class="btn-primary">Prendre rendez-vous</a>
-            <a href="#offres" class="btn-outline">Découvrir les offres</a>
-          </div>
-          <div class="hero-stats">
-            <div class="stat"><strong>15+</strong><span>Ans d'expérience<br/>relation client</span></div>
-            <div class="stat"><strong>5</strong><span>Années dans<br/>le paramédical</span></div>
-            <div class="stat"><strong>100%</strong><span>Spécialisée<br/>audiologie</span></div>
-          </div>
+<section class="hero" id="home">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-badge" id="hero-badge"></div>
+        <h1 id="hero-h1"></h1>
+        <p id="hero-subtitle"></p>
+        <div class="hero-btns">
+          <a id="hero-btn1" class="btn-primary" href="#contact">Prendre rendez-vous</a>
+          <a id="hero-btn2" class="btn-outline" href="#offres">Découvrir les offres</a>
         </div>
-        <div class="hero-image">
-          <img src="assets/Audrey-01.png" alt="Audrey – Community Manager Audiologie"/>
-          <div class="hero-tag">
-            <span class="emoji">🎧</span>
-            <p><strong>Ton oreille attentive</strong><br/><span>Communication éthique & personnalisée</span></p>
-          </div>
+        <div class="hero-stats" id="hero-stats"></div>
+      </div>
+      <div class="hero-image">
+        <img id="hero-img" src="assets/Audrey-01.png" alt="Audrey"/>
+        <div class="hero-tag">
+          <span class="emoji" id="hero-tag-emoji">🎧</span>
+          <p><strong id="hero-tag-title">Ton oreille attentive</strong><br/><span id="hero-tag-sub">Communication éthique & personnalisée</span></p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ── OFFRES ── -->
-  <section id="offres">
-    <div class="container">
-      <div class="offres-header">
-        <p class="section-label">Nos offres</p>
-        <h2 class="section-title">La solution adaptée<br/>à tes besoins</h2>
-        <p class="section-sub">Des formules pensées pour les audioprothésistes indépendants, de la création de contenu à la gestion complète de ta communication.</p>
+<section id="offres">
+  <div class="container">
+    <div class="offres-header">
+      <p class="section-label" id="offres-label">Nos offres</p>
+      <h2 class="section-title" id="offres-title">La solution adaptée<br/>à tes besoins</h2>
+      <p class="section-sub" id="offres-sub"></p>
+    </div>
+    <div class="offres-grid" id="offres-grid"></div>
+  </div>
+</section>
+
+<section id="apropos">
+  <div class="container">
+    <div class="apropos-inner">
+      <div class="apropos-image">
+        <img id="apropos-img" src="assets/Audrey-01.png" alt="Audrey Duval-Lebret"/>
       </div>
-      <div class="offres-grid">
-        <div class="offre-card">
-          <div class="offre-icon">🚀</div>
-          <p class="offre-tag">Starter</p>
-          <h3>Ear Me Up</h3>
-          <p>LE kit pour démarrer ton activité sur les réseaux sociaux et gagner en visibilité rapidement.</p>
-          <ul>
-            <li>Kit de démarrage réseaux sociaux</li>
-            <li>Visuels personnalisés à tes couleurs</li>
-            <li>Templates prêts à l'emploi</li>
-            <li>Guide de publication</li>
-          </ul>
-          <a href="#contact" class="btn-outline">En savoir plus</a>
-        </div>
-        <div class="offre-card featured">
-          <div class="badge-recommande">✨ Recommandé</div>
-          <div class="offre-icon">✨</div>
-          <p class="offre-tag">Sur mesure</p>
-          <h3>Ta com sur mesure</h3>
-          <p>Une communication 100% personnalisée, unique et éthique, au plus près de tes patients et de tes valeurs.</p>
-          <ul>
-            <li>Stratégie de contenu personnalisée</li>
-            <li>Création & publication de posts</li>
-            <li>Gestion des réseaux sociaux</li>
-            <li>Reporting mensuel</li>
-            <li>Accompagnement dédié</li>
-          </ul>
-          <a href="#contact" class="btn-primary">Prendre RDV</a>
-        </div>
-        <div class="offre-card">
-          <div class="offre-icon">🎨</div>
-          <p class="offre-tag">Contenu</p>
-          <h3>Visuels & Articles</h3>
-          <p>Création de visuels professionnels et rédaction d'articles pour valoriser ton expertise.</p>
-          <ul>
-            <li>Bannières LinkedIn & réseaux</li>
-            <li>Infographies patients</li>
-            <li>Articles de blog</li>
-            <li>Fiches conseils</li>
-          </ul>
-          <a href="#contact" class="btn-outline">En savoir plus</a>
-        </div>
+      <div class="apropos-text">
+        <p class="section-label" id="apropos-label">Qui suis-je ?</p>
+        <h2 class="section-title" id="apropos-title"></h2>
+        <div id="apropos-content"></div>
+        <div class="apropos-tags" id="apropos-tags"></div>
+        <a id="apropos-btn" class="btn-primary" href="#contact">Travaillons ensemble</a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ── À PROPOS ── -->
-  <section id="apropos">
-    <div class="container">
-      <div class="apropos-inner">
-        <div class="apropos-image">
-          <img src="assets/Audrey-01.png" alt="Audrey Duval-Lebret"/>
-        </div>
-        <div class="apropos-text">
-          <p class="section-label">Qui suis-je ?</p>
-          <h2 class="section-title">La community manager<br/>spécialisée dans l'audiologie</h2>
-          <p>Assistante audioprothésiste pendant 3 ans, je me suis reconvertie comme Community Manager spécialisée dans l'audiologie en ayant constaté un réel besoin de la part des patients et un manque important de communication dans ce secteur.</p>
-          <p>Plus de 15 ans d'expérience en relation client et 5 années dans le paramédical font de moi <strong>ton oreille attentive</strong> et ton alliée pour une communication au plus près de ton patient et de tes valeurs.</p>
-          <div class="apropos-tags">
-            <span class="tag">Audiologie</span>
-            <span class="tag">Community Management</span>
-            <span class="tag">Relation patient</span>
-            <span class="tag">Communication éthique</span>
-            <span class="tag">Paramédical</span>
-          </div>
-          <a href="#contact" class="btn-primary">Travaillons ensemble</a>
-        </div>
-      </div>
+<section id="temoignages">
+  <div class="container">
+    <div class="temoignages-header">
+      <p class="section-label" id="temoignages-label">Témoignages</p>
+      <h2 class="section-title" id="temoignages-title">Ceux qui en parlent le mieux</h2>
     </div>
-  </section>
-
-  <!-- ── TÉMOIGNAGES ── -->
-  <section id="temoignages">
-    <div class="container">
-      <div class="temoignages-header">
-        <p class="section-label">Témoignages</p>
-        <h2 class="section-title">Ceux qui en parlent le mieux</h2>
+    <div class="temoignages-grid" id="temoignages-grid"></div>
+    <div class="temoignages-footer">
+      <div class="google-badge">
+        <div class="stars">★★★★★</div>
+        <p>Note Google : <strong id="google-note">5.0 / 5</strong><br/><span id="google-count">Basée sur 2 avis vérifiés</span></p>
       </div>
-      <div class="temoignages-grid">
-        <div class="temoignage-card">
-          <div class="stars">★★★★★</div>
-          <blockquote>"Audrey m'a proposé plusieurs visuels répondant à mes demandes et le tout avec un délai record. Talentueuse et professionnelle, je recommande."</blockquote>
-          <div class="temoignage-author">
-            <div class="avatar">NS</div>
-            <div class="author-info"><strong>Nahman Sroussi</strong><span>Audioprothésiste – Audition Lefeuvre · Jan. 2024</span></div>
-          </div>
-        </div>
-        <div class="temoignage-card">
-          <div class="stars">★★★★★</div>
-          <blockquote>"Audrey a réalisé une superbe bannière pour mon profil LinkedIn. Je trouve que ça met en valeur ma vision des choses ! Merci beaucoup !"</blockquote>
-          <div class="temoignage-author">
-            <div class="avatar">TM</div>
-            <div class="author-info"><strong>Tifheret Mamou</strong><span>Audioprothésiste D.E. · Mars 2024</span></div>
-          </div>
-        </div>
-        <div class="temoignage-card">
-          <div class="stars">★★★★★</div>
-          <blockquote>"Audrey a réalisé ma bannière LinkedIn. Elle a été très à l'écoute de mes demandes et très réactive. Je recommande son travail."</blockquote>
-          <div class="temoignage-author">
-            <div class="avatar">LB</div>
-            <div class="author-info"><strong>Léa Besnainou</strong><span>Étudiante Audioprothésiste · Mars 2024</span></div>
-          </div>
-        </div>
-        <div class="temoignage-card">
-          <div class="stars">★★★★★</div>
-          <blockquote>"Efficacité, réactivité, très professionnel. On recommande."</blockquote>
-          <div class="temoignage-author">
-            <div class="avatar">BQ</div>
-            <div class="author-info"><strong>Benoit Quinette</strong><span>Google Review · Juil. 2024</span></div>
-          </div>
-        </div>
-        <div class="temoignage-card">
-          <div class="stars">★★★★★</div>
-          <blockquote>"Toujours impliquée, Audrey sait comment communiquer avec une équipe de 9 personnes. Elle a de très bonnes idées et sait mettre en avant nos entreprises."</blockquote>
-          <div class="temoignage-author">
-            <div class="avatar">DT</div>
-            <div class="author-info"><strong>Damien Tomasella</strong><span>Google Review · Juil. 2024</span></div>
-          </div>
-        </div>
-      </div>
-      <div class="temoignages-footer">
-        <div class="google-badge">
-          <div class="stars">★★★★★</div>
-          <p>Note Google : <strong>5.0 / 5</strong><br/>Basée sur 2 avis vérifiés</p>
-        </div>
-        <br/>
-        <a href="https://www.linkedin.com/in/audrey-duval-lebret/details/recommendations/" target="_blank" class="btn-primary">Voir toutes les recommandations →</a>
-      </div>
+      <br/>
+      <a id="linkedin-btn" href="https://www.linkedin.com/in/audrey-duval-lebret/details/recommendations/" target="_blank" class="btn-primary">Voir toutes les recommandations →</a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ══════════════════════════════════
-       SECTION RESSOURCES CARROUSEL
-  ══════════════════════════════════ -->
-  <section id="ressources-preview">
-    <div class="container">
-      <div class="ressources-preview-header">
-        <p class="section-label">Ressources gratuites</p>
-        <h2 class="section-title">Guides & fiches pratiques<br/>offerts par Audrey</h2>
-        <p class="section-sub">Des ressources concrètes pour mieux comprendre l'audiologie et développer ta communication. Téléchargement libre, sans inscription.</p>
-      </div>
-
-      <div class="carousel-wrapper">
-        <div class="carousel-track" id="carouselTrack">
-
-          <!-- Slide 1 -->
-          <div class="carousel-slide">
-            <div class="carousel-slide-img">
-              <img src="assets/ressource-mini-fiches.jpg" alt="Mini Fiches Vocabulaire Audiologie"/>
-              <span class="carousel-slide-badge">📄 PDF Gratuit</span>
-            </div>
-            <div class="carousel-slide-body">
-              <h4>Collection Mini Fiches – Vocabulaire Audiologie</h4>
-              <p>Toutes les définitions essentielles pour parler audiologie avec tes patients sans jargon inaccessible.</p>
-              <a href="assets/mini-fiches-vocabulaire.pdf" download>Télécharger le guide →</a>
-            </div>
-          </div>
-
-          <!-- Slide 2 -->
-          <div class="carousel-slide">
-            <div class="carousel-slide-img">
-              <img src="assets/ressource-briser-silence.jpg" alt="Briser le Silence"/>
-              <span class="carousel-slide-badge">📄 PDF Gratuit</span>
-            </div>
-            <div class="carousel-slide-body">
-              <h4>Briser le Silence – Comprendre la presbyacousie</h4>
-              <p>Un guide complet pour accompagner tes patients et leur entourage face à la perte auditive liée à l'âge.</p>
-              <a href="assets/briser-le-silence.pdf" download>Télécharger le guide →</a>
-            </div>
-          </div>
-
-          <!-- Slide 3 -->
-          <div class="carousel-slide">
-            <div class="carousel-slide-img">
-              <img src="assets/ressource-synaptopathie.jpg" alt="Synaptopathie cochléaire"/>
-              <span class="carousel-slide-badge">📄 PDF Gratuit</span>
-            </div>
-            <div class="carousel-slide-body">
-              <h4>Synaptopathie cochléaire ou Surdité cachée</h4>
-              <p>Tout comprendre sur cette pathologie encore méconnue qui touche pourtant de nombreux patients.</p>
-              <a href="assets/synaptopathie-cochleaire.pdf" download>Télécharger le guide →</a>
-            </div>
-          </div>
-
-          <!-- Slide 4 -->
-          <div class="carousel-slide">
-            <div class="carousel-slide-img">
-              <img src="assets/ressource-cholesteatome.jpg" alt="Cholestéatome"/>
-              <span class="carousel-slide-badge">📄 PDF Gratuit</span>
-            </div>
-            <div class="carousel-slide-body">
-              <h4>Le Cholestéatome – Ce qu'il faut savoir</h4>
-              <p>Fiche pratique pour expliquer simplement cette pathologie à tes patients et les rassurer.</p>
-              <a href="assets/cholesteatome.pdf" download>Télécharger le guide →</a>
-            </div>
-          </div>
-
-          <!-- Slide 5 -->
-          <div class="carousel-slide">
-            <div class="carousel-slide-img">
-              <img src="assets/ressource-google-my-business.jpg" alt="Mini Guide Google My Business"/>
-              <span class="carousel-slide-badge">📄 PDF Gratuit</span>
-            </div>
-            <div class="carousel-slide-body">
-              <h4>Mini Guide – Booster ta fiche Google My Business</h4>
-              <p>Les étapes concrètes pour optimiser ta visibilité locale et attirer plus de patients depuis Google.</p>
-              <a href="assets/guide-google-my-business.pdf" download>Télécharger le guide →</a>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Contrôles -->
-      <div class="carousel-controls">
-        <button class="carousel-btn" id="prevBtn" aria-label="Précédent">&#8592;</button>
-        <div class="carousel-dots" id="carouselDots"></div>
-        <button class="carousel-btn" id="nextBtn" aria-label="Suivant">&#8594;</button>
-      </div>
-
-      <div class="ressources-cta">
-        <a href="ressources.html" class="btn-white">
-          📚 Voir toutes les ressources gratuites
-        </a>
-      </div>
+<section id="ressources-preview">
+  <div class="container">
+    <div class="ressources-preview-header">
+      <p class="section-label" id="ressources-label">Ressources gratuites</p>
+      <h2 class="section-title" id="ressources-title">Guides & fiches pratiques<br/>offerts par Audrey</h2>
+      <p class="section-sub" id="ressources-sub"></p>
     </div>
-  </section>
-
-  <!-- ── ARTICLES ── -->
-  <section id="blog">
-    <div class="container">
-      <div class="blog-header">
-        <div>
-          <p class="section-label">Articles</p>
-          <h2 class="section-title">Ressources & conseils</h2>
-        </div>
-        <a href="portfolio.html" class="blog-link">Voir tous les articles →</a>
-      </div>
-      <div class="blog-grid">
-        <a href="portfolio.html" class="blog-card">
-          <div class="blog-card-img"><img src="assets/xavier-carriou.jpg" alt="Entretien Xavier Carriou"/></div>
-          <div class="blog-card-body">
-            <div class="blog-meta"><span class="blog-tag">Interview</span><span class="blog-date">2024</span></div>
-            <h3>Entretien avec Xavier CARRIOU – Fondateur d'Acouphénia</h3>
-            <p>Rencontre avec un homme qui a décidé de tout changer pour aider les personnes souffrant d'acouphènes.</p>
-            <span class="blog-card-link">Lire l'article →</span>
-          </div>
-        </a>
-        <a href="portfolio.html" class="blog-card">
-          <div class="blog-card-img"><img src="assets/azdine-ezzahti.jpg" alt="Entretien Azdine Ezzahti"/></div>
-          <div class="blog-card-body">
-            <div class="blog-meta"><span class="blog-tag">Interview</span><span class="blog-date">2024</span></div>
-            <h3>Entretien avec Azdine Ezzahti – L'audioprothésiste qui casse les codes</h3>
-            <p>"Je ne suis pas tombé dans l'audiologie par hasard, mais par passion." Une rencontre inspirante.</p>
-            <span class="blog-card-link">Lire l'article →</span>
-          </div>
-        </a>
-        <a href="portfolio.html" class="blog-card">
-          <div class="blog-card-img"><img src="assets/arnaud-deveze.jpg" alt="Portrait Dr Arnaud Deveze"/></div>
-          <div class="blog-card-body">
-            <div class="blog-meta"><span class="blog-tag">Portrait</span><span class="blog-date">2024</span></div>
-            <h3>Portrait : Dr Arnaud DEVEZE – ORL & chirurgien de l'oreille</h3>
-            <p>Rencontre avec un spécialiste passionné par la chirurgie de l'oreille et la prise en charge des surdités.</p>
-            <span class="blog-card-link">Lire l'article →</span>
-          </div>
-        </a>
-      </div>
+    <div class="carousel-wrapper">
+      <div class="carousel-track" id="carouselTrack"></div>
     </div>
-  </section>
+    <div class="carousel-controls">
+      <button class="carousel-btn" id="prevBtn">&#8592;</button>
+      <div class="carousel-dots" id="carouselDots"></div>
+      <button class="carousel-btn" id="nextBtn">&#8594;</button>
+    </div>
+    <div class="ressources-cta">
+      <a href="ressources.html" class="btn-white">📚 Voir toutes les ressources gratuites</a>
+    </div>
+  </div>
+</section>
 
-  <!-- ── CONTACT ── -->
-  <section id="contact">
-    <div class="container">
-      <div class="contact-inner">
-        <div class="contact-info">
-          <p class="section-label">Contact</p>
-          <h2>Prenons rendez-vous !</h2>
-          <p>Tu veux booster ta communication et attirer plus de patients ? Réserve un créneau directement dans mon agenda pour qu'on discute de ton projet ensemble, sans engagement.</p>
-          <div class="contact-items">
-            <div class="contact-item">
-              <div class="contact-icon">📧</div>
-              <div><strong>Email</strong><a href="mailto:procomsolution23@gmail.com">procomsolution23@gmail.com</a></div>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon">📞</div>
-              <div><strong>Téléphone</strong><a href="tel:+33609055656">06 09 05 56 56</a></div>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon">💼</div>
-              <div><strong>LinkedIn</strong><a href="https://www.linkedin.com/in/audrey-duval-lebret/" target="_blank">Audrey Duval-Lebret</a></div>
-            </div>
-          </div>
-        </div>
-        <div class="contact-form">
-          <h3>Envoie-moi un message</h3>
+<section id="blog">
+  <div class="container">
+    <div class="blog-header">
+      <div>
+        <p class="section-label" id="articles-label">Articles</p>
+        <h2 class="section-title" id="articles-title">Ressources & conseils</h2>
+      </div>
+      <a href="portfolio.html" class="blog-link">Voir tous les articles →</a>
+    </div>
+    <div class="blog-grid" id="blog-grid"></div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="contact-info">
+        <p class="section-label" id="contact-label">Contact</p>
+        <h2 id="contact-title">Prenons rendez-vous !</h2>
+        <p id="contact-subtitle"></p>
+        <div class="contact-items" id="contact-items"></div>
+      </div>
+      <div class="contact-form">
+        <h3>Envoie-moi un message</h3>
+        <form id="contactForm" onsubmit="submitContact(event)">
           <div class="form-row">
-            <div class="form-group"><label>Prénom *</label><input type="text" placeholder="Jean"/></div>
-            <div class="form-group"><label>Nom *</label><input type="text" placeholder="Dupont"/></div>
+            <div class="form-group"><label>Prénom *</label><input type="text" name="prenom" placeholder="Jean" required/></div>
+            <div class="form-group"><label>Nom *</label><input type="text" name="nom" placeholder="Dupont" required/></div>
           </div>
-          <div class="form-group"><label>Email *</label><input type="email" placeholder="jean@cabinet.fr"/></div>
+          <div class="form-group"><label>Email *</label><input type="email" name="email" placeholder="jean@cabinet.fr" required/></div>
           <div class="form-group"><label>Sujet</label>
-            <select>
-              <option>Demande de devis</option>
-              <option>Question sur les offres</option>
-              <option>Partenariat</option>
-              <option>Autre</option>
+            <select name="sujet">
+              <option>Demande de devis</option><option>Question sur les offres</option><option>Partenariat</option><option>Autre</option>
             </select>
           </div>
-          <div class="form-group"><label>Message *</label><textarea placeholder="Décris ton projet..."></textarea></div>
-          <button class="form-submit">→ Envoyer le message</button>
-        </div>
+          <div class="form-group"><label>Message *</label><textarea name="message" placeholder="Décris ton projet..." required></textarea></div>
+          <button type="submit" class="form-submit">→ Envoyer le message</button>
+        </form>
+        <div class="form-success" id="form-success">✅ Message envoyé ! Je vous répondrai très vite.</div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ── FOOTER ── -->
-  <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <img src="assets/logo-long.png" alt="Procom Solution"/>
-          <p>Community Manager spécialisée dans l'audiologie. Pour une communication qui te ressemble, unique et éthique.</p>
-          <div class="footer-socials">
-            <a href="https://fr-fr.facebook.com/ProcomSolution23" target="_blank" class="social-btn">f</a>
-            <a href="https://www.linkedin.com/in/audrey-duval-lebret/" target="_blank" class="social-btn">in</a>
-            <a href="https://maps.app.goo.gl/aod8rv7fQEcLkwMe7" target="_blank" class="social-btn">G</a>
-          </div>
-        </div>
-        <div class="footer-col">
-          <h4>Navigation</h4>
-          <ul>
-            <li><a href="#offres">Nos offres</a></li>
-            <li><a href="#apropos">À propos</a></li>
-            <li><a href="#temoignages">Témoignages</a></li>
-            <li><a href="portfolio.html">Articles</a></li>
-            <li><a href="ressources.html">Ressources</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Légal</h4>
-          <ul>
-            <li><a href="#">Mentions légales</a></li>
-            <li><a href="#">Confidentialité</a></li>
-            <li><a href="#">Politique de remboursement</a></li>
-          </ul>
-        </div>
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img id="footer-logo" src="assets/logo-long.png" alt="Procom Solution"/>
+        <p id="footer-desc"></p>
+        <div class="footer-socials" id="footer-socials"></div>
       </div>
-      <div class="footer-bottom">
-        <p>© 2026 Procom Solution. Tous droits réservés.</p>
-        <div style="display:flex;gap:20px;">
-          <a href="#">Mentions légales</a>
-          <a href="#">Confidentialité</a>
-        </div>
+      <div class="footer-col"><h4>Navigation</h4><ul id="footer-nav"></ul></div>
+      <div class="footer-col"><h4>Légal</h4><ul>
+        <li><a href="#">Mentions légales</a></li>
+        <li><a href="#">Confidentialité</a></li>
+        <li><a href="#">Politique de remboursement</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p id="footer-copy"></p>
+      <div style="display:flex;gap:20px;"><a href="#">Mentions légales</a><a href="#">Confidentialité</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="cms.js"></script>
+<script>
+const D = CMS.load();
+CMS.applyColors(D.colors);
+
+// META
+document.getElementById('meta-title').textContent = D.meta.title;
+document.getElementById('meta-desc').content = D.meta.description;
+
+// NAV
+(function(){
+  const ul = document.getElementById('nav-links-desktop');
+  const mob = document.getElementById('mobileMenu');
+  D.nav.links.forEach(l => {
+    ul.innerHTML += `<li><a href="${l.href}">${l.label}</a></li>`;
+    mob.innerHTML += `<a href="${l.href}" onclick="toggleMenu()">${l.label}</a>`;
+  });
+  ul.innerHTML += `<li><a href="${D.nav.ctaHref}" class="btn-nav">${D.nav.ctaText}</a></li>`;
+  mob.innerHTML += `<a href="${D.nav.ctaHref}" class="btn-nav" onclick="toggleMenu()">${D.nav.ctaText}</a>`;
+  document.getElementById('nav-logo-img').src = D.nav.logo;
+})();
+
+// HERO
+(function(){
+  const h = D.hero;
+  document.getElementById('hero-badge').textContent = h.badge;
+  document.getElementById('hero-h1').innerHTML = `${h.title}<br/><span>${h.titleSpan}</span><br/>${h.titleEnd}`;
+  document.getElementById('hero-subtitle').textContent = h.subtitle;
+  document.getElementById('hero-btn1').textContent = h.btn1Text;
+  document.getElementById('hero-btn1').href = h.btn1Href;
+  document.getElementById('hero-btn2').textContent = h.btn2Text;
+  document.getElementById('hero-btn2').href = h.btn2Href;
+  document.getElementById('hero-img').src = h.image;
+  document.getElementById('hero-img').alt = h.imageAlt;
+  document.getElementById('hero-tag-emoji').textContent = h.tagEmoji;
+  document.getElementById('hero-tag-title').textContent = h.tagTitle;
+  document.getElementById('hero-tag-sub').textContent = h.tagSub;
+  document.getElementById('hero-stats').innerHTML = h.stats.map(s =>
+    `<div class="stat"><strong>${s.value}</strong><span>${s.label.replace(/\n/g,'<br/>')}</span></div>`
+  ).join('');
+})();
+
+// OFFRES
+(function(){
+  const o = D.offres;
+  document.getElementById('offres-label').textContent = o.sectionLabel;
+  document.getElementById('offres-title').innerHTML = o.title.replace(/\n/g,'<br/>');
+  document.getElementById('offres-sub').textContent = o.subtitle;
+  document.getElementById('offres-grid').innerHTML = o.items.map(item => `
+    <div class="offre-card${item.featured?' featured':''}">
+      ${item.featured && item.badge ? `<div class="badge-recommande">${item.badge}</div>` : ''}
+      <div class="offre-icon">${item.icon}</div>
+      <p class="offre-tag">${item.tag}</p>
+      <h3>${item.name}</h3>
+      <p>${item.desc}</p>
+      <ul>${item.features.map(f=>`<li>${f}</li>`).join('')}</ul>
+      <a href="${D.nav.ctaHref}" class="${item.btnStyle==='primary'?'btn-primary':'btn-outline'}">${item.btnText}</a>
+    </div>
+  `).join('');
+})();
+
+// À PROPOS
+(function(){
+  const a = D.apropos;
+  document.getElementById('apropos-label').textContent = a.sectionLabel;
+  document.getElementById('apropos-title').innerHTML = a.title.replace(/\n/g,'<br/>');
+  document.getElementById('apropos-img').src = a.image;
+  document.getElementById('apropos-img').alt = a.imageAlt;
+  document.getElementById('apropos-content').innerHTML = a.content.map(p=>`<p>${p}</p>`).join('');
+  document.getElementById('apropos-tags').innerHTML = a.tags.map(t=>`<span class="tag">${t}</span>`).join('');
+  document.getElementById('apropos-btn').textContent = a.btnText;
+  document.getElementById('apropos-btn').href = a.btnHref;
+})();
+
+// TÉMOIGNAGES
+(function(){
+  const t = D.temoignages;
+  document.getElementById('temoignages-label').textContent = t.sectionLabel;
+  document.getElementById('temoignages-title').textContent = t.title;
+  document.getElementById('google-note').textContent = t.googleNote;
+  document.getElementById('google-count').textContent = 'Basée sur ' + t.googleCount;
+  document.getElementById('linkedin-btn').href = t.linkedinHref;
+  document.getElementById('temoignages-grid').innerHTML = t.items.map(item => `
+    <div class="temoignage-card">
+      <div class="stars">${'★'.repeat(item.stars)}${'☆'.repeat(5-item.stars)}</div>
+      <blockquote>"${item.text}"</blockquote>
+      <div class="temoignage-author">
+        <div class="avatar">${item.initials}</div>
+        <div class="author-info"><strong>${item.name}</strong><span>${item.role}</span></div>
       </div>
     </div>
-  </footer>
+  `).join('');
+})();
 
-  <!-- ══════════════════════════════════
-       JAVASCRIPT CARROUSEL
-  ══════════════════════════════════ -->
-  <script>
-    /* ── NAV ── */
-    function toggleMenu() {
-      document.getElementById('mobileMenu').classList.toggle('open');
+// RESSOURCES
+(function(){
+  const r = D.ressources;
+  document.getElementById('ressources-label').textContent = r.sectionLabel;
+  document.getElementById('ressources-title').innerHTML = r.title.replace(/\n/g,'<br/>');
+  document.getElementById('ressources-sub').textContent = r.subtitle;
+  document.getElementById('carouselTrack').innerHTML = r.items.map(item => `
+    <div class="carousel-slide">
+      <div class="carousel-slide-img">
+        <img src="${item.image}" alt="${item.title}" onerror="this.style.opacity='0'"/>
+        <span class="carousel-slide-badge">${item.badge}</span>
+      </div>
+      <div class="carousel-slide-body">
+        <h4>${item.title}</h4>
+        <p>${item.desc}</p>
+        <a href="${item.file}" download>Télécharger le guide →</a>
+      </div>
+    </div>
+  `).join('');
+  initCarousel();
+})();
+
+// ARTICLES
+(function(){
+  const a = D.articles;
+  document.getElementById('articles-label').textContent = a.sectionLabel;
+  document.getElementById('articles-title').textContent = a.title;
+  document.getElementById('blog-grid').innerHTML = a.items.slice(0,3).map(item => `
+    <a href="article.html?id=${item.id}" class="blog-card">
+      <div class="blog-card-img">${item.image?`<img src="${item.image}" alt="${item.title}"/>`:'<span style="font-size:2rem;opacity:0.3">📝</span>'}</div>
+      <div class="blog-card-body">
+        <div class="blog-meta"><span class="blog-tag">${item.category}</span><span class="blog-date">${item.date}</span></div>
+        <h3>${item.title}</h3>
+        <p class="excerpt">${item.excerpt}</p>
+        <span class="blog-card-link">Lire l'article →</span>
+      </div>
+    </a>
+  `).join('');
+})();
+
+// CONTACT
+(function(){
+  const c = D.contact;
+  document.getElementById('contact-label').textContent = c.sectionLabel;
+  document.getElementById('contact-title').textContent = c.title;
+  document.getElementById('contact-subtitle').textContent = c.subtitle;
+  document.getElementById('contact-items').innerHTML = `
+    <div class="contact-item"><div class="contact-icon">📧</div><div><strong>Email</strong><a href="mailto:${c.email}">${c.email}</a></div></div>
+    <div class="contact-item"><div class="contact-icon">📞</div><div><strong>Téléphone</strong><a href="tel:${c.phone.replace(/\s/g,'')}">${c.phone}</a></div></div>
+    <div class="contact-item"><div class="contact-icon">💼</div><div><strong>LinkedIn</strong><a href="${c.linkedin}" target="_blank">${c.linkedinLabel}</a></div></div>
+  `;
+})();
+
+// FOOTER
+(function(){
+  const f = D.footer;
+  document.getElementById('footer-desc').textContent = f.description;
+  document.getElementById('footer-copy').textContent = f.copyright;
+  document.getElementById('footer-socials').innerHTML = `
+    <a href="${f.facebook}" target="_blank" class="social-btn">f</a>
+    <a href="${f.linkedin}" target="_blank" class="social-btn">in</a>
+    <a href="${f.gmaps}" target="_blank" class="social-btn">G</a>
+  `;
+  const fn = document.getElementById('footer-nav');
+  D.nav.links.forEach(l => fn.innerHTML += `<li><a href="${l.href}">${l.label}</a></li>`);
+  fn.innerHTML += `<li><a href="${D.nav.ctaHref}">Contact</a></li>`;
+})();
+
+// CAROUSEL
+function initCarousel(){
+  const track=document.getElementById('carouselTrack');
+  const dotsEl=document.getElementById('carouselDots');
+  let cur=0, timer=null;
+  function vis(){ return window.innerWidth<=600?1:window.innerWidth<=900?2:3; }
+  function pages(){ return Math.max(1,track.children.length-vis()+1); }
+  function dots(){
+    dotsEl.innerHTML='';
+    for(let i=0;i<pages();i++){
+      const d=document.createElement('button');
+      d.className='carousel-dot'+(i===cur?' active':'');
+      d.onclick=()=>go(i);
+      dotsEl.appendChild(d);
     }
-    window.addEventListener('scroll', () => {
-      const h = document.querySelector('header');
-      h.style.boxShadow = window.scrollY > 20 ? '0 4px 24px rgba(17,35,56,0.12)' : 'none';
-    });
+  }
+  function go(i){
+    if(!track.children.length) return;
+    cur=Math.max(0,Math.min(i,pages()-1));
+    const w=track.children[0].getBoundingClientRect().width+24;
+    track.style.transform=`translateX(-${cur*w}px)`;
+    dotsEl.querySelectorAll('.carousel-dot').forEach((d,j)=>d.classList.toggle('active',j===cur));
+  }
+  function next(){ go(cur+1>=pages()?0:cur+1); }
+  function prev(){ go(cur-1<0?pages()-1:cur-1); }
+  document.getElementById('prevBtn').onclick=()=>{clearInterval(timer);prev();start();};
+  document.getElementById('nextBtn').onclick=()=>{clearInterval(timer);next();start();};
+  function start(){ timer=setInterval(next,4000); }
+  track.parentElement.addEventListener('mouseenter',()=>clearInterval(timer));
+  track.parentElement.addEventListener('mouseleave',start);
+  let tx=0;
+  track.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;},{passive:true});
+  track.addEventListener('touchend',e=>{ const d=tx-e.changedTouches[0].clientX; if(Math.abs(d)>40){clearInterval(timer);d>0?next():prev();start();} });
+  window.addEventListener('resize',()=>{dots();go(0);});
+  dots(); go(0); start();
+}
 
-    /* ── CARROUSEL ── */
-    const track    = document.getElementById('carouselTrack');
-    const slides   = track.querySelectorAll('.carousel-slide');
-    const dotsEl   = document.getElementById('carouselDots');
-    const prevBtn  = document.getElementById('prevBtn');
-    const nextBtn  = document.getElementById('nextBtn');
+// FORM
+function submitContact(e){
+  e.preventDefault();
+  const fd=new FormData(e.target);
+  const msgs=JSON.parse(localStorage.getItem('procom_messages')||'[]');
+  msgs.unshift({ date:new Date().toLocaleString('fr-FR'), prenom:fd.get('prenom'), nom:fd.get('nom'), email:fd.get('email'), sujet:fd.get('sujet'), message:fd.get('message') });
+  localStorage.setItem('procom_messages',JSON.stringify(msgs));
+  e.target.reset();
+  const ok=document.getElementById('form-success');
+  ok.style.display='block';
+  setTimeout(()=>ok.style.display='none',5000);
+}
 
-    let current    = 0;
-    let autoTimer  = null;
-    let slidesVisible = 3; // mis à jour par getVisible()
+// NAV
+function toggleMenu(){ document.getElementById('mobileMenu').classList.toggle('open'); }
+window.addEventListener('scroll',()=>{
+  document.querySelector('header').style.boxShadow=window.scrollY>20?'0 4px 24px rgba(17,35,56,0.12)':'none';
+});
 
-    function getVisible() {
-      return window.innerWidth <= 600 ? 1 : window.innerWidth <= 900 ? 2 : 3;
-    }
-
-    function totalPages() {
-      return slides.length - getVisible() + 1;
-    }
-
-    /* Crée les dots */
-    function buildDots() {
-      dotsEl.innerHTML = '';
-      const pages = totalPages();
-      for (let i = 0; i < pages; i++) {
-        const d = document.createElement('button');
-        d.className = 'carousel-dot' + (i === current ? ' active' : '');
-        d.setAttribute('aria-label', `Slide ${i+1}`);
-        d.addEventListener('click', () => goTo(i));
-        dotsEl.appendChild(d);
-      }
-    }
-
-    function updateDots() {
-      dotsEl.querySelectorAll('.carousel-dot').forEach((d, i) => {
-        d.classList.toggle('active', i === current);
-      });
-    }
-
-    function goTo(index) {
-      const pages = totalPages();
-      current = Math.max(0, Math.min(index, pages - 1));
-      const slideWidth = slides[0].getBoundingClientRect().width + 24; // gap = 24px
-      track.style.transform = `translateX(-${current * slideWidth}px)`;
-      updateDots();
-    }
-
-    function next() { goTo(current + 1 >= totalPages() ? 0 : current + 1); }
-    function prev() { goTo(current - 1 < 0 ? totalPages() - 1 : current - 1); }
-
-    prevBtn.addEventListener('click', () => { clearInterval(autoTimer); prev(); startAuto(); });
-    nextBtn.addEventListener('click', () => { clearInterval(autoTimer); next(); startAuto(); });
-
-    function startAuto() { autoTimer = setInterval(next, 4000); }
-
-    /* Pause au survol */
-    track.parentElement.addEventListener('mouseenter', () => clearInterval(autoTimer));
-    track.parentElement.addEventListener('mouseleave', startAuto);
-
-    /* Touch / swipe */
-    let touchStartX = 0;
-    track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-    track.addEventListener('touchend', e => {
-      const diff = touchStartX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 40) { clearInterval(autoTimer); diff > 0 ? next() : prev(); startAuto(); }
-    });
-
-    /* Init & resize */
-    function init() {
-      buildDots();
-      goTo(0);
-    }
-    window.addEventListener('resize', () => { buildDots(); goTo(0); });
-    init();
-    startAuto();
-
-    /* ── SCROLL ANIMATIONS ── */
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.style.opacity = '1';
-          e.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.offre-card, .temoignage-card, .blog-card').forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(28px)';
-      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-      observer.observe(el);
-    });
-  </script>
+// SCROLL REVEAL
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.style.opacity='1';x.target.style.transform='translateY(0)';}}),{threshold:0.1});
+setTimeout(()=>{
+  document.querySelectorAll('.offre-card,.temoignage-card,.blog-card').forEach(el=>{
+    el.style.opacity='0'; el.style.transform='translateY(28px)'; el.style.transition='opacity 0.5s ease, transform 0.5s ease';
+    obs.observe(el);
+  });
+},100);
+</script>
 </body>
 </html>

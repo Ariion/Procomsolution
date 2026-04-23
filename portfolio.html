@@ -8,233 +8,93 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --turquoise: #509ea4;
-      --navy:      #112338;
-      --white:     #ffffff;
-      --light-bg:  #f4f8f9;
-      --text-dark: #112338;
-      --text-mid:  #3a5068;
-      --text-light:#6b8a9a;
-      --radius:    12px;
-      --shadow:    0 4px 24px rgba(17,35,56,0.10);
-      --transition:0.3s ease;
-    }
+    :root { --turquoise:#509ea4; --navy:#112338; --white:#ffffff; --light-bg:#f4f8f9; --text-dark:#112338; --text-mid:#3a5068; --text-light:#6b8a9a; --radius:12px; --shadow:0 4px 24px rgba(17,35,56,0.10); --transition:0.3s ease; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; color: var(--text-dark); background: var(--white); line-height: 1.6; overflow-x: hidden; }
-    img { max-width: 100%; display: block; }
-    a { text-decoration: none; color: inherit; }
-    .container { width: 90%; max-width: 1100px; margin: 0 auto; }
+    body { font-family:'Inter',sans-serif; color:var(--text-dark); background:var(--white); line-height:1.6; overflow-x:hidden; }
+    img { max-width:100%; display:block; }
+    a { text-decoration:none; color:inherit; }
+    .container { width:90%; max-width:1100px; margin:0 auto; }
+    header { position:sticky; top:0; z-index:100; background:var(--white); border-bottom:1px solid rgba(17,35,56,0.08); transition:box-shadow var(--transition); }
+    nav { display:flex; align-items:center; justify-content:space-between; padding:18px 0; }
+    .nav-logo img { height:44px; }
+    .nav-links { display:flex; align-items:center; gap:36px; list-style:none; }
+    .nav-links a { font-size:0.92rem; font-weight:500; color:var(--text-mid); transition:color var(--transition); }
+    .nav-links a:hover, .nav-links a.active { color:var(--turquoise); }
+    .nav-cta { background:var(--turquoise); color:var(--white)!important; padding:10px 24px; border-radius:50px; font-size:0.88rem; font-weight:600; transition:background var(--transition); }
+    .nav-cta:hover { background:var(--navy); }
+    .burger { display:none; flex-direction:column; gap:5px; cursor:pointer; }
+    .burger span { width:24px; height:2px; background:var(--navy); border-radius:2px; }
+    .mobile-menu { display:none; flex-direction:column; gap:16px; padding:20px; background:var(--white); border-top:1px solid rgba(17,35,56,0.08); }
+    .mobile-menu.open { display:flex; }
+    .mobile-menu a { font-size:0.95rem; font-weight:500; color:var(--text-mid); }
 
-    /* ── NAV ── */
-    header {
-      position: sticky; top: 0; z-index: 100;
-      background: var(--white);
-      border-bottom: 1px solid rgba(17,35,56,0.08);
-      transition: box-shadow var(--transition);
-    }
-    nav {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 0;
-    }
-    .nav-logo img { height: 44px; }
-    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
-    .nav-links a { font-size: 0.92rem; font-weight: 500; color: var(--text-mid); transition: color var(--transition); }
-    .nav-links a:hover, .nav-links a.active { color: var(--turquoise); }
-    .nav-cta {
-      background: var(--turquoise); color: var(--white);
-      padding: 10px 24px; border-radius: 50px;
-      font-size: 0.88rem; font-weight: 600;
-      transition: background var(--transition);
-    }
-    .nav-cta:hover { background: var(--navy); color: var(--white); }
-    .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-    .burger span { width: 24px; height: 2px; background: var(--navy); border-radius: 2px; }
-    .mobile-menu {
-      display: none; flex-direction: column; gap: 16px;
-      padding: 20px; background: var(--white);
-      border-top: 1px solid rgba(17,35,56,0.08);
-    }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a { font-size: 0.95rem; font-weight: 500; color: var(--text-mid); }
+    .page-hero { background:linear-gradient(135deg,var(--navy) 0%,#1a3a5c 100%); padding:80px 0 60px; text-align:center; position:relative; overflow:hidden; }
+    .page-hero::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 70% 50%,rgba(80,158,164,0.15) 0%,transparent 60%); }
+    .page-hero .section-label { display:inline-block; font-size:0.78rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--turquoise); background:rgba(80,158,164,0.12); padding:6px 16px; border-radius:50px; margin-bottom:20px; }
+    .page-hero h1 { font-size:clamp(2rem,4vw,3rem); font-weight:700; color:var(--white); margin-bottom:16px; }
+    .page-hero p { font-size:1.05rem; color:rgba(255,255,255,0.72); max-width:540px; margin:0 auto; }
 
-    /* ── HERO BANNER ── */
-    .page-hero {
-      background: linear-gradient(135deg, var(--navy) 0%, #1a3a5c 100%);
-      padding: 80px 0 60px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .page-hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(circle at 70% 50%, rgba(80,158,164,0.15) 0%, transparent 60%);
-    }
-    .page-hero .section-label {
-      display: inline-block;
-      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--turquoise);
-      background: rgba(80,158,164,0.12);
-      padding: 6px 16px; border-radius: 50px;
-      margin-bottom: 20px;
-    }
-    .page-hero h1 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--white); margin-bottom: 16px; }
-    .page-hero p { font-size: 1.05rem; color: rgba(255,255,255,0.72); max-width: 540px; margin: 0 auto; }
+    .filters { padding:40px 0 0; display:flex; gap:12px; flex-wrap:wrap; justify-content:center; }
+    .filter-btn { padding:9px 22px; border-radius:50px; border:2px solid rgba(17,35,56,0.15); background:var(--white); color:var(--text-mid); font-size:0.88rem; font-weight:500; cursor:pointer; transition:var(--transition); }
+    .filter-btn:hover, .filter-btn.active { border-color:var(--turquoise); background:var(--turquoise); color:var(--white); }
 
-    /* ── FILTRES ── */
-    .filters {
-      padding: 40px 0 0;
-      display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
-    }
-    .filter-btn {
-      padding: 9px 22px; border-radius: 50px;
-      border: 2px solid rgba(17,35,56,0.15);
-      background: var(--white); color: var(--text-mid);
-      font-size: 0.88rem; font-weight: 500;
-      cursor: pointer; transition: var(--transition);
-    }
-    .filter-btn:hover, .filter-btn.active {
-      border-color: var(--turquoise);
-      background: var(--turquoise); color: var(--white);
-    }
+    .articles-section { padding:60px 0 100px; }
+    .articles-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:28px; margin-top:48px; }
+    .article-card { background:var(--white); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; transition:transform var(--transition),box-shadow var(--transition); }
+    .article-card:hover { transform:translateY(-6px); box-shadow:0 12px 40px rgba(17,35,56,0.15); }
+    .article-card-img { width:100%; aspect-ratio:4/3; object-fit:cover; background:var(--light-bg); display:block; }
+    .article-card-img-placeholder { width:100%; aspect-ratio:4/3; background:linear-gradient(135deg,var(--navy) 0%,#1a3a5c 100%); display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
+    .article-card-img-placeholder::after { content:attr(data-initials); font-size:3rem; font-weight:700; color:rgba(255,255,255,0.15); }
+    .tag-overlay { position:absolute; bottom:14px; left:14px; background:var(--turquoise); color:var(--white); font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; padding:4px 12px; border-radius:50px; }
+    .article-card-body { padding:22px; }
+    .article-tag { display:inline-block; font-size:0.72rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--turquoise); margin-bottom:10px; }
+    .article-card-body h3 { font-size:1rem; font-weight:700; color:var(--navy); line-height:1.4; margin-bottom:10px; }
+    .article-card-body p { font-size:0.88rem; color:var(--text-light); line-height:1.6; margin-bottom:16px; }
+    .article-meta { display:flex; align-items:center; gap:10px; font-size:0.78rem; color:var(--text-light); border-top:1px solid rgba(17,35,56,0.08); padding-top:14px; flex-wrap:wrap; }
+    .dot { width:3px; height:3px; background:var(--text-light); border-radius:50%; }
+    .read-more { display:inline-flex; align-items:center; gap:6px; font-size:0.85rem; font-weight:600; color:var(--turquoise); margin-top:14px; transition:gap var(--transition); }
+    .read-more:hover { gap:10px; }
 
-    /* ── GRILLE ARTICLES ── */
-    .articles-section { padding: 60px 0 100px; }
-    .articles-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 28px;
-      margin-top: 48px;
-    }
+    footer { background:var(--navy); color:var(--white); padding:60px 0 0; }
+    .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr; gap:48px; padding-bottom:48px; border-bottom:1px solid rgba(255,255,255,0.1); }
+    .footer-brand img { height:40px; margin-bottom:16px; filter:brightness(0) invert(1); }
+    .footer-brand p { font-size:0.9rem; color:rgba(255,255,255,0.6); line-height:1.7; max-width:280px; }
+    .footer-col h4 { font-size:0.88rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--turquoise); margin-bottom:18px; }
+    .footer-col ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
+    .footer-col ul a { font-size:0.9rem; color:rgba(255,255,255,0.65); transition:color var(--transition); }
+    .footer-col ul a:hover { color:var(--turquoise); }
+    .footer-bottom { display:flex; align-items:center; justify-content:space-between; padding:22px 0; font-size:0.82rem; color:rgba(255,255,255,0.45); flex-wrap:wrap; gap:12px; }
+    .footer-bottom a { color:rgba(255,255,255,0.45); transition:color var(--transition); }
+    .footer-bottom a:hover { color:var(--turquoise); }
 
-    .article-card {
-      background: var(--white);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      transition: transform var(--transition), box-shadow var(--transition);
-      cursor: pointer;
-    }
-    .article-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 40px rgba(17,35,56,0.15);
-    }
-    .article-card-img {
-      width: 100%; aspect-ratio: 4/3;
-      object-fit: cover;
-      background: var(--light-bg);
-    }
-    .article-card-img-placeholder {
-      width: 100%; aspect-ratio: 4/3;
-      background: linear-gradient(135deg, var(--navy) 0%, #1a3a5c 100%);
-      display: flex; align-items: center; justify-content: center;
-      position: relative; overflow: hidden;
-    }
-    .article-card-img-placeholder::after {
-      content: attr(data-initials);
-      font-size: 3rem; font-weight: 700;
-      color: rgba(255,255,255,0.15);
-      letter-spacing: 0.05em;
-    }
-    .article-card-img-placeholder .tag-overlay {
-      position: absolute; bottom: 14px; left: 14px;
-      background: var(--turquoise);
-      color: var(--white); font-size: 0.72rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.1em;
-      padding: 4px 12px; border-radius: 50px;
-    }
-    .article-card-body { padding: 22px; }
-    .article-tag {
-      display: inline-block;
-      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--turquoise);
-      margin-bottom: 10px;
-    }
-    .article-card-body h3 {
-      font-size: 1rem; font-weight: 700; color: var(--navy);
-      line-height: 1.4; margin-bottom: 10px;
-    }
-    .article-card-body p {
-      font-size: 0.88rem; color: var(--text-light);
-      line-height: 1.6; margin-bottom: 16px;
-    }
-    .article-meta {
-      display: flex; align-items: center; gap: 10px;
-      font-size: 0.78rem; color: var(--text-light);
-      border-top: 1px solid rgba(17,35,56,0.08);
-      padding-top: 14px; margin-top: 4px;
-    }
-    .article-meta .dot { width: 3px; height: 3px; background: var(--text-light); border-radius: 50%; }
-    .read-more {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 0.85rem; font-weight: 600; color: var(--turquoise);
-      margin-top: 14px; transition: gap var(--transition);
-    }
-    .read-more:hover { gap: 10px; }
-
-    /* ── FOOTER ── */
-    footer { background: var(--navy); color: var(--white); padding: 60px 0 0; }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-    .footer-brand img { height: 40px; margin-bottom: 16px; filter: brightness(0) invert(1); }
-    .footer-brand p { font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.7; max-width: 280px; }
-    .footer-col h4 { font-size: 0.88rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--turquoise); margin-bottom: 18px; }
-    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .footer-col ul a { font-size: 0.9rem; color: rgba(255,255,255,0.65); transition: color var(--transition); }
-    .footer-col ul a:hover { color: var(--turquoise); }
-    .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; font-size: 0.82rem; color: rgba(255,255,255,0.45); flex-wrap: wrap; gap: 12px; }
-    .footer-bottom a { color: rgba(255,255,255,0.45); transition: color var(--transition); }
-    .footer-bottom a:hover { color: var(--turquoise); }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      .nav-links, .nav-cta-wrap { display: none; }
-      .burger { display: flex; }
-      .articles-grid { grid-template-columns: 1fr 1fr; gap: 18px; }
-      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-    }
-    @media (max-width: 480px) {
-      .articles-grid { grid-template-columns: 1fr; }
-    }
+    @media (max-width:768px) { .nav-links,.nav-cta-wrap { display:none; } .burger { display:flex; } .articles-grid { grid-template-columns:1fr 1fr; gap:18px; } .footer-grid { grid-template-columns:1fr; gap:32px; } }
+    @media (max-width:480px) { .articles-grid { grid-template-columns:1fr; } }
   </style>
 </head>
-<body>
+<body data-page="portfolio">
 
-  <!-- ── NAV ── -->
   <header>
     <div class="container">
       <nav>
-        <a href="index.html" class="nav-logo">
-          <img src="assets/logo-long.png" alt="Procom Solution"/>
-        </a>
+        <a href="index.html" class="nav-logo"><img src="assets/logo-long.png" alt="Procom Solution"/></a>
         <ul class="nav-links">
           <li><a href="index.html">Accueil</a></li>
           <li><a href="index.html#offres">Offres</a></li>
           <li><a href="portfolio.html" class="active">Portfolio</a></li>
           <li><a href="ressources.html">Ressources</a></li>
-          <li><a href="temoignages.html">Témoignages</a></li>
           <li><a href="index.html#contact">Contact</a></li>
         </ul>
-        <div class="nav-cta-wrap">
-          <a href="index.html#contact" class="nav-cta">Prendre RDV</a>
-        </div>
-        <div class="burger" onclick="toggleMenu()">
-          <span></span><span></span><span></span>
-        </div>
+        <div class="nav-cta-wrap"><a href="index.html#contact" class="nav-cta">Prendre RDV</a></div>
+        <div class="burger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
       </nav>
     </div>
     <div class="mobile-menu" id="mobileMenu">
-      <a href="index.html">Accueil</a>
-      <a href="index.html#offres">Offres</a>
-      <a href="portfolio.html">Portfolio</a>
-      <a href="ressources.html">Ressources</a>
-      <a href="temoignages.html">Témoignages</a>
+      <a href="index.html">Accueil</a><a href="index.html#offres">Offres</a>
+      <a href="portfolio.html">Portfolio</a><a href="ressources.html">Ressources</a>
       <a href="index.html#contact">Contact</a>
     </div>
   </header>
 
-  <!-- ── HERO ── -->
   <section class="page-hero">
     <div class="container">
       <span class="section-label">Portfolio & Articles</span>
@@ -243,250 +103,30 @@
     </div>
   </section>
 
-  <!-- ── FILTRES ── -->
   <div class="container">
     <div class="filters">
-      <button class="filter-btn active" onclick="filterCards('tous', this)">Tous</button>
-      <button class="filter-btn" onclick="filterCards('interview', this)">Interviews</button>
-      <button class="filter-btn" onclick="filterCards('portrait', this)">Portraits</button>
-      <button class="filter-btn" onclick="filterCards('article', this)">Articles</button>
-      <button class="filter-btn" onclick="filterCards('conseil', this)">Conseils</button>
+      <button class="filter-btn active" onclick="filterCards('tous',this)">Tous</button>
+      <button class="filter-btn" onclick="filterCards('interview',this)">Interviews</button>
+      <button class="filter-btn" onclick="filterCards('portrait',this)">Portraits</button>
+      <button class="filter-btn" onclick="filterCards('article',this)">Articles</button>
+      <button class="filter-btn" onclick="filterCards('conseil',this)">Conseils</button>
     </div>
   </div>
 
-  <!-- ── GRILLE ── -->
   <section class="articles-section">
     <div class="container">
       <div class="articles-grid" id="articlesGrid">
-
-        <!-- Entretien Xavier Carriou -->
-        <div class="article-card" data-category="interview">
-          <div class="article-card-img-placeholder" data-initials="XC">
-            <img src="assets/xavier-carriou.jpg" alt="Xavier Carriou" class="article-card-img" onerror="this.style.display='none'"/>
-            <span class="tag-overlay">Interview</span>
-          </div>
-          <div class="article-card-body">
-            <span class="article-tag">Interview</span>
-            <h3>Entretien avec Xavier CARRIOU</h3>
-            <p>Fondateur d'Acouphénia "J'invente le futur". Xavier CARRIOU vous a personnellement amené à vous spécialiser dans la prise en charge des acouphènes.</p>
-            <div class="article-meta">
-              <span>Audrey Duval-Lebret</span>
-              <span class="dot"></span>
-              <span>Acouphénia</span>
-            </div>
-            <a href="#" class="read-more">Lire l'article →</a>
-          </div>
-        </div>
-
-        <!-- Hyperacousie -->
-        <div class="article-card" data-category="article">
-          <div class="article-card-img-placeholder" data-initials="HA">
-            <span class="tag-overlay">Article</span>
-          </div>
-          <div class="article-card-body">
-            <span class="article-tag">Article</span>
-            <h3>Hyperacousie ou la dualité du Silence : Entre Refuge et Isolement</h3>
-            <p>Chaque bruit, même le plus léger, devient une lame de rasoir qui s'enfonce dans ma tête. J'ai dû apprendre.</p>
-            <div class="article-meta">
-              <span>Audrey Duval-Lebret</span>
-              <span class="dot"></span>
-              <span>Hyperacousie</span>
-            </div>
-            <a href="#" class="read-more">Lire l'article →</a>
-          </div>
-        </div>
-
-        <!-- Azdine Ezzahti -->
-        <div class="article-card" data-category="interview">
-          <div class="article-card-img-placeholder" data-initials="AE">
-            <span class="tag-overlay">Interview</span>
-          </div>
-          <div class="article-card-body">
-            <span class="article-tag">Interview</span>
-            <h3>Entretien avec Azdine Ezzahti</h3>
-            <p>L'audioprothésiste qui casse les codes. "Je ne suis pas tombé dans l'audiologie par hasard, mais presque." Azdine Ezzahti, Monsieur Ezzahti, votre parcours est riche et...</p>
-            <div class="article-meta">
-              <span>Audrey Duval-Lebret</span>
-              <span class="dot"></span>
-              <span>Audioprothésiste</span>
-            </div>
-            <a href="#" class="read-more">Lire l'article →</a>
-          </div>
-        </div>
-
-        <!-- Vincent Darrouzet -->
-        <div class="article-card" data-category="portrait">
-          <div class="article-card-img-placeholder" data-initials="VD">
-            <span class="tag-overlay">Portrait</span>
-          </div>
-          <div class="article-card-body">
-            <span class="article-tag">Portrait</span>
-            <h3>Portrait : Pr Vincent DARROUZET</h3>
-            <p>Un homme de vision. "Je n'avais qu'à m'inscrire dans tous les trous." Jean-Pierre Bébéar fut mon guide. Le Pr Vincent Darrouzet, Professeur Darrouzet, merci de...</p>
-            <div class="article-meta">
-              <span>Audrey Duval-Lebret</span>
-              <span class="dot"></span>
-              <span>ORL</span>
-            </div>
-            <a href="#" class="read-more">Lire l'article →</a>
-          </div>
-        </div>
-
-        <!-- Arnaud Deveze -->
-        <div class="article-card" data-category="portrait">
-          <div class="article-card-img-placeholder" data-initials="AD">
-            <span class="tag-overlay">Portrait</span>
-          </div>
-          <div class="article-card-body">
-            <span class="article-tag">Portrait</span>
-            <h3>Portrait : DR Arnaud DEVEZE</h3>
-            <p>Un portrait exclusif du Docteur Arnaud Deveze, spécialiste reconnu dans le domaine ORL et la chirurgie de l'oreille.</p>
-            <div class="article-meta">
-              <span>Audrey Duval-Lebret</span>
-              <span class="dot"></span>
-              <span>ORL</span>
-            </div>
-            <a href="#" class="read-more">Lire l'article →</a>
-          </div>
-        </div>
-
-        <!-- Yann Nguyen -->
-        <div class="article-card" data-category="portrait">
-          <div class="article-card-img-placeholder" data-initials="YN">
-            <span class="tag-overlay">Portrait</span>
-          </div>
-          <div class="article-card-body">
-            <span class="article-tag">Portrait</span>
-            <h3>Portrait : Pr Yann NGUYEN</h3>
-            <p>Un portrait du Professeur Yann Nguyen, figure incontournable de l'implantologie cochléaire en France.</p>
-            <div class="article-meta">
-              <span>Audrey Duval-Lebret</span>
-              <span class="dot"></span>
-              <span>Implant cochléaire</span>
-            </div>
-            <a href="#" class="read-more">Lire l'article →</a>
-          </div>
-        </div>
-
-        <!-- Surdité cachée -->
-        <div class="article-card" data-category="article">
-          <div class="article-card-img-placeholder" data-initials="SC">
-            <span class="tag-overlay">Article</span>
-          </div>
-          <div class="article-card-body">
-            <span class="article-tag">Article</span>
-            <h3>Surdité cachée et acouphènes : un lien plus pertinent qu'il n'y paraît</h3>
-            <p>Un lien méconnu entre surdité cachée et acouphènes décrypté simplement pour les patients et professionnels.</p>
-            <div class="article-meta">
-              <span>Audrey Duval-Lebret</span>
-              <span class="dot"></span>
-              <span>Surdité</span>
-            </div>
-            <a href="#" class="read-more">Lire l'article →</a>
-          </div>
-        </div>
-
-        <!-- Otites -->
-        <div class="article-card" data-category="conseil">
-          <div class="article-card-img-placeholder" data-initials="OT">
-            <span class="tag-overlay">Conseil</span>
-          </div>
-          <div class="article-card-body">
-            <span class="article-tag">Conseil</span>
-            <h3>Ton enfant pleure en se frottant l'oreille ? Les 3 types d'otites</h3>
-            <p>Rassure toi, l'otite n'est pas contagieuse. Mais attention, l'infection qui l'a provoquée peut l'être. Il existe trois types d'otites différents.</p>
-            <div class="article-meta">
-              <span>Audrey Duval-Lebret</span>
-              <span class="dot"></span>
-              <span>Pédiatrie</span>
-            </div>
-            <a href="#" class="read-more">Lire l'article →</a>
-          </div>
-        </div>
-
-        <!-- Presbyacousie -->
-        <div class="article-card" data-category="article">
-          <div class="article-card-img-placeholder" data-initials="PR">
-            <span class="tag-overlay">Article</span>
-          </div>
-          <div class="article-card-body">
-            <span class="article-tag">Article</span>
-            <h3>Presbyacousie</h3>
-            <p>Tout savoir sur la presbyacousie, cette perte auditive liée à l'âge qui touche un senior sur trois. Symptômes, causes et solutions.</p>
-            <div class="article-meta">
-              <span>Audrey Duval-Lebret</span>
-              <span class="dot"></span>
-              <span>Surdité</span>
-            </div>
-            <a href="#" class="read-more">Lire l'article →</a>
-          </div>
-        </div>
-
-        <!-- Feed Insta -->
-        <div class="article-card" data-category="conseil">
-          <div class="article-card-img-placeholder" data-initials="IG">
-            <span class="tag-overlay">Conseil</span>
-          </div>
-          <div class="article-card-body">
-            <span class="article-tag">Conseil</span>
-            <h3>Refonte feed Instagram — Avant / Après</h3>
-            <p>Décryptage d'une refonte complète d'un compte Instagram audiologie : stratégie visuelle, cohérence de marque et résultats.</p>
-            <div class="article-meta">
-              <span>Audrey Duval-Lebret</span>
-              <span class="dot"></span>
-              <span>Réseaux sociaux</span>
-            </div>
-            <a href="#" class="read-more">Lire l'article →</a>
-          </div>
-        </div>
-
-        <!-- 7 astuces -->
-        <div class="article-card" data-category="conseil">
-          <div class="article-card-img-placeholder" data-initials="7A">
-            <span class="tag-overlay">Conseil</span>
-          </div>
-          <div class="article-card-body">
-            <span class="article-tag">Conseil</span>
-            <h3>Décuple ta marque avec 7 astuces pro</h3>
-            <p>7 astuces concrètes pour booster ta visibilité en ligne en tant que professionnel de l'audiologie. Applicables dès aujourd'hui.</p>
-            <div class="article-meta">
-              <span>Audrey Duval-Lebret</span>
-              <span class="dot"></span>
-              <span>Marketing</span>
-            </div>
-            <a href="#" class="read-more">Lire l'article →</a>
-          </div>
-        </div>
-
-        <!-- Palettes couleurs -->
-        <div class="article-card" data-category="conseil">
-          <div class="article-card-img-placeholder" data-initials="PC">
-            <span class="tag-overlay">Conseil</span>
-          </div>
-          <div class="article-card-body">
-            <span class="article-tag">Conseil</span>
-            <h3>Palettes de couleurs</h3>
-            <p>Comment choisir la bonne palette de couleurs pour votre identité visuelle en audiologie. Les codes couleur qui inspirent confiance.</p>
-            <div class="article-meta">
-              <span>Audrey Duval-Lebret</span>
-              <span class="dot"></span>
-              <span>Design</span>
-            </div>
-            <a href="#" class="read-more">Lire l'article →</a>
-          </div>
-        </div>
-
+        <p style="color:var(--text-light);padding:40px">Chargement des articles...</p>
       </div>
     </div>
   </section>
 
-  <!-- ── FOOTER ── -->
   <footer>
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
           <img src="assets/logo-long.png" alt="Procom Solution"/>
-          <p>Community Manager spécialisée en audiologie. Audrey Duval-Lebret accompagne les professionnels de santé dans leur communication digitale.</p>
+          <p>Community Manager spécialisée en audiologie.</p>
         </div>
         <div class="footer-col">
           <h4>Navigation</h4>
@@ -495,35 +135,22 @@
             <li><a href="index.html#offres">Offres</a></li>
             <li><a href="portfolio.html">Portfolio</a></li>
             <li><a href="ressources.html">Ressources</a></li>
-            <li><a href="temoignages.html">Témoignages</a></li>
           </ul>
         </div>
         <div class="footer-col">
           <h4>Légal</h4>
-          <ul>
-            <li><a href="#">Mentions légales</a></li>
-            <li><a href="#">Confidentialité</a></li>
-          </ul>
+          <ul><li><a href="#">Mentions légales</a></li><li><a href="#">Confidentialité</a></li></ul>
         </div>
       </div>
       <div class="footer-bottom">
         <p>© 2026 Procom Solution. Tous droits réservés.</p>
-        <div style="display:flex;gap:20px;">
-          <a href="#">Mentions légales</a>
-          <a href="#">Confidentialité</a>
-        </div>
+        <div style="display:flex;gap:20px;"><a href="#">Mentions légales</a><a href="#">Confidentialité</a></div>
       </div>
     </div>
   </footer>
 
+  <script src="site.js"></script>
   <script>
-    function toggleMenu() {
-      document.getElementById('mobileMenu').classList.toggle('open');
-    }
-    window.addEventListener('scroll', () => {
-      const h = document.querySelector('header');
-      h.style.boxShadow = window.scrollY > 20 ? '0 4px 24px rgba(17,35,56,0.12)' : 'none';
-    });
     function filterCards(cat, btn) {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
@@ -532,17 +159,6 @@
         card.style.display = show ? 'block' : 'none';
       });
     }
-    // Reveal on scroll
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }
-      });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.article-card').forEach(el => {
-      el.style.opacity='0'; el.style.transform='translateY(24px)';
-      el.style.transition='opacity 0.5s ease, transform 0.5s ease';
-      observer.observe(el);
-    });
   </script>
 </body>
 </html>

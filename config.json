@@ -1,0 +1,202 @@
+{
+  "site": {
+    "title": "Procom Solution – Community Manager Audiologie",
+    "description": "Communication digitale sur mesure pour les audioprothésistes indépendants.",
+    "author": "Audrey Duval-Lebret"
+  },
+  "colors": {
+    "turquoise": "#509ea4",
+    "navy": "#112338",
+    "white": "#ffffff",
+    "lightBg": "#f4f8f9",
+    "textDark": "#112338",
+    "textMid": "#3a5068",
+    "textLight": "#6b8a9a"
+  },
+  "hero": {
+    "badge": "🎧 Community Manager Audiologie",
+    "title": "Booste ta",
+    "titleAccent": "patientèle",
+    "titleEnd": "dès aujourd'hui",
+    "subtitle": "Communication digitale sur mesure pour les audioprothésistes indépendants. Fidélise tes patients et génère de nouveaux rendez-vous grâce à une com qui te ressemble.",
+    "btn1Text": "Prendre rendez-vous",
+    "btn1Link": "#contact",
+    "btn2Text": "Découvrir les offres",
+    "btn2Link": "#offres",
+    "image": "assets/Audrey-01.png",
+    "tagEmoji": "🎧",
+    "tagTitle": "Ton oreille attentive",
+    "tagSub": "Communication éthique & personnalisée",
+    "stats": [
+      { "value": "15+", "label": "Ans d'expérience relation client" },
+      { "value": "5", "label": "Années dans le paramédical" },
+      { "value": "100%", "label": "Spécialisée audiologie" }
+    ]
+  },
+  "offres": {
+    "sectionLabel": "Nos offres",
+    "sectionTitle": "La solution adaptée à tes besoins",
+    "sectionSub": "Des formules pensées pour les audioprothésistes indépendants, de la création de contenu à la gestion complète de ta communication.",
+    "items": [
+      {
+        "id": "starter",
+        "icon": "🚀",
+        "tag": "Starter",
+        "title": "Ear Me Up",
+        "desc": "LE kit pour démarrer ton activité sur les réseaux sociaux et gagner en visibilité rapidement.",
+        "features": ["Kit de démarrage réseaux sociaux","Visuels personnalisés à tes couleurs","Templates prêts à l'emploi","Guide de publication"],
+        "btnText": "En savoir plus",
+        "btnLink": "#contact",
+        "btnStyle": "outline",
+        "featured": false,
+        "badge": ""
+      },
+      {
+        "id": "mesure",
+        "icon": "✨",
+        "tag": "Sur mesure",
+        "title": "Ta com sur mesure",
+        "desc": "Une communication 100% personnalisée, unique et éthique, au plus près de tes patients et de tes valeurs.",
+        "features": ["Stratégie de contenu personnalisée","Création & publication de posts","Gestion des réseaux sociaux","Reporting mensuel","Accompagnement dédié"],
+        "btnText": "Prendre RDV",
+        "btnLink": "#contact",
+        "btnStyle": "primary",
+        "featured": true,
+        "badge": "✨ Recommandé"
+      },
+      {
+        "id": "contenu",
+        "icon": "🎨",
+        "tag": "Contenu",
+        "title": "Visuels & Articles",
+        "desc": "Création de visuels professionnels et rédaction d'articles pour valoriser ton expertise.",
+        "features": ["Bannières LinkedIn & réseaux","Infographies patients","Articles de blog","Fiches conseils"],
+        "btnText": "En savoir plus",
+        "btnLink": "#contact",
+        "btnStyle": "outline",
+        "featured": false,
+        "badge": ""
+      }
+    ]
+  },
+  "apropos": {
+    "sectionLabel": "Qui suis-je ?",
+    "sectionTitle": "La community manager spécialisée dans l'audiologie",
+    "paragraphs": [
+      "Assistante audioprothésiste pendant 3 ans, je me suis reconvertie comme Community Manager spécialisée dans l'audiologie en ayant constaté un réel besoin de la part des patients et un manque important de communication dans ce secteur.",
+      "Plus de 15 ans d'expérience en relation client et 5 années dans le paramédical font de moi <strong>ton oreille attentive</strong> et ton alliée pour une communication au plus près de ton patient et de tes valeurs."
+    ],
+    "tags": ["Audiologie","Community Management","Relation patient","Communication éthique","Paramédical"],
+    "btnText": "Travaillons ensemble",
+    "btnLink": "#contact",
+    "image": "assets/Audrey-01.png"
+  },
+  "temoignages": {
+    "sectionLabel": "Témoignages",
+    "sectionTitle": "Ceux qui en parlent le mieux",
+    "googleRating": "5.0",
+    "googleCount": "2",
+    "googleLink": "https://www.linkedin.com/in/audrey-duval-lebret/details/recommendations/",
+    "items": [
+      { "id": "t1", "initials": "NS", "name": "Nahman Sroussi", "role": "Audioprothésiste – Audition Lefeuvre", "date": "Jan. 2024", "stars": 5, "text": "Audrey m'a proposé plusieurs visuels répondant à mes demandes et le tout avec un délai record. Talentueuse et professionnelle, je recommande." },
+      { "id": "t2", "initials": "TM", "name": "Tifheret Mamou", "role": "Audioprothésiste D.E.", "date": "Mars 2024", "stars": 5, "text": "Audrey a réalisé une superbe bannière pour mon profil LinkedIn. Je trouve que ça met en valeur ma vision des choses ! Merci beaucoup !" },
+      { "id": "t3", "initials": "LB", "name": "Léa Besnainou", "role": "Étudiante Audioprothésiste", "date": "Mars 2024", "stars": 5, "text": "Audrey a réalisé ma bannière LinkedIn. Elle a été très à l'écoute de mes demandes et très réactive. Je recommande son travail." },
+      { "id": "t4", "initials": "BQ", "name": "Benoit Quinette", "role": "Google Review", "date": "Juil. 2024", "stars": 5, "text": "Efficacité, réactivité, très professionnel. On recommande." },
+      { "id": "t5", "initials": "DT", "name": "Damien Tomasella", "role": "Google Review", "date": "Juil. 2024", "stars": 5, "text": "Toujours impliquée, Audrey sait comment communiquer avec une équipe de 9 personnes. Elle a de très bonnes idées et sait mettre en avant nos entreprises." }
+    ]
+  },
+  "ressources": {
+    "sectionLabel": "Ressources gratuites",
+    "sectionTitle": "Guides & fiches pratiques offerts par Audrey",
+    "sectionSub": "Des ressources concrètes pour mieux comprendre l'audiologie et développer ta communication. Téléchargement libre, sans inscription.",
+    "items": [
+      { "id": "r1", "title": "Collection Mini Fiches – Vocabulaire Audiologie", "desc": "Toutes les définitions essentielles pour parler audiologie avec tes patients sans jargon inaccessible.", "image": "assets/ressource-mini-fiches.jpg", "file": "assets/mini-fiches-vocabulaire.pdf", "badge": "📄 PDF Gratuit" },
+      { "id": "r2", "title": "Briser le Silence – Comprendre la presbyacousie", "desc": "Un guide complet pour accompagner tes patients et leur entourage face à la perte auditive liée à l'âge.", "image": "assets/ressource-briser-silence.jpg", "file": "assets/briser-le-silence.pdf", "badge": "📄 PDF Gratuit" },
+      { "id": "r3", "title": "Synaptopathie cochléaire ou Surdité cachée", "desc": "Tout comprendre sur cette pathologie encore méconnue qui touche pourtant de nombreux patients.", "image": "assets/ressource-synaptopathie.jpg", "file": "assets/synaptopathie-cochleaire.pdf", "badge": "📄 PDF Gratuit" },
+      { "id": "r4", "title": "Le Cholestéatome – Ce qu'il faut savoir", "desc": "Fiche pratique pour expliquer simplement cette pathologie à tes patients et les rassurer.", "image": "assets/ressource-cholesteatome.jpg", "file": "assets/cholesteatome.pdf", "badge": "📄 PDF Gratuit" },
+      { "id": "r5", "title": "Mini Guide – Booster ta fiche Google My Business", "desc": "Les étapes concrètes pour optimiser ta visibilité locale et attirer plus de patients depuis Google.", "image": "assets/ressource-google-my-business.jpg", "file": "assets/guide-google-my-business.pdf", "badge": "📄 PDF Gratuit" }
+    ]
+  },
+  "articles": [
+    {
+      "id": "a1", "slug": "entretien-xavier-carriou",
+      "title": "Entretien avec Xavier CARRIOU – Fondateur d'Acouphénia",
+      "category": "interview", "categoryLabel": "Interview",
+      "date": "2024-03-15", "dateLabel": "Mars 2024",
+      "author": "Audrey Duval-Lebret", "readTime": "6 min",
+      "image": "assets/xavier-carriou.jpg",
+      "excerpt": "Rencontre avec un homme qui a décidé de tout changer pour aider les personnes souffrant d'acouphènes.",
+      "tags": ["acouphènes","interview","audiologie"],
+      "content": "<p>Xavier CARRIOU est le fondateur d'Acouphénia, une structure dédiée à la prise en charge globale des acouphènes.</p><div class='highlight-box'><p>« J'invente le futur de la prise en charge des acouphènes. »</p></div><h2>Votre parcours avant Acouphénia ?</h2><p>Après plusieurs années dans le secteur de la santé auditive, j'ai constaté un vide immense dans la prise en charge des acouphènes. Les patients se retrouvaient souvent seuls, sans solutions concrètes. C'est ce qui m'a poussé à créer Acouphénia.</p><h2>Qu'est-ce qui vous a personnellement amené à vous spécialiser ?</h2><p>J'ai moi-même souffert d'acouphènes pendant plusieurs années. Cette expérience personnelle m'a donné une compréhension unique de ce que vivent les patients au quotidien.</p>"
+    },
+    {
+      "id": "a2", "slug": "hyperacousie-dualite-silence",
+      "title": "Hyperacousie ou la dualité du silence : entre refuge et isolement",
+      "category": "article", "categoryLabel": "Article",
+      "date": "2024-02-10", "dateLabel": "Fév. 2024",
+      "author": "Audrey Duval-Lebret", "readTime": "5 min",
+      "image": "",
+      "excerpt": "Chaque bruit, même le plus léger, devient une larme de raison que j'entends dans ma tête.",
+      "tags": ["hyperacousie","témoignage","santé auditive"],
+      "content": "<p>L'hyperacousie, c'est cette hypersensibilité aux sons du quotidien qui transforme la vie ordinaire en véritable épreuve.</p><div class='highlight-box'><p>« Chaque bruit, même le plus léger, devient une lame de rasoir qui s'enfonce dans ma tête. »</p></div><h2>Qu'est-ce que l'hyperacousie ?</h2><p>L'hyperacousie est une intolérance aux sons de l'environnement ordinaire. On estime qu'elle touche environ 9% de la population générale, souvent en lien avec des acouphènes ou une exposition au bruit.</p>"
+    },
+    {
+      "id": "a3", "slug": "entretien-azdine-ezzahti",
+      "title": "Entretien avec Azdine Ezzahti – L'audioprothésiste qui casse les codes",
+      "category": "interview", "categoryLabel": "Interview",
+      "date": "2024-01-20", "dateLabel": "Jan. 2024",
+      "author": "Audrey Duval-Lebret", "readTime": "7 min",
+      "image": "assets/azdine-ezzahti.jpg",
+      "excerpt": "\"Je ne suis pas tombé dans l'audiologie par hasard, mais par passion.\" Une rencontre inspirante.",
+      "tags": ["audioprothèse","interview","professionnel"],
+      "content": "<p>Azdine Ezzahti est audioprothésiste et il n'a pas sa langue dans sa poche.</p><div class='highlight-box'><p>« Je ne suis pas tombé dans l'audiologie par hasard, mais par passion. »</p></div><h2>Votre parcours vers l'audioprothèse ?</h2><p>Tout a commencé par une rencontre avec un patient appareillé lors de mon service civique. J'ai été touché par l'impact que l'audioprothèse pouvait avoir sur la qualité de vie.</p>"
+    },
+    {
+      "id": "a4", "slug": "portrait-arnaud-deveze",
+      "title": "Portrait : Dr Arnaud DEVEZE – ORL & chirurgien de l'oreille",
+      "category": "portrait", "categoryLabel": "Portrait",
+      "date": "2024-01-05", "dateLabel": "Jan. 2024",
+      "author": "Audrey Duval-Lebret", "readTime": "5 min",
+      "image": "assets/arnaud-deveze.jpg",
+      "excerpt": "Rencontre avec un spécialiste passionné par la chirurgie de l'oreille.",
+      "tags": ["ORL","chirurgie","portrait"],
+      "content": "<p>Le Docteur Arnaud Deveze est ORL et chirurgien spécialisé dans les pathologies de l'oreille.</p><div class='highlight-box'><p>« La chirurgie de l'oreille, c'est de l'horlogerie. Chaque millimètre compte. »</p></div><h2>Votre spécialité en quelques mots ?</h2><p>Je me suis spécialisé dans les pathologies de l'oreille moyenne : cholestéatome, otospongiose, perforations tympaniques.</p>"
+    },
+    {
+      "id": "a5", "slug": "otites-enfant",
+      "title": "Ton enfant pleure en se frottant l'oreille ? Pas de panique, ça pourrait être une otite !",
+      "category": "conseil", "categoryLabel": "Conseil",
+      "date": "2023-12-15", "dateLabel": "Déc. 2023",
+      "author": "Audrey Duval-Lebret", "readTime": "4 min",
+      "image": "",
+      "excerpt": "Il existe 3 types d'otites différents. On garde les explications simples et accessibles.",
+      "tags": ["otite","enfant","pédiatrie"],
+      "content": "<p>Rassure-toi, l'otite n'est pas contagieuse. Mais attention, l'infection qui l'a provoquée peut l'être.</p><div class='info-box'><div class='info-box-title'>Les 3 types d'otites</div><ul><li>L'otite externe : infection du conduit auditif externe</li><li>L'otite moyenne aiguë : infection de l'oreille moyenne</li><li>L'otite séreuse : accumulation de liquide sans infection</li></ul></div><h2>Quand consulter en urgence ?</h2><p>Si ton enfant présente une forte fièvre (au-dessus de 39°C), des pleurs intenses et inconsolables, ou un écoulement de l'oreille, consulte rapidement un médecin.</p>"
+    },
+    {
+      "id": "a6", "slug": "portrait-vincent-darrouzet",
+      "title": "Portrait : Pr Vincent DARROUZET",
+      "category": "portrait", "categoryLabel": "Portrait",
+      "date": "2023-11-20", "dateLabel": "Nov. 2023",
+      "author": "Audrey Duval-Lebret", "readTime": "6 min",
+      "image": "",
+      "excerpt": "Un homme de vision. Figure incontournable de la chirurgie ORL.",
+      "tags": ["ORL","portrait","CHU Bordeaux"],
+      "content": "<p>Le Professeur Vincent Darrouzet est chef du service ORL et chirurgie cervico-faciale du CHU de Bordeaux.</p><div class='highlight-box'><p>« Jean-Pierre Bébéar fut mon guide. Je n'avais qu'à m'inscrire dans tous les creux. »</p></div><h2>Une carrière construite sur la passion</h2><p>Professeur Darrouzet a consacré sa carrière à repousser les limites de la chirurgie ORL.</p>"
+    }
+  ],
+  "contact": {
+    "sectionLabel": "Contact",
+    "sectionTitle": "Prenons rendez-vous !",
+    "sectionSub": "Tu veux booster ta communication et attirer plus de patients ? Réserve un créneau directement dans mon agenda pour qu'on discute de ton projet ensemble, sans engagement.",
+    "email": "procomsolution23@gmail.com",
+    "phone": "06 09 05 56 56",
+    "linkedin": "https://www.linkedin.com/in/audrey-duval-lebret/",
+    "facebook": "https://fr-fr.facebook.com/ProcomSolution23",
+    "googleMaps": "https://maps.app.goo.gl/aod8rv7fQEcLkwMe7"
+  },
+  "footer": {
+    "tagline": "Community Manager spécialisée dans l'audiologie. Pour une communication qui te ressemble, unique et éthique.",
+    "copyright": "© 2026 Procom Solution. Tous droits réservés."
+  }
+}

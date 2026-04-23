@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Article – Procom Solution</title>
+  <link rel="icon" href="assets/logo-court.png" type="image/png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root { --turquoise:#509ea4; --navy:#112338; --white:#ffffff; --light-bg:#f4f8f9; --text-dark:#112338; --text-mid:#3a5068; --text-light:#6b8a9a; --radius:12px; --shadow:0 4px 24px rgba(17,35,56,0.10); --transition:0.3s ease; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Inter',sans-serif; background:var(--light-bg); color:var(--text-dark); line-height:1.6; overflow-x:hidden; }
+    img { max-width:100%; display:block; }
+    a { text-decoration:none; color:inherit; }
+    .container { width:90%; max-width:1100px; margin:0 auto; }
+
+    /* PROGRESS */
+    #progress-bar { position:fixed; top:0; left:0; height:3px; background:linear-gradient(90deg,var(--turquoise),#6db5ba); width:0%; z-index:9999; transition:width 0.1s; }
+
+    /* NAV */
+    header { position:sticky; top:0; z-index:100; background:var(--white); border-bottom:1px solid rgba(17,35,56,0.08); transition:box-shadow var(--transition); }
+    nav { display:flex; align-items:center; justify-content:space-between; height:68px; }
+    .nav-logo img { height:40px; }
+    .nav-links { display:flex; align-items:center; gap:32px; list-style:none; }
+    .nav-links a { font-size:0.88rem; font-weight:500; color:var(--text-mid); transition:color var(--transition); }
+    .nav-links a:hover { color:var(--turquoise); }
+    .nav-links .btn-nav { background:var(--turquoise); color:var(--white)!important; padding:9px 20px; border-radius:50px; font-weight:600; }
+    .nav-links .btn-nav:hover { background:var(--navy); }
+    .burger { display:none; flex-direction:column; gap:5px; cursor:pointer; }
+    .burger span { width:24px; height:2px; background:var(--navy); border-radius:2px; }
+    .mobile-menu { display:none; flex-direction:column; gap:16px; padding:16px 5%; background:var(--white); border-top:1px solid rgba(17,35,56,0.08); }
+    .mobile-menu.open { display:flex; }
+    .mobile-menu a { font-size:0.95rem; color:var(--text-mid); }
+
+    /* BREADCRUMB */
+    .breadcrumb { background:var(--white); padding:12px 0; border-bottom:1px solid rgba(17,35,56,0.06); }
+    .breadcrumb-inner { display:flex; align-items:center; gap:8px; font-size:12px; color:var(--text-light); }
+    .breadcrumb-inner a { color:var(--turquoise); font-weight:500; }
+    .breadcrumb-inner a:hover { text-decoration:underline; }
+
+    /* LAYOUT */
+    .page-wrapper { max-width:1100px; margin:40px auto; padding:0 5%; display:grid; grid-template-columns:1fr 300px; gap:30px; align-items:start; }
+
+    /* ARTICLE */
+    article { background:var(--white); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); }
+
+    .article-hero { position:relative; height:320px; background:linear-gradient(135deg,var(--navy) 0%,#1a3a5c 100%); display:flex; align-items:center; justify-content:center; overflow:hidden; }
+    .article-hero-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0.25; }
+    .article-hero-content { position:relative; text-align:center; padding:30px; z-index:2; }
+    .article-hero-eyebrow { color:var(--turquoise); font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:12px; }
+    .article-hero h1 { font-family:'Playfair Display',serif; font-size:clamp(1.4rem,3vw,2rem); color:white; line-height:1.3; max-width:600px; margin:0 auto 20px; }
+    .article-hero-badge { display:inline-block; background:var(--turquoise); color:white; padding:8px 24px; border-radius:25px; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; }
+
+    .article-meta-bar { padding:18px 32px; background:rgba(80,158,164,0.06); border-bottom:1px solid rgba(17,35,56,0.06); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+    .article-meta-left { display:flex; align-items:center; gap:14px; }
+    .article-author-avatar { width:42px; height:42px; border-radius:50%; background:linear-gradient(135deg,var(--turquoise),var(--navy)); display:flex; align-items:center; justify-content:center; color:white; font-weight:700; font-size:15px; }
+    .article-author-name { font-weight:600; font-size:14px; color:var(--navy); }
+    .article-author-role { font-size:12px; color:var(--text-light); }
+    .article-meta-right { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+    .meta-chip { display:flex; align-items:center; gap:5px; font-size:11px; color:var(--text-light); background:var(--white); padding:4px 10px; border-radius:20px; border:1px solid rgba(17,35,56,0.1); }
+    .article-category-tag { background:var(--turquoise); color:white; padding:4px 12px; border-radius:20px; font-size:11px; font-weight:600; }
+
+    /* BODY */
+    .article-body { padding:32px; }
+    .article-body h2 { font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--navy); margin:24px 0 10px; padding-bottom:8px; border-bottom:2px solid rgba(80,158,164,0.15); }
+    .article-body h3 { font-size:1.1rem; font-weight:600; color:var(--navy); margin:18px 0 8px; }
+    .article-body p { font-size:15px; color:var(--text-mid); margin-bottom:14px; line-height:1.8; }
+    .article-body strong { color:var(--navy); }
+    .article-body a { color:var(--turquoise); border-bottom:1px solid rgba(80,158,164,0.3); }
+    .article-body ul,.article-body ol { padding-left:20px; margin-bottom:14px; }
+    .article-body li { font-size:15px; color:var(--text-mid); margin-bottom:6px; line-height:1.7; }
+
+    .highlight-box { background:rgba(80,158,164,0.08); border-left:4px solid var(--turquoise); padding:18px 22px; border-radius:0 10px 10px 0; margin:20px 0; }
+    .highlight-box p { margin:0; font-style:italic; color:var(--navy); font-size:15px; }
+    .info-box { background:var(--light-bg); border-radius:10px; padding:18px 22px; margin:20px 0; border:1px solid rgba(17,35,56,0.08); }
+    .info-box-title { font-weight:700; color:var(--navy); font-size:13px; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px; }
+    .info-box ul { list-style:none; padding:0; }
+    .info-box ul li { padding:4px 0; font-size:14px; color:var(--text-mid); display:flex; align-items:flex-start; gap:8px; }
+    .info-box ul li::before { content:'→'; color:var(--turquoise); font-weight:700; flex-shrink:0; }
+    .article-cta { background:linear-gradient(135deg,var(--navy),#1a3a5c); border-radius:12px; padding:28px; text-align:center; margin:28px 0; }
+    .article-cta h3 { color:white; font-family:'Playfair Display',serif; font-size:1.2rem; margin-bottom:8px; }
+    .article-cta p { color:rgba(255,255,255,0.7); font-size:13px; margin-bottom:14px; }
+    .btn-cta { display:inline-block; background:var(--turquoise); color:white; padding:10px 28px; border-radius:25px; font-weight:600; font-size:13px; transition:all 0.2s; }
+    .btn-cta:hover { background:#6db5ba; transform:translateY(-2px); }
+
+    /* TAGS */
+    .article-tags { padding:0 32px 24px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+    .article-tags span { font-size:12px; font-weight:600; color:var(--text-light); text-transform:uppercase; }
+    .tag-chip { background:rgba(80,158,164,0.1); color:var(--turquoise); border:1px solid rgba(80,158,164,0.2); padding:4px 12px; border-radius:20px; font-size:12px; font-weight:500; }
+    .tag-chip:hover { background:var(--turquoise); color:white; }
+
+    /* SHARE */
+    .article-share { padding:20px 32px; border-top:1px solid rgba(17,35,56,0.06); background:var(--light-bg); display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+    .share-label { font-size:12px; font-weight:600; color:var(--text-light); text-transform:uppercase; letter-spacing:0.5px; }
+    .share-btn { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:13px; color:white; cursor:pointer; transition:all 0.2s; font-weight:700; }
+    .share-btn:hover { transform:translateY(-2px); }
+    .share-fb { background:#1877f2; }
+    .share-tw { background:#1da1f2; }
+    .share-li { background:#0a66c2; }
+    .share-wa { background:#25d366; }
+    .share-copy { background:var(--turquoise); border:none; cursor:pointer; }
+
+    /* RELATED */
+    .related-section { margin-top:28px; }
+    .related-section h2 { font-family:'Playfair Display',serif; font-size:1.3rem; color:var(--navy); margin-bottom:18px; padding-bottom:10px; border-bottom:2px solid var(--turquoise); }
+    .related-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .related-card { background:var(--white); border-radius:10px; overflow:hidden; box-shadow:var(--shadow); transition:all 0.3s; display:block; }
+    .related-card:hover { transform:translateY(-4px); box-shadow:0 8px 32px rgba(80,158,164,0.18); }
+    .related-card-img { height:100px; background:linear-gradient(135deg,var(--navy),#1a3a5c); position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; font-size:2rem; }
+    .related-card-img img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0.5; }
+    .related-card-body { padding:12px; }
+    .related-card-cat { font-size:10px; font-weight:700; color:var(--turquoise); text-transform:uppercase; letter-spacing:1px; margin-bottom:4px; }
+    .related-card-title { font-size:12px; font-weight:600; color:var(--navy); line-height:1.4; }
+
+    /* SIDEBAR */
+    .sidebar { display:flex; flex-direction:column; gap:20px; }
+    .sidebar-widget { background:var(--white); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow); }
+    .sidebar-widget.sticky { position:sticky; top:88px; }
+    .widget-title { font-family:'Playfair Display',serif; font-size:16px; color:var(--navy); margin-bottom:16px; padding-bottom:10px; border-bottom:2px solid var(--turquoise); }
+
+    .share-widget { display:flex; flex-direction:column; gap:8px; }
+    .share-widget-btn { display:flex; align-items:center; gap:10px; padding:9px 14px; border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; transition:all 0.2s; color:white; }
+    .share-widget-btn:hover { transform:translateX(3px); }
+    .swb-fb { background:#1877f2; } .swb-tw { background:#1da1f2; } .swb-li { background:#0a66c2; } .swb-wa { background:#25d366; }
+
+    .more-posts { display:flex; flex-direction:column; }
+    .more-post-item { display:flex; gap:10px; padding:12px 0; border-bottom:1px solid rgba(17,35,56,0.06); transition:all 0.2s; }
+    .more-post-item:last-child { border-bottom:none; }
+    .more-post-item:hover .more-post-title { color:var(--turquoise); }
+    .more-post-thumb { width:56px; height:56px; border-radius:8px; background:linear-gradient(135deg,var(--navy),var(--turquoise)); flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:1.2rem; overflow:hidden; }
+    .more-post-thumb img { width:100%; height:100%; object-fit:cover; }
+    .more-post-cat { font-size:10px; font-weight:700; color:var(--turquoise); text-transform:uppercase; letter-spacing:0.8px; margin-bottom:3px; }
+    .more-post-title { font-size:12px; font-weight:600; color:var(--navy); line-height:1.4; transition:color 0.2s; }
+    .more-post-date { font-size:10px; color:var(--text-light); margin-top:4px; }
+
+    .contact-widget-form { display:flex; flex-direction:column; gap:8px; }
+    .contact-widget-form input, .contact-widget-form textarea { padding:9px 12px; border:1.5px solid rgba(17,35,56,0.12); border-radius:8px; font-family:'Inter',sans-serif; font-size:13px; color:var(--navy); outline:none; transition:border-color 0.2s; }
+    .contact-widget-form input:focus, .contact-widget-form textarea:focus { border-color:var(--turquoise); }
+    .contact-widget-form textarea { resize:none; height:72px; }
+    .btn-send { background:var(--turquoise); color:white; border:none; padding:10px; border-radius:8px; font-family:'Inter',sans-serif; font-size:13px; font-weight:600; cursor:pointer; transition:all 0.2s; display:flex; align-items:center; justify-content:center; gap:8px; }
+    .btn-send:hover { background:var(--navy); }
+
+    footer { background:var(--navy); color:rgba(255,255,255,0.7); text-align:center; padding:28px; margin-top:48px; font-size:13px; }
+    footer a { color:var(--turquoise); }
+    footer a:hover { text-decoration:underline; }
+
+    @media (max-width:900px) { .page-wrapper { grid-template-columns:1fr; } .related-grid { grid-template-columns:1fr 1fr; } .nav-links { display:none; } .burger { display:flex; } }
+    @media (max-width:600px) { .article-body { padding:20px; } .article-tags, .article-share { padding-left:20px; padding-right:20px; } .related-grid { grid-template-columns:1fr; } .article-meta-bar { flex-direction:column; align-items:flex-start; } }
+  </style>
+</head>
+<body data-page="article">
+
+<div id="progress-bar"></div>
+
+<header>
+  <div class="container">
+    <nav>
+      <a href="index.html" class="nav-logo"><img src="assets/logo-long.png" alt="Procom Solution"/></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="portfolio.html">Articles</a></li>
+        <li><a href="ressources.html">Ressources</a></li>
+        <li><a href="index.html#contact" class="btn-nav">Contact</a></li>
+      </ul>
+      <div class="burger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+    </nav>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Accueil</a><a href="portfolio.html">Articles</a>
+    <a href="ressources.html">Ressources</a><a href="index.html#contact">Contact</a>
+  </div>
+</header>
+
+<div class="breadcrumb">
+  <div class="container">
+    <div class="breadcrumb-inner">
+      <a href="index.html">🏠 Accueil</a>
+      <span>›</span>
+      <a href="portfolio.html">Articles</a>
+      <span>›</span>
+      <span id="bc-title">Article</span>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrapper">
+  <main>
+    <article>
+      <div class="article-hero">
+        <img class="article-hero-img" id="article-hero-img" src="" alt="" onerror="this.style.display='none'"/>
+        <div class="article-hero-content">
+          <div class="article-hero-eyebrow" id="article-category">Catégorie</div>
+          <h1 id="article-title">Chargement...</h1>
+          <div class="article-hero-badge" id="article-badge">Audrey Duval-Lebret</div>
+        </div>
+      </div>
+
+      <div class="article-meta-bar">
+        <div class="article-meta-left">
+          <div class="article-author-avatar">A</div>
+          <div>
+            <div class="article-author-name" id="article-author">Audrey Duval-Lebret</div>
+            <div class="article-author-role">Community Manager • Audiologie</div>
+          </div>
+        </div>
+        <div class="article-meta-right">
+          <div class="meta-chip">📅 <span id="article-date">—</span></div>
+          <div class="meta-chip">⏱ <span id="article-read-time">5 min</span></div>
+          <div class="article-category-tag"><span id="cat-label">Article</span></div>
+        </div>
+      </div>
+
+      <div class="article-body" id="article-body">
+        <p>Chargement de l'article...</p>
+      </div>
+
+      <div class="article-tags" id="article-tags-wrap"><span>Tags :</span></div>
+
+      <div class="article-share">
+        <span class="share-label">Partager</span>
+        <a href="#" class="share-btn share-fb" id="share-fb" target="_blank">f</a>
+        <a href="#" class="share-btn share-tw" id="share-tw" target="_blank">𝕏</a>
+        <a href="#" class="share-btn share-li" id="share-li" target="_blank">in</a>
+        <a href="#" class="share-btn share-wa" id="share-wa" target="_blank">📱</a>
+        <button class="share-btn share-copy" onclick="copyLink()" title="Copier le lien">🔗</button>
+      </div>
+    </article>
+
+    <div class="related-section">
+      <h2>📰 Articles similaires</h2>
+      <div class="related-grid" id="related-grid"></div>
+    </div>
+  </main>
+
+  <aside class="sidebar">
+    <div class="sidebar-widget sticky">
+      <div class="widget-title">Partager l'article</div>
+      <div class="share-widget">
+        <a href="#" id="sw-fb" class="share-widget-btn swb-fb" target="_blank">f Facebook</a>
+        <a href="#" id="sw-tw" class="share-widget-btn swb-tw" target="_blank">𝕏 Twitter</a>
+        <a href="#" id="sw-li" class="share-widget-btn swb-li" target="_blank">in LinkedIn</a>
+        <a href="#" id="sw-wa" class="share-widget-btn swb-wa" target="_blank">📱 WhatsApp</a>
+      </div>
+    </div>
+
+    <div class="sidebar-widget">
+      <div class="widget-title">Autres articles</div>
+      <div class="more-posts" id="more-posts"></div>
+    </div>
+
+    <div class="sidebar-widget">
+      <div class="widget-title">Nous contacter</div>
+      <form class="contact-widget-form" onsubmit="sendWidgetContact(event)">
+        <input type="text" placeholder="Nom *" required/>
+        <input type="email" placeholder="Email *" required/>
+        <textarea placeholder="Message..."></textarea>
+        <button type="submit" class="btn-send">✉️ Envoyer</button>
+      </form>
+    </div>
+  </aside>
+</div>
+
+<footer>
+  <p>© 2026 <strong style="color:var(--turquoise)">Procom Solution</strong> — Audrey Duval-Lebret · <a href="index.html">Accueil</a> · <a href="portfolio.html">Articles</a></p>
+</footer>
+
+<script src="site.js"></script>
+<script>
+  window.addEventListener('scroll', () => {
+    const winScroll = document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    document.getElementById('progress-bar').style.width = (winScroll/height*100) + '%';
+  });
+
+  function copyLink() {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      alert('Lien copié !');
+    });
+  }
+
+  function sendWidgetContact(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.btn-send');
+    btn.textContent = '✅ Envoyé !';
+    setTimeout(() => { btn.textContent = '✉️ Envoyer'; e.target.reset(); }, 2500);
+  }
+</script>
+</body>
+</html>
