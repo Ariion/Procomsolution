@@ -148,7 +148,7 @@
     .blog-tag { font-size: 0.72rem; font-weight: 700; color: var(--turquoise); background: rgba(80,158,164,0.1); padding: 4px 10px; border-radius: 50px; }
     .blog-date { font-size: 0.72rem; color: var(--text-light); }
     .blog-card h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; line-height: 1.4; }
-    .blog-card > a > .blog-card-body > p, .blog-card p.excerpt { font-size: 0.85rem; color: var(--text-mid); flex: 1; margin-bottom: 18px; }
+    .blog-card p.excerpt { font-size: 0.85rem; color: var(--text-mid); flex: 1; margin-bottom: 18px; }
     .blog-card-link { font-size: 0.85rem; font-weight: 600; color: var(--turquoise); display: flex; align-items: center; gap: 6px; margin-top: auto; }
     #contact { background: var(--light-bg); }
     .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
@@ -207,7 +207,7 @@
     }
   </style>
 </head>
-<body>
+<body data-page="index">
 
 <header>
   <nav>
@@ -225,7 +225,7 @@
     <div class="hero-inner">
       <div class="hero-text">
         <div class="hero-badge" id="hero-badge"></div>
-        <h1 id="hero-h1"></h1>
+        <h1 id="hero-title"></h1>
         <p id="hero-subtitle"></p>
         <div class="hero-btns">
           <a id="hero-btn1" class="btn-primary" href="#contact">Prendre rendez-vous</a>
@@ -237,7 +237,7 @@
         <img id="hero-img" src="assets/Audrey-01.png" alt="Audrey"/>
         <div class="hero-tag">
           <span class="emoji" id="hero-tag-emoji">🎧</span>
-          <p><strong id="hero-tag-title">Ton oreille attentive</strong><br/><span id="hero-tag-sub">Communication éthique & personnalisée</span></p>
+          <p><strong id="hero-tag-title">Ton oreille attentive</strong><br/><span id="hero-tag-sub">Communication éthique &amp; personnalisée</span></p>
         </div>
       </div>
     </div>
@@ -285,7 +285,7 @@
         <p>Note Google : <strong id="google-note">5.0 / 5</strong><br/><span id="google-count">Basée sur 2 avis vérifiés</span></p>
       </div>
       <br/>
-      <a id="linkedin-btn" href="https://www.linkedin.com/in/audrey-duval-lebret/details/recommendations/" target="_blank" class="btn-primary">Voir toutes les recommandations →</a>
+      <a id="linkedin-btn" href="#" target="_blank" class="btn-primary">Voir toutes les recommandations →</a>
     </div>
   </div>
 </section>
@@ -294,7 +294,7 @@
   <div class="container">
     <div class="ressources-preview-header">
       <p class="section-label" id="ressources-label">Ressources gratuites</p>
-      <h2 class="section-title" id="ressources-title">Guides & fiches pratiques<br/>offerts par Audrey</h2>
+      <h2 class="section-title" id="ressources-title">Guides &amp; fiches pratiques<br/>offerts par Audrey</h2>
       <p class="section-sub" id="ressources-sub"></p>
     </div>
     <div class="carousel-wrapper">
@@ -316,7 +316,7 @@
     <div class="blog-header">
       <div>
         <p class="section-label" id="articles-label">Articles</p>
-        <h2 class="section-title" id="articles-title">Ressources & conseils</h2>
+        <h2 class="section-title" id="articles-title">Ressources &amp; conseils</h2>
       </div>
       <a href="portfolio.html" class="blog-link">Voir tous les articles →</a>
     </div>
@@ -330,12 +330,12 @@
       <div class="contact-info">
         <p class="section-label" id="contact-label">Contact</p>
         <h2 id="contact-title">Prenons rendez-vous !</h2>
-        <p id="contact-subtitle"></p>
+        <p id="contact-sub"></p>
         <div class="contact-items" id="contact-items"></div>
       </div>
       <div class="contact-form">
         <h3>Envoie-moi un message</h3>
-        <form id="contactForm" onsubmit="submitContact(event)">
+        <form id="contactForm">
           <div class="form-row">
             <div class="form-group"><label>Prénom *</label><input type="text" name="prenom" placeholder="Jean" required/></div>
             <div class="form-group"><label>Nom *</label><input type="text" name="nom" placeholder="Dupont" required/></div>
@@ -377,232 +377,8 @@
   </div>
 </footer>
 
-<script src="cms.js"></script>
-<script>
-const D = CMS.load();
-CMS.applyColors(D.colors);
+<!-- site.js gère tout le rendu dynamique via PROCOM.load() -->
+<script src="site.js"></script>
 
-// META
-document.getElementById('meta-title').textContent = D.meta.title;
-document.getElementById('meta-desc').content = D.meta.description;
-
-// NAV
-(function(){
-  const ul = document.getElementById('nav-links-desktop');
-  const mob = document.getElementById('mobileMenu');
-  D.nav.links.forEach(l => {
-    ul.innerHTML += `<li><a href="${l.href}">${l.label}</a></li>`;
-    mob.innerHTML += `<a href="${l.href}" onclick="toggleMenu()">${l.label}</a>`;
-  });
-  ul.innerHTML += `<li><a href="${D.nav.ctaHref}" class="btn-nav">${D.nav.ctaText}</a></li>`;
-  mob.innerHTML += `<a href="${D.nav.ctaHref}" class="btn-nav" onclick="toggleMenu()">${D.nav.ctaText}</a>`;
-  document.getElementById('nav-logo-img').src = D.nav.logo;
-})();
-
-// HERO
-(function(){
-  const h = D.hero;
-  document.getElementById('hero-badge').textContent = h.badge;
-  document.getElementById('hero-h1').innerHTML = `${h.title}<br/><span>${h.titleSpan}</span><br/>${h.titleEnd}`;
-  document.getElementById('hero-subtitle').textContent = h.subtitle;
-  document.getElementById('hero-btn1').textContent = h.btn1Text;
-  document.getElementById('hero-btn1').href = h.btn1Href;
-  document.getElementById('hero-btn2').textContent = h.btn2Text;
-  document.getElementById('hero-btn2').href = h.btn2Href;
-  document.getElementById('hero-img').src = h.image;
-  document.getElementById('hero-img').alt = h.imageAlt;
-  document.getElementById('hero-tag-emoji').textContent = h.tagEmoji;
-  document.getElementById('hero-tag-title').textContent = h.tagTitle;
-  document.getElementById('hero-tag-sub').textContent = h.tagSub;
-  document.getElementById('hero-stats').innerHTML = h.stats.map(s =>
-    `<div class="stat"><strong>${s.value}</strong><span>${s.label.replace(/\n/g,'<br/>')}</span></div>`
-  ).join('');
-})();
-
-// OFFRES
-(function(){
-  const o = D.offres;
-  document.getElementById('offres-label').textContent = o.sectionLabel;
-  document.getElementById('offres-title').innerHTML = o.title.replace(/\n/g,'<br/>');
-  document.getElementById('offres-sub').textContent = o.subtitle;
-  document.getElementById('offres-grid').innerHTML = o.items.map(item => `
-    <div class="offre-card${item.featured?' featured':''}">
-      ${item.featured && item.badge ? `<div class="badge-recommande">${item.badge}</div>` : ''}
-      <div class="offre-icon">${item.icon}</div>
-      <p class="offre-tag">${item.tag}</p>
-      <h3>${item.name}</h3>
-      <p>${item.desc}</p>
-      <ul>${item.features.map(f=>`<li>${f}</li>`).join('')}</ul>
-      <a href="${D.nav.ctaHref}" class="${item.btnStyle==='primary'?'btn-primary':'btn-outline'}">${item.btnText}</a>
-    </div>
-  `).join('');
-})();
-
-// À PROPOS
-(function(){
-  const a = D.apropos;
-  document.getElementById('apropos-label').textContent = a.sectionLabel;
-  document.getElementById('apropos-title').innerHTML = a.title.replace(/\n/g,'<br/>');
-  document.getElementById('apropos-img').src = a.image;
-  document.getElementById('apropos-img').alt = a.imageAlt;
-  document.getElementById('apropos-content').innerHTML = a.content.map(p=>`<p>${p}</p>`).join('');
-  document.getElementById('apropos-tags').innerHTML = a.tags.map(t=>`<span class="tag">${t}</span>`).join('');
-  document.getElementById('apropos-btn').textContent = a.btnText;
-  document.getElementById('apropos-btn').href = a.btnHref;
-})();
-
-// TÉMOIGNAGES
-(function(){
-  const t = D.temoignages;
-  document.getElementById('temoignages-label').textContent = t.sectionLabel;
-  document.getElementById('temoignages-title').textContent = t.title;
-  document.getElementById('google-note').textContent = t.googleNote;
-  document.getElementById('google-count').textContent = 'Basée sur ' + t.googleCount;
-  document.getElementById('linkedin-btn').href = t.linkedinHref;
-  document.getElementById('temoignages-grid').innerHTML = t.items.map(item => `
-    <div class="temoignage-card">
-      <div class="stars">${'★'.repeat(item.stars)}${'☆'.repeat(5-item.stars)}</div>
-      <blockquote>"${item.text}"</blockquote>
-      <div class="temoignage-author">
-        <div class="avatar">${item.initials}</div>
-        <div class="author-info"><strong>${item.name}</strong><span>${item.role}</span></div>
-      </div>
-    </div>
-  `).join('');
-})();
-
-// RESSOURCES
-(function(){
-  const r = D.ressources;
-  document.getElementById('ressources-label').textContent = r.sectionLabel;
-  document.getElementById('ressources-title').innerHTML = r.title.replace(/\n/g,'<br/>');
-  document.getElementById('ressources-sub').textContent = r.subtitle;
-  document.getElementById('carouselTrack').innerHTML = r.items.map(item => `
-    <div class="carousel-slide">
-      <div class="carousel-slide-img">
-        <img src="${item.image}" alt="${item.title}" onerror="this.style.opacity='0'"/>
-        <span class="carousel-slide-badge">${item.badge}</span>
-      </div>
-      <div class="carousel-slide-body">
-        <h4>${item.title}</h4>
-        <p>${item.desc}</p>
-        <a href="${item.file}" download>Télécharger le guide →</a>
-      </div>
-    </div>
-  `).join('');
-  initCarousel();
-})();
-
-// ARTICLES
-(function(){
-  const a = D.articles;
-  document.getElementById('articles-label').textContent = a.sectionLabel;
-  document.getElementById('articles-title').textContent = a.title;
-  document.getElementById('blog-grid').innerHTML = a.items.slice(0,3).map(item => `
-    <a href="article.html?id=${item.id}" class="blog-card">
-      <div class="blog-card-img">${item.image?`<img src="${item.image}" alt="${item.title}"/>`:'<span style="font-size:2rem;opacity:0.3">📝</span>'}</div>
-      <div class="blog-card-body">
-        <div class="blog-meta"><span class="blog-tag">${item.category}</span><span class="blog-date">${item.date}</span></div>
-        <h3>${item.title}</h3>
-        <p class="excerpt">${item.excerpt}</p>
-        <span class="blog-card-link">Lire l'article →</span>
-      </div>
-    </a>
-  `).join('');
-})();
-
-// CONTACT
-(function(){
-  const c = D.contact;
-  document.getElementById('contact-label').textContent = c.sectionLabel;
-  document.getElementById('contact-title').textContent = c.title;
-  document.getElementById('contact-subtitle').textContent = c.subtitle;
-  document.getElementById('contact-items').innerHTML = `
-    <div class="contact-item"><div class="contact-icon">📧</div><div><strong>Email</strong><a href="mailto:${c.email}">${c.email}</a></div></div>
-    <div class="contact-item"><div class="contact-icon">📞</div><div><strong>Téléphone</strong><a href="tel:${c.phone.replace(/\s/g,'')}">${c.phone}</a></div></div>
-    <div class="contact-item"><div class="contact-icon">💼</div><div><strong>LinkedIn</strong><a href="${c.linkedin}" target="_blank">${c.linkedinLabel}</a></div></div>
-  `;
-})();
-
-// FOOTER
-(function(){
-  const f = D.footer;
-  document.getElementById('footer-desc').textContent = f.description;
-  document.getElementById('footer-copy').textContent = f.copyright;
-  document.getElementById('footer-socials').innerHTML = `
-    <a href="${f.facebook}" target="_blank" class="social-btn">f</a>
-    <a href="${f.linkedin}" target="_blank" class="social-btn">in</a>
-    <a href="${f.gmaps}" target="_blank" class="social-btn">G</a>
-  `;
-  const fn = document.getElementById('footer-nav');
-  D.nav.links.forEach(l => fn.innerHTML += `<li><a href="${l.href}">${l.label}</a></li>`);
-  fn.innerHTML += `<li><a href="${D.nav.ctaHref}">Contact</a></li>`;
-})();
-
-// CAROUSEL
-function initCarousel(){
-  const track=document.getElementById('carouselTrack');
-  const dotsEl=document.getElementById('carouselDots');
-  let cur=0, timer=null;
-  function vis(){ return window.innerWidth<=600?1:window.innerWidth<=900?2:3; }
-  function pages(){ return Math.max(1,track.children.length-vis()+1); }
-  function dots(){
-    dotsEl.innerHTML='';
-    for(let i=0;i<pages();i++){
-      const d=document.createElement('button');
-      d.className='carousel-dot'+(i===cur?' active':'');
-      d.onclick=()=>go(i);
-      dotsEl.appendChild(d);
-    }
-  }
-  function go(i){
-    if(!track.children.length) return;
-    cur=Math.max(0,Math.min(i,pages()-1));
-    const w=track.children[0].getBoundingClientRect().width+24;
-    track.style.transform=`translateX(-${cur*w}px)`;
-    dotsEl.querySelectorAll('.carousel-dot').forEach((d,j)=>d.classList.toggle('active',j===cur));
-  }
-  function next(){ go(cur+1>=pages()?0:cur+1); }
-  function prev(){ go(cur-1<0?pages()-1:cur-1); }
-  document.getElementById('prevBtn').onclick=()=>{clearInterval(timer);prev();start();};
-  document.getElementById('nextBtn').onclick=()=>{clearInterval(timer);next();start();};
-  function start(){ timer=setInterval(next,4000); }
-  track.parentElement.addEventListener('mouseenter',()=>clearInterval(timer));
-  track.parentElement.addEventListener('mouseleave',start);
-  let tx=0;
-  track.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;},{passive:true});
-  track.addEventListener('touchend',e=>{ const d=tx-e.changedTouches[0].clientX; if(Math.abs(d)>40){clearInterval(timer);d>0?next():prev();start();} });
-  window.addEventListener('resize',()=>{dots();go(0);});
-  dots(); go(0); start();
-}
-
-// FORM
-function submitContact(e){
-  e.preventDefault();
-  const fd=new FormData(e.target);
-  const msgs=JSON.parse(localStorage.getItem('procom_messages')||'[]');
-  msgs.unshift({ date:new Date().toLocaleString('fr-FR'), prenom:fd.get('prenom'), nom:fd.get('nom'), email:fd.get('email'), sujet:fd.get('sujet'), message:fd.get('message') });
-  localStorage.setItem('procom_messages',JSON.stringify(msgs));
-  e.target.reset();
-  const ok=document.getElementById('form-success');
-  ok.style.display='block';
-  setTimeout(()=>ok.style.display='none',5000);
-}
-
-// NAV
-function toggleMenu(){ document.getElementById('mobileMenu').classList.toggle('open'); }
-window.addEventListener('scroll',()=>{
-  document.querySelector('header').style.boxShadow=window.scrollY>20?'0 4px 24px rgba(17,35,56,0.12)':'none';
-});
-
-// SCROLL REVEAL
-const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.style.opacity='1';x.target.style.transform='translateY(0)';}}),{threshold:0.1});
-setTimeout(()=>{
-  document.querySelectorAll('.offre-card,.temoignage-card,.blog-card').forEach(el=>{
-    el.style.opacity='0'; el.style.transform='translateY(28px)'; el.style.transition='opacity 0.5s ease, transform 0.5s ease';
-    obs.observe(el);
-  });
-},100);
-</script>
 </body>
 </html>
