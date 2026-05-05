@@ -25,6 +25,5 @@
   "redirects": [
     { "source": "/admin", "destination": "/admin.html", "permanent": false },
     { "source": "/contact", "destination": "/index.html#contact", "permanent": false }
-  ],
-  "404": "/404.html"
+  ]
 }
