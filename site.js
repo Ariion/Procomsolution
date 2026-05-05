@@ -33,6 +33,11 @@ window.PROCOM = {
     r.style.setProperty('--text-dark', c.textDark  || '#112338');
     r.style.setProperty('--text-mid',  c.textMid   || '#3a5068');
     r.style.setProperty('--text-light',c.textLight || '#6b8a9a');
+    // Fonts
+    const f = this.cfg.fonts || {};
+    if (f.heading) r.style.setProperty('--font-heading', `'${f.heading}', sans-serif`);
+    if (f.body) r.style.setProperty('--font-body', `'${f.body}', sans-serif`);
+    if (f.article) r.style.setProperty('--font-article', `'${f.article}', serif`);
   },
 
   /* ── NAV (commune à toutes les pages) ── */
@@ -210,7 +215,7 @@ window.PROCOM = {
       ct.innerHTML = r.items.map(item=>`
         <div class="carousel-slide">
           <div class="carousel-slide-img">
-            <img src="${item.image}" alt="${item.title}" onerror="this.style.display='none'"/>
+            ${item.image?`<img src="${item.image}" alt="${item.title}" onerror="this.parentElement.classList.add('gradient-placeholder');this.parentElement.innerHTML='<span>'+this.alt+'</span>'+this.parentElement.querySelector('.carousel-slide-badge').outerHTML"/>`:`<div class="gradient-placeholder" style="position:absolute;inset:0"><span>${item.title}</span></div>`}
             <span class="carousel-slide-badge">${item.badge}</span>
           </div>
           <div class="carousel-slide-body">
@@ -231,8 +236,8 @@ window.PROCOM = {
       this.txt('articles-title', artSection.title||'Ressources & conseils');
       bg.innerHTML = articles.map(art=>`
         <a href="article.html?id=${art.id}" class="blog-card">
-          <div class="blog-card-img">
-            ${art.image?`<img src="${art.image}" alt="${art.title}" onerror="this.parentElement.style.background='linear-gradient(135deg,#112338,#1a3a5c)';this.style.display='none'"/>`:''}
+          <div class="blog-card-img${art.image?'':' gradient-placeholder'}">
+            ${art.image?`<img src="${art.image}" alt="${art.title}" onerror="this.parentElement.classList.add('gradient-placeholder');this.parentElement.innerHTML='<span>'+this.alt+'</span>'"/>`:`<span>${art.title}</span>`}
           </div>
           <div class="blog-card-body">
             <div class="blog-meta">
@@ -261,8 +266,33 @@ window.PROCOM = {
       ciEl.innerHTML = `
         <div class="contact-item"><div class="contact-icon">📧</div><div><strong>Email</strong><a href="mailto:${con.email}">${con.email}</a></div></div>
         <div class="contact-item"><div class="contact-icon">📞</div><div><strong>Téléphone</strong><a href="tel:${(con.phone||'').replace(/\s/g,'')}">${con.phone}</a></div></div>
-        <div class="contact-item"><div class="contact-icon">💼</div><div><strong>LinkedIn</strong><a href="${con.linkedin}" target="_blank">${con.linkedinLabel||'Audrey Duval-Lebret'}</a></div></div>`;
+        <div class="contact-item"><div class="contact-icon">💼</div><div><strong>LinkedIn</strong><a href="${con.linkedin}" target="_blank" rel="noopener">${con.linkedinLabel||'Audrey Duval-Lebret'}</a></div></div>`;
     }
+
+    /* CUSTOM SECTIONS — sections ajoutées via admin */
+    this.renderCustomSections();
+  },
+
+  renderCustomSections() {
+    const sections = this.cfg.sections || [];
+    const host = this.$('custom-sections');
+    if (!host) return;
+    host.innerHTML = sections.map(s => {
+      const bg = s.background==='dark' ? 'background:var(--navy);color:#fff' :
+                 s.background==='light' ? 'background:var(--light-bg)' :
+                 s.background==='turquoise' ? 'background:var(--turquoise);color:#fff' : '';
+      const titleColor = (s.background==='dark'||s.background==='turquoise') ? 'color:#fff' : 'color:var(--navy)';
+      const subColor = (s.background==='dark'||s.background==='turquoise') ? 'color:rgba(255,255,255,.7)' : 'color:var(--text-mid)';
+      return `<section id="${s.id||'custom-'+Math.random().toString(36).slice(2,7)}" style="padding:80px 0;${bg}">
+        <div class="container" style="text-align:${s.align||'left'}">
+          ${s.label?`<p class="section-label" style="color:var(--turquoise)">${s.label}</p>`:''}
+          ${s.title?`<h2 class="section-title" style="${titleColor};margin-bottom:16px">${s.title.replace(/\n/g,'<br/>')}</h2>`:''}
+          ${s.subtitle?`<p class="section-sub" style="${subColor};max-width:640px;${s.align==='center'?'margin:0 auto 32px':'margin-bottom:32px'}">${s.subtitle}</p>`:''}
+          ${s.content?`<div style="${subColor};font-size:.97rem;line-height:1.7;max-width:720px;${s.align==='center'?'margin:0 auto':''}">${s.content}</div>`:''}
+          ${s.btnText?`<div style="margin-top:28px"><a href="${s.btnHref||'#'}" class="btn-primary">${s.btnText}</a></div>`:''}
+        </div>
+      </section>`;
+    }).join('');
   },
 
   /* ════════════════════════════════════════
@@ -275,9 +305,9 @@ window.PROCOM = {
     if (!grid) return;
 
     grid.innerHTML = articles.map(art=>`
-      <div class="article-card" data-category="${(art.category||'').toLowerCase()}">
-        <div class="article-card-img-placeholder" data-initials="${(art.title||'').slice(0,2).toUpperCase()}">
-          ${art.image?`<img src="${art.image}" alt="${art.title}" class="article-card-img" onerror="this.style.display='none'"/>`:''}
+      <div class="article-card" data-category="${(art.category||'').toLowerCase()}" data-title="${(art.title||'').replace(/"/g,'&quot;')}" data-excerpt="${(art.excerpt||'').replace(/"/g,'&quot;')}">
+        <div class="article-card-img-placeholder${art.image?'':' gradient-placeholder'}" data-initials="${(art.title||'').slice(0,2).toUpperCase()}">
+          ${art.image?`<img src="${art.image}" alt="${art.title}" class="article-card-img" onerror="this.parentElement.classList.add('gradient-placeholder');this.style.display='none'"/>`:`<span style="font-size:.85rem">${art.title}</span>`}
           <span class="tag-overlay">${art.categoryLabel||art.category||''}</span>
         </div>
         <div class="article-card-body">
@@ -314,8 +344,8 @@ window.PROCOM = {
     if (!grid||!r.items) return;
     grid.innerHTML = r.items.map(item=>`
       <div class="ressource-card">
-        <div class="ressource-cover">
-          <img src="${item.image}" alt="${item.title}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class="ressource-cover${item.image?'':' gradient-placeholder'}">
+          ${item.image?`<img src="${item.image}" alt="${item.title}" onerror="this.parentElement.classList.add('gradient-placeholder');this.style.display='none';this.nextElementSibling.style.display='flex'"/>`:`<span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;text-align:center;font-weight:700;text-transform:uppercase;letter-spacing:.05em;line-height:1.3;font-size:1rem;color:white">${item.title}</span>`}
           <div class="ressource-cover-placeholder" style="display:none;">
             <div class="cover-title">${item.title}</div>
             <div class="cover-sub">Guide pratique</div>
@@ -391,7 +421,7 @@ window.PROCOM = {
         <a href="article.html?id=${ra.id}" class="related-card">
           <div class="related-card-img">
             ${ra.image?`<img src="${ra.image}" alt="${ra.title}"/>`:''}
-            <span class="related-card-img-icon">${{interview:'🎙',portrait:'👤',conseil:'💡',prevention:'🦻'[ra.category]||'📝'}[ra.category]||'📝'}</span>
+            <span class="related-card-img-icon">${({interview:'🎙',portrait:'👤',conseil:'💡',prevention:'🦻',article:'📝',actualite:'📰'})[ra.category]||'📝'}</span>
           </div>
           <div class="related-card-body">
             <div class="related-card-cat">${ra.categoryLabel||ra.category||''}</div>
@@ -472,16 +502,25 @@ window.addEventListener('scroll',()=>{
   if(h) h.style.boxShadow=window.scrollY>20?'0 4px 24px rgba(17,35,56,0.12)':'none';
 });
 
-/* ── CONTACT FORM ── */
+/* ── CONTACT FORM (mailto + sauvegarde admin) ── */
 function handleContactForm(e){
   e.preventDefault();
   const fd=new FormData(e.target);
+  const data={ prenom:fd.get('prenom'), nom:fd.get('nom'), email:fd.get('email'), sujet:fd.get('sujet')||'Demande de devis', message:fd.get('message') };
+  // Sauvegarde admin
   const msgs=JSON.parse(localStorage.getItem('procom_messages')||'[]');
-  msgs.unshift({ date:new Date().toLocaleString('fr-FR'), prenom:fd.get('prenom'), nom:fd.get('nom'), email:fd.get('email'), sujet:fd.get('sujet'), message:fd.get('message') });
+  msgs.unshift({ date:new Date().toLocaleString('fr-FR'), ...data });
   localStorage.setItem('procom_messages',JSON.stringify(msgs));
+  // Construit le mailto
+  const cfg=(window.PROCOM&&PROCOM.cfg)||{};
+  const to=(cfg.contact&&cfg.contact.email)||'procomsolution23@gmail.com';
+  const subject=encodeURIComponent(`[Procom Solution] ${data.sujet} – ${data.prenom} ${data.nom}`);
+  const body=encodeURIComponent(`Bonjour Audrey,\n\n${data.message}\n\n— ${data.prenom} ${data.nom}\nEmail : ${data.email}\nSujet : ${data.sujet}`);
+  // Ouvre le client mail
+  window.location.href=`mailto:${to}?subject=${subject}&body=${body}`;
   e.target.reset();
   const ok=document.getElementById('form-success');
-  if(ok){ ok.style.display='block'; setTimeout(()=>ok.style.display='none',5000); }
+  if(ok){ ok.innerHTML="✅ Ta messagerie va s'ouvrir. Si rien ne se passe, écris directement à <a href=\"mailto:"+to+"\">"+to+"</a>"; ok.style.display='block'; }
 }
 
 /* ── PORTFOLIO FILTER ── */

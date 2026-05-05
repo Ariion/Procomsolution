@@ -109,6 +109,65 @@ const CMS = (() => {
       linkedin: "https://www.linkedin.com/in/audrey-duval-lebret/",
       gmaps: "https://maps.app.goo.gl/aod8rv7fQEcLkwMe7",
       copyright: "© 2026 Procom Solution. Tous droits réservés."
+    },
+    legal: {
+      mentionsTitle: "Mentions légales",
+      mentions: `<h2>Éditeur du site</h2>
+<p><strong>Procom Solution</strong><br/>
+Audrey Duval-Lebret – Community Manager spécialisée en audiologie<br/>
+Email : <a href="mailto:procomsolution23@gmail.com">procomsolution23@gmail.com</a><br/>
+Téléphone : <a href="tel:+33609055656">06 09 05 56 56</a></p>
+
+<h2>Directrice de la publication</h2>
+<p>Audrey Duval-Lebret</p>
+
+<h2>Hébergement</h2>
+<p>Le site est hébergé par <strong>Vercel Inc.</strong><br/>
+440 N Barranca Avenue #4133, Covina, CA 91723, États-Unis<br/>
+Site : <a href="https://vercel.com" target="_blank" rel="noopener">vercel.com</a></p>
+
+<h2>Propriété intellectuelle</h2>
+<p>L'ensemble des contenus présents sur ce site (textes, images, logos, graphismes) est la propriété exclusive de Procom Solution, sauf mention contraire. Toute reproduction, représentation ou diffusion, totale ou partielle, sans autorisation écrite préalable est interdite et constitue une contrefaçon sanctionnée par les articles L.335-2 et suivants du Code de la propriété intellectuelle.</p>
+
+<h2>Crédits</h2>
+<p>Photos : Audrey Duval-Lebret et collaborateurs (avec autorisation).<br/>
+Conception & développement : Procom Solution.</p>
+
+<h2>Responsabilité</h2>
+<p>Les informations diffusées sur ce site sont fournies à titre indicatif. Procom Solution ne saurait être tenue responsable des erreurs ou omissions dans ces informations, ni de l'usage qui pourrait en être fait par un tiers.</p>
+
+<h2>Contact</h2>
+<p>Pour toute question, contactez <a href="mailto:procomsolution23@gmail.com">procomsolution23@gmail.com</a>.</p>`,
+      confidentialiteTitle: "Politique de confidentialité",
+      confidentialite: `<h2>Collecte des données personnelles</h2>
+<p>Les données personnelles collectées sur ce site (nom, prénom, email, téléphone, message) le sont uniquement via le formulaire de contact, et exclusivement dans le but de répondre à ta demande.</p>
+
+<h2>Utilisation des données</h2>
+<p>Les informations recueillies sont destinées à <strong>Audrey Duval-Lebret</strong>, en sa qualité de responsable de traitement, dans le cadre exclusif du suivi de ta demande. Elles ne sont en aucun cas cédées, vendues ou louées à des tiers.</p>
+
+<h2>Durée de conservation</h2>
+<p>Les données collectées via le formulaire de contact sont conservées pendant <strong>3 ans</strong> à compter du dernier contact, puis archivées ou supprimées.</p>
+
+<h2>Tes droits (RGPD)</h2>
+<p>Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi Informatique et Libertés, tu disposes d'un droit :</p>
+<ul>
+<li>d'<strong>accès</strong> à tes données personnelles ;</li>
+<li>de <strong>rectification</strong> des données inexactes ;</li>
+<li>de <strong>suppression</strong> (droit à l'oubli) ;</li>
+<li>de <strong>limitation</strong> du traitement ;</li>
+<li>de <strong>portabilité</strong> ;</li>
+<li>d'<strong>opposition</strong> au traitement.</li>
+</ul>
+<p>Pour exercer ces droits, écris à <a href="mailto:procomsolution23@gmail.com">procomsolution23@gmail.com</a>. Une réponse te sera apportée dans un délai d'un mois.</p>
+
+<h2>Cookies</h2>
+<p>Ce site utilise uniquement des cookies techniques nécessaires à son fonctionnement (préférences locales). Aucun cookie publicitaire ou de traçage tiers n'est déposé sans ton consentement explicite.</p>
+
+<h2>Sécurité</h2>
+<p>Toutes les mesures techniques et organisationnelles sont mises en œuvre pour préserver la sécurité et la confidentialité de tes données.</p>
+
+<h2>Réclamation</h2>
+<p>Tu as le droit d'introduire une réclamation auprès de la <strong>CNIL</strong> – <a href="https://www.cnil.fr" target="_blank" rel="noopener">www.cnil.fr</a>.</p>`
     }
   };
 

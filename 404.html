@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="robots" content="noindex"/>
+  <title>Page introuvable – Procom Solution</title>
+  <link rel="icon" href="assets/logo-court.png" type="image/png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="theme.css"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:var(--font-body);background:linear-gradient(135deg,var(--navy) 0%,#1a3a5c 100%);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px;color:var(--white);text-align:center;}
+    .wrap{max-width:520px;}
+    .logo{height:48px;margin:0 auto 40px;filter:brightness(0) invert(1);display:block;}
+    .code{font-size:clamp(5rem,15vw,8rem);font-weight:800;line-height:1;background:linear-gradient(135deg,var(--turquoise),#7dc5ca);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:8px;}
+    h1{font-size:clamp(1.4rem,3vw,1.9rem);font-weight:700;margin-bottom:14px;}
+    p{font-size:1rem;color:rgba(255,255,255,.7);line-height:1.6;margin-bottom:32px;}
+    .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+    .btn{padding:14px 28px;border-radius:50px;font-weight:600;font-size:.92rem;text-decoration:none;transition:transform .25s ease,background .25s ease;display:inline-block;}
+    .btn-primary{background:var(--turquoise);color:var(--white);}
+    .btn-primary:hover{background:var(--white);color:var(--navy);transform:translateY(-2px);}
+    .btn-ghost{border:2px solid rgba(255,255,255,.25);color:var(--white);}
+    .btn-ghost:hover{border-color:var(--white);background:rgba(255,255,255,.08);}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <img class="logo" src="assets/logo-long.png" alt="Procom Solution"/>
+    <div class="code">404</div>
+    <h1>Cette page a pris la tangente 🎧</h1>
+    <p>Désolée, la page que tu cherches n'existe plus ou a été déplacée. Pas de panique, retrouve ton chemin ci-dessous.</p>
+    <div class="btns">
+      <a href="index.html" class="btn btn-primary">← Retour à l'accueil</a>
+      <a href="portfolio.html" class="btn btn-ghost">Voir les articles</a>
+    </div>
+  </div>
+</body>
+</html>

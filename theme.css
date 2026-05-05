@@ -1,0 +1,55 @@
+/* =====================================================
+   PROCOM SOLUTION – theme.css
+   Variables et styles partagés sur toutes les pages
+   ===================================================== */
+:root{
+  --turquoise:#509ea4;
+  --navy:#112338;
+  --white:#ffffff;
+  --light-bg:#f4f8f9;
+  --text-dark:#112338;
+  --text-mid:#3a5068;
+  --text-light:#6b8a9a;
+  --radius:12px;
+  --shadow:0 4px 24px rgba(17,35,56,0.10);
+  --shadow-lg:0 16px 40px rgba(17,35,56,0.14);
+  --transition:0.3s ease;
+  --font-heading:'Inter',sans-serif;
+  --font-body:'Inter',sans-serif;
+  --font-article:'Playfair Display',serif;
+}
+
+/* Placeholders dégradé navy → turquoise pour images manquantes */
+.gradient-placeholder{
+  background:linear-gradient(135deg,var(--navy) 0%,var(--turquoise) 100%);
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,.92);font-weight:600;
+  position:relative;overflow:hidden;
+}
+.gradient-placeholder::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.15),transparent 60%);
+}
+.gradient-placeholder span{
+  position:relative;z-index:1;text-align:center;padding:20px;
+  font-family:var(--font-heading);
+  font-size:.92rem;line-height:1.4;
+  text-transform:uppercase;letter-spacing:.08em;
+}
+
+/* Focus accessibility */
+a:focus-visible,button:focus-visible,input:focus-visible,
+textarea:focus-visible,select:focus-visible{
+  outline:2px solid var(--turquoise);
+  outline-offset:2px;
+  border-radius:4px;
+}
+
+/* Skip link */
+.skip-link{
+  position:absolute;left:-9999px;top:0;
+  background:var(--navy);color:var(--white);
+  padding:10px 16px;z-index:10000;border-radius:0 0 8px 0;
+  font-weight:600;font-size:.85rem;
+}
+.skip-link:focus{left:0;}
