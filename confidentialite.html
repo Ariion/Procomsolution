@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title id="meta-title">Mentions légales – Procom Solution</title>
-  <meta name="description" id="meta-desc" content="Mentions légales du site Procom Solution"/>
+  <title id="meta-title">Politique de confidentialité – Procom Solution</title>
+  <meta name="description" id="meta-desc" content="Politique de confidentialité du site Procom Solution"/>
   <meta name="robots" content="noindex,follow"/>
   <link rel="icon" href="assets/logo-court.png" type="image/png"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
@@ -16,7 +16,7 @@
     .container{width:90%;max-width:860px;margin:0 auto;}
     header{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid rgba(17,35,56,.08);}
     nav{display:flex;align-items:center;justify-content:space-between;height:72px;}
-    .nav-logo img{height:44px;display:block;}
+    .nav-logo img{height:64px;width:auto;display:block;}
     .nav-links{display:flex;gap:32px;list-style:none;}
     .nav-links a{font-size:.9rem;font-weight:500;color:var(--text-mid);}
     .nav-links a:hover{color:var(--turquoise);}
@@ -43,7 +43,7 @@
     @media(max-width:768px){.nav-links{display:none;}.hamburger{display:flex;}}
   </style>
 </head>
-<body data-page="legal-mentions">
+<body data-page="legal-confidentialite">
 <a class="skip-link" href="#main">Aller au contenu</a>
 
 <header>
@@ -87,8 +87,10 @@
   const ds = document.getElementById('nav-links-desktop');
   const mo = document.getElementById('mobileMenu');
   const links = (cfg.nav&&cfg.nav.links)||[];
-  if(ds) ds.innerHTML = links.map(l=>`<li><a href="${l.href}">${l.label}</a></li>`).join('') + `<li><a class="btn-nav" href="${cfg.nav.ctaHref||'index.html#contact'}">${cfg.nav.ctaText||'Prendre RDV'}</a></li>`;
-  if(mo) mo.innerHTML = links.map(l=>`<a href="${l.href}">${l.label}</a>`).join('') + `<a class="btn-nav" href="${cfg.nav.ctaHref||'index.html#contact'}">${cfg.nav.ctaText||'Prendre RDV'}</a>`;
+  const fix = h => (h && h.charAt(0)==='#') ? ('index.html'+h) : (h||'#');
+  const cta = fix(cfg.nav&&cfg.nav.ctaHref) || 'index.html#contact';
+  if(ds) ds.innerHTML = links.map(l=>`<li><a href="${fix(l.href)}">${l.label}</a></li>`).join('') + `<li><a class="btn-nav" href="${cta}">${(cfg.nav&&cfg.nav.ctaText)||'Prendre RDV'}</a></li>`;
+  if(mo) mo.innerHTML = links.map(l=>`<a href="${fix(l.href)}">${l.label}</a>`).join('') + `<a class="btn-nav" href="${cta}">${(cfg.nav&&cfg.nav.ctaText)||'Prendre RDV'}</a>`;
   if(cfg.nav&&cfg.nav.logo) document.getElementById('nav-logo-img').src = cfg.nav.logo;
   // colors
   CMS.applyColors(cfg.colors||{});

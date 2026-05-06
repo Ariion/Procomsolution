@@ -22,8 +22,8 @@
 
     /* NAV */
     header{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid rgba(17,35,56,.08);transition:box-shadow var(--transition);}
-    nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0;}
-    .nav-logo img{height:44px;}
+    nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0;}
+    .nav-logo img{height:64px;width:auto;}
     .nav-links{display:flex;align-items:center;gap:36px;list-style:none;}
     .nav-links a{font-size:.92rem;font-weight:500;color:var(--text-mid);transition:color var(--transition);}
     .nav-links a:hover,.nav-links a.active{color:var(--turquoise);}
@@ -76,7 +76,7 @@
     /* FOOTER */
     footer{background:var(--navy);color:rgba(255,255,255,.75);padding:60px 0 0;}
     .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.08);}
-    .footer-brand img{height:40px;margin-bottom:16px;filter:brightness(0) invert(1);}
+    .footer-brand img{height:64px;width:auto;margin-bottom:16px;filter:brightness(0) invert(1);}
     .footer-brand p{font-size:.88rem;line-height:1.7;max-width:280px;}
     .footer-socials{display:flex;gap:12px;margin-top:20px;}
     .social-btn{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:.9rem;transition:background var(--transition);}
@@ -144,19 +144,19 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="assets/logo-long.png" alt="Procom Solution"/>
+        <img id="footer-logo" src="assets/logo-long.png" alt="Procom Solution"/>
         <p id="footer-desc"></p>
         <div class="footer-socials" id="footer-socials"></div>
       </div>
       <div class="footer-col"><h4>Navigation</h4><ul id="footer-nav"></ul></div>
       <div class="footer-col"><h4>Légal</h4><ul>
-        <li><a href="#">Mentions légales</a></li>
-        <li><a href="#">Confidentialité</a></li>
+        <li><a href="mentions-legales.html">Mentions légales</a></li>
+        <li><a href="confidentialite.html">Confidentialité</a></li>
       </ul></div>
     </div>
     <div class="footer-bottom">
       <p id="footer-copy"></p>
-      <div style="display:flex;gap:20px"><a href="#">Mentions légales</a><a href="#">Confidentialité</a></div>
+      <div style="display:flex;gap:20px"><a href="mentions-legales.html">Mentions légales</a><a href="confidentialite.html">Confidentialité</a></div>
     </div>
   </div>
 </footer>

@@ -41,6 +41,17 @@ window.PROCOM = {
   },
 
   /* ── NAV (commune à toutes les pages) ── */
+  // Préfixe les ancres internes (#offres, #contact, ...) avec index.html
+  // si on n'est pas sur la page d'accueil, pour que les liens fonctionnent.
+  resolveHref(href) {
+    if (!href) return '#';
+    const page = document.body.dataset.page;
+    if (href.charAt(0) === '#' && page !== 'index') {
+      return 'index.html' + href;
+    }
+    return href;
+  },
+
   renderNav() {
     const nav = this.cfg.nav || {};
     const logoImg = document.getElementById('nav-logo-img');
@@ -50,14 +61,16 @@ window.PROCOM = {
     const mobile  = document.getElementById('mobileMenu');
     if (!desktop || !nav.links) return;
 
+    const ctaHref = this.resolveHref(nav.ctaHref || '#contact');
+
     desktop.innerHTML = nav.links.map(l =>
-      `<li><a href="${l.href}">${l.label}</a></li>`
-    ).join('') + `<li><a href="${nav.ctaHref || '#contact'}" class="btn-nav">${nav.ctaText || 'Prendre RDV'}</a></li>`;
+      `<li><a href="${this.resolveHref(l.href)}">${l.label}</a></li>`
+    ).join('') + `<li><a href="${ctaHref}" class="btn-nav">${nav.ctaText || 'Prendre RDV'}</a></li>`;
 
     if (mobile) {
       mobile.innerHTML = nav.links.map(l =>
-        `<a href="${l.href}" onclick="toggleMenu()">${l.label}</a>`
-      ).join('') + `<a href="${nav.ctaHref || '#contact'}" class="btn-nav" onclick="toggleMenu()">${nav.ctaText || 'Prendre RDV'}</a>`;
+        `<a href="${this.resolveHref(l.href)}" onclick="toggleMenu()">${l.label}</a>`
+      ).join('') + `<a href="${ctaHref}" class="btn-nav" onclick="toggleMenu()">${nav.ctaText || 'Prendre RDV'}</a>`;
     }
   },
 
@@ -67,6 +80,10 @@ window.PROCOM = {
     const ct = this.cfg.contact || {};
     const nav = this.cfg.nav    || {};
 
+    // Logo footer (peut être surchargé par le CMS)
+    const footerLogo = document.getElementById('footer-logo');
+    if (footerLogo && nav.logo) footerLogo.src = nav.logo;
+
     const descEl = document.getElementById('footer-desc');
     if (descEl) descEl.textContent = f.description || f.tagline || '';
     const copyEl = document.getElementById('footer-copy') || document.getElementById('footer-copyright');
@@ -75,16 +92,16 @@ window.PROCOM = {
     const socialsEl = document.getElementById('footer-socials');
     if (socialsEl) {
       socialsEl.innerHTML = `
-        <a href="${f.facebook || '#'}" target="_blank" class="social-btn">f</a>
-        <a href="${f.linkedin || ct.linkedin || '#'}" target="_blank" class="social-btn">in</a>
-        <a href="${f.gmaps || '#'}" target="_blank" class="social-btn">G</a>`;
+        <a href="${f.facebook || '#'}" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook">f</a>
+        <a href="${f.linkedin || ct.linkedin || '#'}" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn">in</a>
+        <a href="${f.gmaps || '#'}" target="_blank" rel="noopener" class="social-btn" aria-label="Google Maps">G</a>`;
     }
 
     const footerNav = document.getElementById('footer-nav');
     if (footerNav && nav.links) {
       footerNav.innerHTML = nav.links.map(l =>
-        `<li><a href="${l.href}">${l.label}</a></li>`
-      ).join('') + `<li><a href="${nav.ctaHref || '#contact'}">Contact</a></li>`;
+        `<li><a href="${this.resolveHref(l.href)}">${l.label}</a></li>`
+      ).join('') + `<li><a href="${this.resolveHref(nav.ctaHref || '#contact')}">Contact</a></li>`;
     }
   },
 
