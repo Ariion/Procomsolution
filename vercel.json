@@ -21,9 +21,5 @@
   "rewrites": [
     { "source": "/blog/:slug", "destination": "/article.html?id=:slug" },
     { "source": "/articles/:slug", "destination": "/article.html?id=:slug" }
-  ],
-  "redirects": [
-    { "source": "/admin", "destination": "/admin.html", "permanent": false },
-    { "source": "/contact", "destination": "/index.html#contact", "permanent": false }
   ]
 }
