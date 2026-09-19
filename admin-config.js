@@ -26,6 +26,31 @@ window.ADMIN_CONFIG = {
   lang: 'fr',
   debug: false,
 
+  // Types de contenu.
+  //
+  // Sur la page Articles, le panneau Éléments ouvre une rubrique « Articles »
+  // avec ces quatre formes. Un clic demande le titre, copie la page modèle,
+  // pose la carte en tête de galerie et ouvre la page à écrire — Audrey n'a
+  // jamais à savoir qu'elle crée un fichier.
+  //
+  // Les modèles sont de vraies pages du site, dans modeles/, servies en
+  // noindex. Les modifier revient à changer la trame de tous les futurs
+  // articles de ce type.
+  types: [
+    {
+      id: 'article',
+      nom: 'Articles',
+      index: 'portfolio.html',
+      collection: '.articles-grid',
+      sousTypes: [
+        { id: 'interview', nom: 'Interview', icone: 'text', modele: 'modeles/interview.html' },
+        { id: 'portrait', nom: 'Portrait', icone: 'image', modele: 'modeles/portrait.html' },
+        { id: 'conseil', nom: 'Conseil', icone: 'list', modele: 'modeles/conseil.html' },
+        { id: 'actualite', nom: 'Actualité', icone: 'template', modele: 'modeles/actualite.html' },
+      ],
+    },
+  ],
+
   scan: {
     // Le menu, le pied de page et le formulaire restent pilotés par le code :
     // les rendre éditables exposerait Audrey à casser la navigation du site.

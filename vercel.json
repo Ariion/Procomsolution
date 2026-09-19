@@ -6,61 +6,237 @@
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" },
-        { "key": "Strict-Transport-Security", "value": "max-age=31536000; includeSubDomains" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=31536000; includeSubDomains"
+        }
       ]
     },
     {
       "source": "/assets/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/(.*).src.html",
       "headers": [
-        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
       ]
     },
     {
       "source": "/(.*).src",
       "headers": [
-        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
+      "source": "/modeles/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
       ]
     }
   ],
   "redirects": [
-    { "source": "/produit/ear-me-up", "destination": "/#offres", "permanent": true },
-    { "source": "/produit/:slug*", "destination": "/#offres", "permanent": true },
-    { "source": "/boutique", "destination": "/#offres", "permanent": true },
-    { "source": "/ressources-gratuites", "destination": "/ressources", "permanent": true },
-    { "source": "/Contact", "destination": "/#contact", "permanent": true },
-    { "source": "/contact", "destination": "/#contact", "permanent": true },
-    { "source": "/login", "destination": "/", "permanent": true },
-    { "source": "/mon-compte", "destination": "/", "permanent": true },
-    { "source": "/panier", "destination": "/#offres", "permanent": true },
-    { "source": "/commande", "destination": "/#offres", "permanent": true },
-
-    { "source": "/article", "has": [{ "type": "query", "key": "id", "value": "a1" }], "destination": "/entretien-xavier-carriou", "permanent": true },
-    { "source": "/article", "has": [{ "type": "query", "key": "id", "value": "a2" }], "destination": "/hyperacousie-dualite-du-silence", "permanent": true },
-    { "source": "/article", "has": [{ "type": "query", "key": "id", "value": "a3" }], "destination": "/entretien-azdine-ezzahti", "permanent": true },
-    { "source": "/article", "has": [{ "type": "query", "key": "id", "value": "a4" }], "destination": "/portrait-arnaud-deveze", "permanent": true },
-    { "source": "/article", "has": [{ "type": "query", "key": "id", "value": "a5" }], "destination": "/otite-enfant-que-faire", "permanent": true },
-    { "source": "/article", "has": [{ "type": "query", "key": "id", "value": "a6" }], "destination": "/entretien-avec-vincent-darrouzet", "permanent": true },
-    { "source": "/article", "destination": "/portfolio", "permanent": true },
-
-    { "source": "/blog/a1", "destination": "/entretien-xavier-carriou", "permanent": true },
-    { "source": "/blog/a2", "destination": "/hyperacousie-dualite-du-silence", "permanent": true },
-    { "source": "/blog/a3", "destination": "/entretien-azdine-ezzahti", "permanent": true },
-    { "source": "/blog/a4", "destination": "/portrait-arnaud-deveze", "permanent": true },
-    { "source": "/blog/a5", "destination": "/otite-enfant-que-faire", "permanent": true },
-    { "source": "/blog/a6", "destination": "/entretien-avec-vincent-darrouzet", "permanent": true },
-    { "source": "/blog/:slug*", "destination": "/portfolio", "permanent": true },
-    { "source": "/articles/:slug*", "destination": "/portfolio", "permanent": true },
-
-    { "source": "/admin.html", "destination": "/?admin", "permanent": false }
+    {
+      "source": "/produit/ear-me-up",
+      "destination": "/#offres",
+      "permanent": true
+    },
+    {
+      "source": "/produit/:slug*",
+      "destination": "/#offres",
+      "permanent": true
+    },
+    {
+      "source": "/boutique",
+      "destination": "/#offres",
+      "permanent": true
+    },
+    {
+      "source": "/ressources-gratuites",
+      "destination": "/ressources",
+      "permanent": true
+    },
+    {
+      "source": "/Contact",
+      "destination": "/#contact",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "/#contact",
+      "permanent": true
+    },
+    {
+      "source": "/login",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/mon-compte",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/panier",
+      "destination": "/#offres",
+      "permanent": true
+    },
+    {
+      "source": "/commande",
+      "destination": "/#offres",
+      "permanent": true
+    },
+    {
+      "source": "/article",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "a1"
+        }
+      ],
+      "destination": "/entretien-xavier-carriou",
+      "permanent": true
+    },
+    {
+      "source": "/article",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "a2"
+        }
+      ],
+      "destination": "/hyperacousie-dualite-du-silence",
+      "permanent": true
+    },
+    {
+      "source": "/article",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "a3"
+        }
+      ],
+      "destination": "/entretien-azdine-ezzahti",
+      "permanent": true
+    },
+    {
+      "source": "/article",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "a4"
+        }
+      ],
+      "destination": "/portrait-arnaud-deveze",
+      "permanent": true
+    },
+    {
+      "source": "/article",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "a5"
+        }
+      ],
+      "destination": "/otite-enfant-que-faire",
+      "permanent": true
+    },
+    {
+      "source": "/article",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "a6"
+        }
+      ],
+      "destination": "/entretien-avec-vincent-darrouzet",
+      "permanent": true
+    },
+    {
+      "source": "/article",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
+      "source": "/blog/a1",
+      "destination": "/entretien-xavier-carriou",
+      "permanent": true
+    },
+    {
+      "source": "/blog/a2",
+      "destination": "/hyperacousie-dualite-du-silence",
+      "permanent": true
+    },
+    {
+      "source": "/blog/a3",
+      "destination": "/entretien-azdine-ezzahti",
+      "permanent": true
+    },
+    {
+      "source": "/blog/a4",
+      "destination": "/portrait-arnaud-deveze",
+      "permanent": true
+    },
+    {
+      "source": "/blog/a5",
+      "destination": "/otite-enfant-que-faire",
+      "permanent": true
+    },
+    {
+      "source": "/blog/a6",
+      "destination": "/entretien-avec-vincent-darrouzet",
+      "permanent": true
+    },
+    {
+      "source": "/blog/:slug*",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
+      "source": "/articles/:slug*",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
+      "source": "/admin.html",
+      "destination": "/?admin",
+      "permanent": false
+    }
   ]
 }
