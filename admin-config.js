@@ -11,18 +11,16 @@
 window.ADMIN_CONFIG = {
   siteId: 'procomsolution',
 
-  // ─────────────────────────────────────────────────────────────────────
-  // À RENSEIGNER : console Firebase → Paramètres du projet → Vos applications
-  // Tant que ces clés sont vides, le site s'affiche normalement (le contenu
-  // est dans le HTML) mais l'édition reste indisponible.
-  // ─────────────────────────────────────────────────────────────────────
+  // Projet Firebase « procom-solution ». Ces clés identifient le projet et
+  // n'ouvrent aucun droit : ce sont les règles Firestore qui protègent la
+  // base. Elles sont donc publiques par conception.
   backend: 'firebase',
   firebase: {
-    apiKey: '',
-    authDomain: '',
-    projectId: '',
-    storageBucket: '',
-    appId: '',
+    apiKey: 'AIzaSyB5C9yqjC0jMcnEQwmGus8X5_F5qkXlDno',
+    authDomain: 'procom-solution.firebaseapp.com',
+    projectId: 'procom-solution',
+    storageBucket: 'procom-solution.firebasestorage.app',
+    appId: '1:160726685039:web:d6b6bc43f4d8c1ac8c849a',
   },
 
   lang: 'fr',
