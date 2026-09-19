@@ -1,5 +1,8 @@
 User-agent: *
 Allow: /
 Disallow: /admin/
+Disallow: /api/
+Disallow: /*.src.html$
+Disallow: /*.src$
 
 Sitemap: https://procomsolution.fr/sitemap.xml

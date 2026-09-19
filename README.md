@@ -25,22 +25,52 @@ normalement** : tout est déjà dans le HTML.
 https://procomsolution.fr/?admin
 ```
 
+## Écrire dans le site : `api/admin-endpoint.js`
+
+Créer une page ou régénérer son HTML veut dire **écrire un fichier**. Vercel
+sert un disque en lecture seule, donc cette fonction committe dans le dépôt
+GitHub ; le push relance le déploiement et la page est en ligne une trentaine
+de secondes plus tard.
+
+Elle reprend à l'identique le contrat de `tools/admin-endpoint.php` du dépôt
+Module-admin : `check`, `source`, `page`, `create`. L'authentification passe
+par le jeton Firebase, dont la signature est vérifiée contre les certificats
+de Google, puis le compte doit être membre du site dans Firestore — les mêmes
+règles que le reste du module, aucune liste d'UID à tenir à jour.
+
+### Variables d'environnement à poser sur Vercel
+
+*Settings → Environment Variables*, pour les trois environnements :
+
+| Variable | Valeur |
+|---|---|
+| `GITHUB_TOKEN` | jeton fin avec **Contents: read and write** sur ce dépôt seulement |
+| `GITHUB_REPO` | `Ariion/Procomsolution` |
+| `GITHUB_BRANCH` | `main` (facultatif) |
+| `FIREBASE_PROJECT_ID` | `procom-solution` |
+| `SITE_ID` | `procomsolution` |
+
+Le jeton se crée sur github.com → Settings → Developer settings → **Fine-grained
+tokens** → Only select repositories → Repository permissions → Contents :
+*Read and write*. Ne lui donnez rien d'autre.
+
+### Les fichiers `.src.html`
+
+À la première publication d'une page, la fonction dépose à côté d'elle une
+copie de son code d'origine (`portfolio.src.html`). C'est ce qui permet au
+module de repartir du code écrit à la main plutôt que d'un rendu déjà
+régénéré, et de créer une page neuve qui hérite du site. Ces copies sont
+servies en `noindex` et exclues du `robots.txt`.
+
 ## Ce qu'il reste à faire
 
-1. **Renseigner Firebase** dans `admin-config.js` (clés du projet, console
-   Firebase → Paramètres du projet). Tant qu'elles sont vides, le site
-   fonctionne mais l'édition est indisponible.
-2. **Déposer les règles Firestore et Storage** depuis `firebase/` du dépôt
-   Module-admin, et inscrire le compte d'Audrey dans
-   `sites/procomsolution/members/{uid}` avec `role: "owner"`.
-3. **Porter `tools/admin-endpoint.php` en fonction Vercel**
-   (`/api/admin-endpoint`). Sans lui, le contenu publié vit dans Firestore et
-   n'est appliqué que côté navigateur — donc invisible pour Google. Avec lui,
-   le fichier `.html` est réécrit à chaque publication. Le contrat est court :
-   actions `source`, `page`, `create`, `config`, en JSON, avec un jeton
-   Firebase en `Authorization: Bearer`.
-4. **Compléter les mentions légales** : l'adresse postale et le SIRET manquent
+1. **Poser les variables d'environnement** ci-dessus. Sans elles, l'édition
+   fonctionne mais la création de pages échoue avec un message explicite.
+2. **Compléter les mentions légales** : l'adresse postale et le SIRET manquent
    (obligatoires en droit français). Ils figuraient sur l'ancien site.
+3. **Les médias** passent par `adapter: 'url'` — la bibliothèque se remplit
+   par adresse. Le téléversement de fichiers demanderait une action de plus
+   dans la fonction.
 
 ## Structure
 
