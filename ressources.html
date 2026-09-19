@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ressources Gratuites – Procom Solution</title>
-  <link rel="icon" href="assets/logo-court.png" type="image/png"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<html lang="fr" style="--turquoise: #509ea4; --navy: #112338; --white: #ffffff; --light-bg: #f4f8f9; --text-dark: #112338; --text-mid: #3a5068; --text-light: #6b8a9a; --font-heading: 'Inter', sans-serif; --font-body: 'Inter', sans-serif; --font-article: 'Playfair Display', serif;"><head><link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ressources gratuites – Procom Solution</title>
+  <link rel="icon" href="assets/logo-court.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{
@@ -23,7 +24,7 @@
     /* NAV */
     header{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid rgba(17,35,56,.08);transition:box-shadow var(--transition);}
     nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0;}
-    .nav-logo img{height:64px;width:auto;}
+    .nav-logo img{height:36px;width:auto;}
     .nav-links{display:flex;align-items:center;gap:36px;list-style:none;}
     .nav-links a{font-size:.92rem;font-weight:500;color:var(--text-mid);transition:color var(--transition);}
     .nav-links a:hover,.nav-links a.active{color:var(--turquoise);}
@@ -76,7 +77,7 @@
     /* FOOTER */
     footer{background:var(--navy);color:rgba(255,255,255,.75);padding:60px 0 0;}
     .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.08);}
-    .footer-brand img{height:64px;width:auto;margin-bottom:16px;filter:brightness(0) invert(1);}
+    .footer-brand img{height:36px;width:auto;margin-bottom:16px;filter:brightness(0) invert(1);}
     .footer-brand p{font-size:.88rem;line-height:1.7;max-width:280px;}
     .footer-socials{display:flex;gap:12px;margin-top:20px;}
     .social-btn{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:.9rem;transition:background var(--transition);}
@@ -96,27 +97,40 @@
     }
     @media(max-width:480px){.ressources-grid{grid-template-columns:1fr;}}
   </style>
-</head>
+
+  <link rel="canonical" href="https://procomsolution.fr/ressources">
+  <meta name="description" content="Guides et fiches pratiques en audiologie à télécharger librement, sans inscription.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Procom Solution">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:title" content="Ressources gratuites – Procom Solution">
+  <meta property="og:description" content="Guides et fiches pratiques en audiologie à télécharger librement, sans inscription.">
+  <meta property="og:image" content="https://procomsolution.fr/assets/ressource-briser-silence.jpg">
+  <meta property="og:url" content="https://procomsolution.fr/ressources">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ressources gratuites – Procom Solution">
+  <meta name="twitter:description" content="Guides et fiches pratiques en audiologie à télécharger librement, sans inscription.">
+  <meta name="twitter:image" content="https://procomsolution.fr/assets/ressource-briser-silence.jpg"></head>
 <body data-page="ressources">
 
 <header>
   <div class="container">
     <nav>
-      <a href="index.html" class="nav-logo">
-        <img id="nav-logo-img" src="assets/logo-long.png" alt="Procom Solution"/>
+      <a href="/" class="nav-logo">
+        <img id="nav-logo-img" src="assets/logo-long.png" alt="Procom Solution" width="914" height="160">
       </a>
-      <ul class="nav-links" id="nav-links-desktop"></ul>
+      <ul class="nav-links" id="nav-links-desktop"><li><a href="/#offres">Nos offres</a></li><li><a href="/#apropos">À propos</a></li><li><a href="/#temoignages">Témoignages</a></li><li><a href="/portfolio">Articles</a></li><li><a href="/ressources">Ressources</a></li><li><a href="/#contact" class="btn-nav">Prendre RDV</a></li></ul>
       <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
     </nav>
   </div>
-  <div class="mobile-menu" id="mobileMenu"></div>
+  <div class="mobile-menu" id="mobileMenu"><a href="/#offres" onclick="toggleMenu()">Nos offres</a><a href="/#apropos" onclick="toggleMenu()">À propos</a><a href="/#temoignages" onclick="toggleMenu()">Témoignages</a><a href="/portfolio" onclick="toggleMenu()">Articles</a><a href="/ressources" onclick="toggleMenu()">Ressources</a><a href="/#contact" class="btn-nav" onclick="toggleMenu()">Prendre RDV</a></div>
 </header>
 
 <section class="page-hero">
   <div class="container">
-    <span class="section-label" id="ressources-page-label">Ressources Gratuites</span>
-    <h1 id="ressources-page-title">Des guides pratiques<br/>offerts par Audrey</h1>
-    <p id="ressources-page-sub">Télécharge gratuitement nos guides, mini-fiches et ressources pour mieux comprendre l'audiologie.</p>
+    <span class="section-label" id="ressources-page-label">Ressources gratuites</span>
+    <h1 id="ressources-page-title">Guides &amp; fiches pratiques<br>offerts par Audrey</h1>
+    <p id="ressources-page-sub">Des ressources concrètes pour mieux comprendre l'audiologie et développer ta communication. Téléchargement libre, sans inscription.</p>
   </div>
 </section>
 
@@ -127,8 +141,96 @@
       <span>Tous les fichiers sont <strong>100% gratuits</strong> — un clic suffit pour télécharger directement le PDF.</span>
     </div>
     <div class="ressources-grid" id="ressources-grid">
-      <p style="color:var(--text-light);padding:40px">Chargement des ressources...</p>
-    </div>
+      <div class="ressource-card">
+        <div class="ressource-cover gradient-placeholder">
+          <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;text-align:center;font-weight:700;text-transform:uppercase;letter-spacing:.05em;line-height:1.3;font-size:1rem;color:white">Collection Mini Fiches – Vocabulaire Audiologie</span>
+          <div class="ressource-cover-placeholder" style="display:none;">
+            <div class="cover-title">Collection Mini Fiches – Vocabulaire Audiologie</div>
+            <div class="cover-sub">Guide pratique</div>
+          </div>
+          <span class="ressource-badge">Gratuit</span>
+        </div>
+        <div class="ressource-body">
+          <h3>Collection Mini Fiches – Vocabulaire Audiologie</h3>
+          <p>Toutes les définitions essentielles pour parler audiologie avec tes patients sans jargon inaccessible.</p>
+          <a href="assets/mini-fiches-vocabulaire.pdf" download="" class="btn-download">
+            <svg viewBox="0 0 24 24"><path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 2h14v2H5v-2z"></path></svg>
+            Télécharger
+          </a>
+        </div>
+      </div>
+      <div class="ressource-card">
+        <div class="ressource-cover">
+          <img src="assets/ressource-briser-silence.jpg" alt="Briser le Silence – Comprendre la presbyacousie" width="1414" height="2000">
+          <div class="ressource-cover-placeholder" style="display:none;">
+            <div class="cover-title">Briser le Silence – Comprendre la presbyacousie</div>
+            <div class="cover-sub">Guide pratique</div>
+          </div>
+          <span class="ressource-badge">Gratuit</span>
+        </div>
+        <div class="ressource-body">
+          <h3>Briser le Silence – Comprendre la presbyacousie</h3>
+          <p>Un guide complet pour accompagner tes patients et leur entourage face à la perte auditive liée à l'âge.</p>
+          <a href="assets/briser-le-silence.pdf" download="" class="btn-download">
+            <svg viewBox="0 0 24 24"><path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 2h14v2H5v-2z"></path></svg>
+            Télécharger
+          </a>
+        </div>
+      </div>
+      <div class="ressource-card">
+        <div class="ressource-cover">
+          <img src="assets/ressource-synaptopathie.jpg" alt="Synaptopathie cochléaire ou Surdité cachée" width="1920" height="1080" loading="lazy" decoding="async">
+          <div class="ressource-cover-placeholder" style="display:none;">
+            <div class="cover-title">Synaptopathie cochléaire ou Surdité cachée</div>
+            <div class="cover-sub">Guide pratique</div>
+          </div>
+          <span class="ressource-badge">Gratuit</span>
+        </div>
+        <div class="ressource-body">
+          <h3>Synaptopathie cochléaire ou Surdité cachée</h3>
+          <p>Tout comprendre sur cette pathologie encore méconnue qui touche pourtant de nombreux patients.</p>
+          <a href="assets/synaptopathie-cochleaire.pdf" download="" class="btn-download">
+            <svg viewBox="0 0 24 24"><path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 2h14v2H5v-2z"></path></svg>
+            Télécharger
+          </a>
+        </div>
+      </div>
+      <div class="ressource-card">
+        <div class="ressource-cover gradient-placeholder">
+          <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;text-align:center;font-weight:700;text-transform:uppercase;letter-spacing:.05em;line-height:1.3;font-size:1rem;color:white">Le Cholestéatome – Ce qu'il faut savoir</span>
+          <div class="ressource-cover-placeholder" style="display:none;">
+            <div class="cover-title">Le Cholestéatome – Ce qu'il faut savoir</div>
+            <div class="cover-sub">Guide pratique</div>
+          </div>
+          <span class="ressource-badge">Gratuit</span>
+        </div>
+        <div class="ressource-body">
+          <h3>Le Cholestéatome – Ce qu'il faut savoir</h3>
+          <p>Fiche pratique pour expliquer simplement cette pathologie à tes patients et les rassurer.</p>
+          <a href="assets/cholesteatome.pdf" download="" class="btn-download">
+            <svg viewBox="0 0 24 24"><path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 2h14v2H5v-2z"></path></svg>
+            Télécharger
+          </a>
+        </div>
+      </div>
+      <div class="ressource-card">
+        <div class="ressource-cover">
+          <img src="assets/ressource-google-my-business.jpg" alt="Mini Guide – Booster ta fiche Google My Business" width="1024" height="1024" loading="lazy" decoding="async">
+          <div class="ressource-cover-placeholder" style="display:none;">
+            <div class="cover-title">Mini Guide – Booster ta fiche Google My Business</div>
+            <div class="cover-sub">Guide pratique</div>
+          </div>
+          <span class="ressource-badge">Gratuit</span>
+        </div>
+        <div class="ressource-body">
+          <h3>Mini Guide – Booster ta fiche Google My Business</h3>
+          <p>Les étapes concrètes pour optimiser ta visibilité locale et attirer plus de patients depuis Google.</p>
+          <a href="assets/guide-google-my-business.pdf" download="" class="btn-download">
+            <svg viewBox="0 0 24 24"><path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 2h14v2H5v-2z"></path></svg>
+            Télécharger
+          </a>
+        </div>
+      </div></div>
   </div>
 </section>
 
@@ -136,7 +238,7 @@
   <div class="container">
     <h2>Tu veux aller plus loin ?</h2>
     <p>Audrey t'accompagne personnellement dans ta stratégie de communication digitale en audiologie.</p>
-    <a href="index.html#contact" class="btn-cta">Prendre rendez-vous →</a>
+    <a href="/#contact" class="btn-cta">Prendre rendez-vous →</a>
   </div>
 </section>
 
@@ -144,24 +246,30 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img id="footer-logo" src="assets/logo-long.png" alt="Procom Solution"/>
-        <p id="footer-desc"></p>
-        <div class="footer-socials" id="footer-socials"></div>
+        <img id="footer-logo" src="assets/logo-long.png" alt="Procom Solution" width="914" height="160" loading="lazy" decoding="async">
+        <p id="footer-desc">Community Manager spécialisée dans l'audiologie. Pour une communication qui te ressemble, unique et éthique.</p>
+        <div class="footer-socials" id="footer-socials">
+        <a href="https://fr-fr.facebook.com/ProcomSolution23" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook">f</a>
+        <a href="https://www.linkedin.com/in/audrey-duval-lebret/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn">in</a>
+        <a href="https://maps.app.goo.gl/aod8rv7fQEcLkwMe7" target="_blank" rel="noopener" class="social-btn" aria-label="Google Maps">G</a></div>
       </div>
-      <div class="footer-col"><h4>Navigation</h4><ul id="footer-nav"></ul></div>
+      <div class="footer-col"><h4>Navigation</h4><ul id="footer-nav"><li><a href="/#offres">Nos offres</a></li><li><a href="/#apropos">À propos</a></li><li><a href="/#temoignages">Témoignages</a></li><li><a href="/portfolio">Articles</a></li><li><a href="/ressources">Ressources</a></li><li><a href="/#contact">Contact</a></li></ul></div>
       <div class="footer-col"><h4>Légal</h4><ul>
-        <li><a href="mentions-legales.html">Mentions légales</a></li>
-        <li><a href="confidentialite.html">Confidentialité</a></li>
+        <li><a href="/mentions-legales">Mentions légales</a></li>
+        <li><a href="/confidentialite">Confidentialité</a></li>
       </ul></div>
     </div>
     <div class="footer-bottom">
-      <p id="footer-copy"></p>
-      <div style="display:flex;gap:20px"><a href="mentions-legales.html">Mentions légales</a><a href="confidentialite.html">Confidentialité</a></div>
+      <p id="footer-copy">© 2026 Procom Solution. Tous droits réservés.</p>
+      <div style="display:flex;gap:20px"><a href="/mentions-legales">Mentions légales</a><a href="/confidentialite">Confidentialité</a></div>
     </div>
   </div>
 </footer>
 
-<script src="cms.js"></script>
-<script src="site.js"></script>
-</body>
-</html>
+
+
+
+
+<script src="/admin-config.js"></script>
+<script type="module" src="/admin/runtime.js"></script>
+</body></html>
