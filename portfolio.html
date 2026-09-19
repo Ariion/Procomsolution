@@ -64,6 +64,7 @@
     .tag-overlay{position:absolute;bottom:14px;left:14px;background:var(--turquoise);color:var(--white);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:4px 12px;border-radius:50px;}
     .article-card-body{padding:22px;flex:1;display:flex;flex-direction:column;}
     .article-tag{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--turquoise);margin-bottom:10px;}
+    .article-card-body h3 a{color:inherit;text-decoration:none;}
     .article-card-body h3{font-size:1rem;font-weight:700;color:var(--navy);line-height:1.4;margin-bottom:10px;}
     .article-card-body p{font-size:.88rem;color:var(--text-light);line-height:1.6;margin-bottom:16px;flex:1;}
     .article-meta{display:flex;align-items:center;gap:10px;font-size:.78rem;color:var(--text-light);border-top:1px solid rgba(17,35,56,.08);padding-top:14px;flex-wrap:wrap;}
@@ -120,14 +121,14 @@
 <header>
   <div class="container">
     <nav>
-      <a href="/" class="nav-logo">
+      <a href="index.html" class="nav-logo">
         <img id="nav-logo-img" src="assets/logo-long.png" alt="Procom Solution" width="914" height="160">
       </a>
-      <ul class="nav-links" id="nav-links-desktop"><li><a href="/#offres">Nos offres</a></li><li><a href="/#apropos">À propos</a></li><li><a href="/#temoignages">Témoignages</a></li><li><a href="/portfolio">Articles</a></li><li><a href="/ressources">Ressources</a></li><li><a href="/#contact" class="btn-nav">Prendre RDV</a></li></ul>
+      <ul class="nav-links" id="nav-links-desktop"><li><a href="index.html#offres">Nos offres</a></li><li><a href="index.html#apropos">À propos</a></li><li><a href="index.html#temoignages">Témoignages</a></li><li><a href="portfolio.html">Articles</a></li><li><a href="ressources.html">Ressources</a></li><li><a href="index.html#contact" class="btn-nav">Prendre RDV</a></li></ul>
       <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
     </nav>
   </div>
-  <div class="mobile-menu" id="mobileMenu"><a href="/#offres" onclick="toggleMenu()">Nos offres</a><a href="/#apropos" onclick="toggleMenu()">À propos</a><a href="/#temoignages" onclick="toggleMenu()">Témoignages</a><a href="/portfolio" onclick="toggleMenu()">Articles</a><a href="/ressources" onclick="toggleMenu()">Ressources</a><a href="/#contact" class="btn-nav" onclick="toggleMenu()">Prendre RDV</a></div>
+  <div class="mobile-menu" id="mobileMenu"><a href="index.html#offres" onclick="toggleMenu()">Nos offres</a><a href="index.html#apropos" onclick="toggleMenu()">À propos</a><a href="index.html#temoignages" onclick="toggleMenu()">Témoignages</a><a href="portfolio.html" onclick="toggleMenu()">Articles</a><a href="ressources.html" onclick="toggleMenu()">Ressources</a><a href="index.html#contact" class="btn-nav" onclick="toggleMenu()">Prendre RDV</a></div>
 </header>
 
 <section class="page-hero">
@@ -163,7 +164,7 @@
         </div>
         <div class="article-card-body">
           <span class="article-tag">Interview</span>
-          <h3>Entretien avec Xavier CARRIOU – Fondateur d'Acouphénia</h3>
+          <h3><a href="entretien-xavier-carriou.html">Entretien avec Xavier CARRIOU – Fondateur d'Acouphénia</a></h3>
           <p>Rencontre avec un homme qui a décidé de tout changer pour aider les personnes souffrant d'acouphènes.</p>
           <div class="article-meta">
             <span>Audrey Duval-Lebret</span>
@@ -172,7 +173,7 @@
             <span class="dot"></span>
             <span>6 min</span>
           </div>
-          <a href="/entretien-xavier-carriou" class="read-more">Lire l'article →</a>
+          <a href="entretien-xavier-carriou.html" class="read-more">Lire l'article →</a>
         </div>
       </div>
       <div class="article-card" data-category="article" data-title="Hyperacousie ou la dualité du silence : entre refuge et isolement" data-excerpt="Chaque bruit, même le plus léger, devient une lame de rasoir qui s'enfonce dans la tête.">
@@ -182,7 +183,7 @@
         </div>
         <div class="article-card-body">
           <span class="article-tag">Article</span>
-          <h3>Hyperacousie ou la dualité du silence : entre refuge et isolement</h3>
+          <h3><a href="hyperacousie-dualite-du-silence.html">Hyperacousie ou la dualité du silence : entre refuge et isolement</a></h3>
           <p>Chaque bruit, même le plus léger, devient une lame de rasoir qui s'enfonce dans la tête.</p>
           <div class="article-meta">
             <span>Audrey Duval-Lebret</span>
@@ -191,7 +192,7 @@
             <span class="dot"></span>
             <span>5 min</span>
           </div>
-          <a href="/hyperacousie-dualite-du-silence" class="read-more">Lire l'article →</a>
+          <a href="hyperacousie-dualite-du-silence.html" class="read-more">Lire l'article →</a>
         </div>
       </div>
       <div class="article-card" data-category="interview" data-title="Entretien avec Azdine Ezzahti – L'audioprothésiste qui casse les codes" data-excerpt="&quot;Je ne suis pas tombé dans l'audiologie par hasard, mais par passion.&quot; Une rencontre inspirante.">
@@ -201,7 +202,7 @@
         </div>
         <div class="article-card-body">
           <span class="article-tag">Interview</span>
-          <h3>Entretien avec Azdine Ezzahti – L'audioprothésiste qui casse les codes</h3>
+          <h3><a href="entretien-azdine-ezzahti.html">Entretien avec Azdine Ezzahti – L'audioprothésiste qui casse les codes</a></h3>
           <p>"Je ne suis pas tombé dans l'audiologie par hasard, mais par passion." Une rencontre inspirante.</p>
           <div class="article-meta">
             <span>Audrey Duval-Lebret</span>
@@ -210,7 +211,7 @@
             <span class="dot"></span>
             <span>7 min</span>
           </div>
-          <a href="/entretien-azdine-ezzahti" class="read-more">Lire l'article →</a>
+          <a href="entretien-azdine-ezzahti.html" class="read-more">Lire l'article →</a>
         </div>
       </div>
       <div class="article-card" data-category="portrait" data-title="Portrait : Dr Arnaud DEVEZE – ORL &amp; chirurgien de l'oreille" data-excerpt="Rencontre avec un spécialiste passionné par la chirurgie de l'oreille.">
@@ -220,7 +221,7 @@
         </div>
         <div class="article-card-body">
           <span class="article-tag">Portrait</span>
-          <h3>Portrait : Dr Arnaud DEVEZE – ORL &amp; chirurgien de l'oreille</h3>
+          <h3><a href="portrait-arnaud-deveze.html">Portrait : Dr Arnaud DEVEZE – ORL &amp; chirurgien de l'oreille</a></h3>
           <p>Rencontre avec un spécialiste passionné par la chirurgie de l'oreille.</p>
           <div class="article-meta">
             <span>Audrey Duval-Lebret</span>
@@ -229,7 +230,7 @@
             <span class="dot"></span>
             <span>5 min</span>
           </div>
-          <a href="/portrait-arnaud-deveze" class="read-more">Lire l'article →</a>
+          <a href="portrait-arnaud-deveze.html" class="read-more">Lire l'article →</a>
         </div>
       </div>
       <div class="article-card" data-category="conseil" data-title="Ton enfant pleure en se frottant l'oreille ? Pas de panique, ça pourrait être une otite !" data-excerpt="Il existe 3 types d'otites différents. On garde les explications simples et accessibles.">
@@ -239,7 +240,7 @@
         </div>
         <div class="article-card-body">
           <span class="article-tag">Conseil</span>
-          <h3>Ton enfant pleure en se frottant l'oreille ? Pas de panique, ça pourrait être une otite !</h3>
+          <h3><a href="otite-enfant-que-faire.html">Ton enfant pleure en se frottant l'oreille ? Pas de panique, ça pourrait être une otite !</a></h3>
           <p>Il existe 3 types d'otites différents. On garde les explications simples et accessibles.</p>
           <div class="article-meta">
             <span>Audrey Duval-Lebret</span>
@@ -248,7 +249,7 @@
             <span class="dot"></span>
             <span>4 min</span>
           </div>
-          <a href="/otite-enfant-que-faire" class="read-more">Lire l'article →</a>
+          <a href="otite-enfant-que-faire.html" class="read-more">Lire l'article →</a>
         </div>
       </div>
       <div class="article-card" data-category="portrait" data-title="Portrait : Pr Vincent DARROUZET" data-excerpt="Un homme de vision. Figure incontournable de la chirurgie ORL.">
@@ -258,7 +259,7 @@
         </div>
         <div class="article-card-body">
           <span class="article-tag">Portrait</span>
-          <h3>Portrait : Pr Vincent DARROUZET</h3>
+          <h3><a href="entretien-avec-vincent-darrouzet.html">Portrait : Pr Vincent DARROUZET</a></h3>
           <p>Un homme de vision. Figure incontournable de la chirurgie ORL.</p>
           <div class="article-meta">
             <span>Audrey Duval-Lebret</span>
@@ -267,7 +268,7 @@
             <span class="dot"></span>
             <span>6 min</span>
           </div>
-          <a href="/entretien-avec-vincent-darrouzet" class="read-more">Lire l'article →</a>
+          <a href="entretien-avec-vincent-darrouzet.html" class="read-more">Lire l'article →</a>
         </div>
       </div></div>
   </div>
@@ -284,15 +285,15 @@
         <a href="https://www.linkedin.com/in/audrey-duval-lebret/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn">in</a>
         <a href="https://maps.app.goo.gl/aod8rv7fQEcLkwMe7" target="_blank" rel="noopener" class="social-btn" aria-label="Google Maps">G</a></div>
       </div>
-      <div class="footer-col"><h4>Navigation</h4><ul id="footer-nav"><li><a href="/#offres">Nos offres</a></li><li><a href="/#apropos">À propos</a></li><li><a href="/#temoignages">Témoignages</a></li><li><a href="/portfolio">Articles</a></li><li><a href="/ressources">Ressources</a></li><li><a href="/#contact">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Navigation</h4><ul id="footer-nav"><li><a href="index.html#offres">Nos offres</a></li><li><a href="index.html#apropos">À propos</a></li><li><a href="index.html#temoignages">Témoignages</a></li><li><a href="portfolio.html">Articles</a></li><li><a href="ressources.html">Ressources</a></li><li><a href="index.html#contact">Contact</a></li></ul></div>
       <div class="footer-col"><h4>Légal</h4><ul>
-        <li><a href="/mentions-legales">Mentions légales</a></li>
-        <li><a href="/confidentialite">Confidentialité</a></li>
+        <li><a href="mentions-legales.html">Mentions légales</a></li>
+        <li><a href="confidentialite.html">Confidentialité</a></li>
       </ul></div>
     </div>
     <div class="footer-bottom">
       <p id="footer-copy">© 2026 Procom Solution. Tous droits réservés.</p>
-      <div style="display:flex;gap:20px"><a href="/mentions-legales">Mentions légales</a><a href="/confidentialite">Confidentialité</a></div>
+      <div style="display:flex;gap:20px"><a href="mentions-legales.html">Mentions légales</a><a href="confidentialite.html">Confidentialité</a></div>
     </div>
   </div>
 </footer>
