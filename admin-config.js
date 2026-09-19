@@ -43,14 +43,14 @@ window.ADMIN_CONFIG = {
 
   // Réécriture du fichier .html à chaque publication.
   //
-  // Vercel n'a ni PHP ni disque inscriptible : tools/admin-endpoint.php ne
-  // peut pas y tourner. Sans endpoint, le contenu publié vit dans Firestore
-  // et n'est appliqué que côté navigateur — donc invisible pour Google.
+  // Vercel n'a ni PHP ni disque inscriptible : admin-endpoint.php ne peut pas
+  // y tourner. api/admin-endpoint.js en reprend le contrat et écrit dans le
+  // dépôt GitHub — le push relance le déploiement, la page est en ligne une
+  // trentaine de secondes plus tard.
   //
-  // Pour retrouver le HTML régénéré, porter admin-endpoint.php en fonction
-  // Vercel (/api/admin-endpoint) qui écrit dans le dépôt GitHub. Le contrat
-  // est court : actions `source`, `page`, `create`, `config`.
-  // host: { endpoint: '/api/admin-endpoint' },
+  // Demande quatre variables d'environnement côté Vercel : GITHUB_TOKEN,
+  // GITHUB_REPO, FIREBASE_PROJECT_ID et SITE_ID. Voir le README.
+  host: { endpoint: '/api/admin-endpoint' },
 
   media: {
     // 'firebase'  → Firebase Storage (demande le plan Blaze)
