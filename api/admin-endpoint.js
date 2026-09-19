@@ -198,6 +198,22 @@ async function writeFile(relative, contents, message) {
   return false;
 }
 
+/** Retire un fichier du dépôt. Silencieux s'il n'existe déjà plus. */
+async function deleteFile(relative, message) {
+  const { branch } = repoConfig();
+  const existing = await readFile(relative);
+  if (!existing) return false;
+  const response = await github(encodeURI(relative), {
+    method: 'DELETE',
+    body: JSON.stringify({ message, sha: existing.sha, branch }),
+  });
+  if (!response.ok) {
+    const detail = await response.text();
+    throw httpError(`Suppression refusée par GitHub (${response.status}). ${detail.slice(0, 160)}`, 502);
+  }
+  return true;
+}
+
 /* ──────────────────────────────── chemins ───────────────────────────────── */
 
 /**
@@ -311,6 +327,28 @@ const actions = {
 
     await writeFile(cible.file, modele.text, `Nouvelle page : ${cible.file}`);
     return { created: true, path: cible.file };
+  },
+
+  /**
+   * Supprime une page et sa copie d'origine.
+   *
+   * Trois pages ne peuvent pas partir : l'accueil, parce qu'un site sans
+   * accueil n'est plus un site ; les modèles, parce qu'ils servent à créer
+   * les suivantes ; et tout ce qui n'est pas une page.
+   */
+  async delete({ body }) {
+    const paths = resolvePagePath(body.path);
+    if (paths.file === 'index.html') {
+      throw httpError("La page d'accueil ne peut pas être supprimée.", 400);
+    }
+    if (paths.file.startsWith('modeles/')) {
+      throw httpError('Une page modèle ne se supprime pas depuis l’éditeur.', 400);
+    }
+    if (!(await readFile(paths.file))) throw httpError('Page introuvable.', 404);
+
+    await deleteFile(paths.file, `Suppression : ${paths.file}`);
+    await deleteFile(paths.source, `Suppression de la copie d'origine : ${paths.source}`);
+    return { deleted: true, path: paths.file };
   },
 
   async config() {
