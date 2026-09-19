@@ -96,6 +96,14 @@
     .article-body aside ul{list-style:none;padding:0;margin:0;}
     .article-body aside li{padding-left:22px;position:relative;margin-bottom:8px;color:var(--text-mid);font-size:15px;}
     .article-body aside li::before{content:'▸';position:absolute;left:0;color:var(--turquoise);font-weight:700;}
+    .article-body figure{margin:24px 0;}
+    /* width:auto — une photo d'archive de 200 px étirée sur 900 px est floue.
+       Elle reste à sa taille, centrée ; les grandes se bornent à la colonne. */
+    .article-body figure img{width:auto;max-width:100%;height:auto;margin:0 auto;border-radius:10px;border:1px solid rgba(17,35,56,.08);}
+    .article-body figcaption{margin-top:10px;font-size:12px;color:var(--text-light);line-height:1.5;text-align:center;}
+    .article-body .figure-duo{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:20px;margin:24px 0;align-items:end;}
+    .article-body .figure-duo figure{margin:0;}
+    .article-body .figure-duo img{border-radius:8px;}
     .info-box ul{list-style:none;padding:0;}
     .info-box ul li{padding:4px 0;font-size:14px;color:var(--text-mid);display:flex;align-items:flex-start;gap:8px;}
     .info-box ul li::before{content:'→';color:var(--turquoise);font-weight:700;flex-shrink:0;}
@@ -277,10 +285,10 @@
 
       <div class="article-share">
         <span class="share-label">Partager</span>
-        <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A8899%2Farticle.html%3Fid%3Da1" class="share-btn share-fb" id="share-fb" target="_blank">f</a>
-        <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A8899%2Farticle.html%3Fid%3Da1&amp;text=Entretien%20avec%20Xavier%20CARRIOU%20%E2%80%93%20Fondateur%20d'Acouph%C3%A9nia" class="share-btn share-tw" id="share-tw" target="_blank">𝕏</a>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2Flocalhost%3A8899%2Farticle.html%3Fid%3Da1" class="share-btn share-li" id="share-li" target="_blank">in</a>
-        <a href="https://wa.me/?text=Entretien%20avec%20Xavier%20CARRIOU%20%E2%80%93%20Fondateur%20d'Acouph%C3%A9nia%20http%3A%2F%2Flocalhost%3A8899%2Farticle.html%3Fid%3Da1" class="share-btn share-wa" id="share-wa" target="_blank">📱</a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fprocomsolution.fr%2F" class="share-btn share-fb" id="share-fb" target="_blank">f</a>
+        <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fprocomsolution.fr%2F&amp;text=Le%20titre%20de%20votre%20article" class="share-btn share-tw" id="share-tw" target="_blank">𝕏</a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fprocomsolution.fr%2F" class="share-btn share-li" id="share-li" target="_blank">in</a>
+        <a href="https://wa.me/?text=Le%20titre%20de%20votre%20article%20https%3A%2F%2Fprocomsolution.fr%2F" class="share-btn share-wa" id="share-wa" target="_blank">📱</a>
         <button class="share-btn share-copy" onclick="copyLink()">🔗</button>
       </div>
     </article>
@@ -325,10 +333,10 @@
     <div class="sidebar-widget sticky">
       <div class="widget-title">Partager l'article</div>
       <div class="share-widget">
-        <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A8899%2Farticle.html%3Fid%3Da1" id="sw-fb" class="share-widget-btn swb-fb" target="_blank">f &nbsp;Facebook</a>
-        <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A8899%2Farticle.html%3Fid%3Da1&amp;text=Entretien%20avec%20Xavier%20CARRIOU%20%E2%80%93%20Fondateur%20d'Acouph%C3%A9nia" id="sw-tw" class="share-widget-btn swb-tw" target="_blank">𝕏 &nbsp;Twitter / X</a>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2Flocalhost%3A8899%2Farticle.html%3Fid%3Da1" id="sw-li" class="share-widget-btn swb-li" target="_blank">in LinkedIn</a>
-        <a href="https://wa.me/?text=Entretien%20avec%20Xavier%20CARRIOU%20%E2%80%93%20Fondateur%20d'Acouph%C3%A9nia%20http%3A%2F%2Flocalhost%3A8899%2Farticle.html%3Fid%3Da1" id="sw-wa" class="share-widget-btn swb-wa" target="_blank">📱 WhatsApp</a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fprocomsolution.fr%2F" id="sw-fb" class="share-widget-btn swb-fb" target="_blank">f &nbsp;Facebook</a>
+        <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fprocomsolution.fr%2F&amp;text=Le%20titre%20de%20votre%20article" id="sw-tw" class="share-widget-btn swb-tw" target="_blank">𝕏 &nbsp;Twitter / X</a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fprocomsolution.fr%2F" id="sw-li" class="share-widget-btn swb-li" target="_blank">in LinkedIn</a>
+        <a href="https://wa.me/?text=Le%20titre%20de%20votre%20article%20https%3A%2F%2Fprocomsolution.fr%2F" id="sw-wa" class="share-widget-btn swb-wa" target="_blank">📱 WhatsApp</a>
       </div>
     </div>
 
@@ -415,11 +423,56 @@
 
 
 
-<script>
+<script data-admin-script="partage">
   window.addEventListener('scroll',()=>{
     const h=document.documentElement.scrollHeight-document.documentElement.clientHeight;
     document.getElementById('progress-bar').style.width=(document.documentElement.scrollTop/h*100)+'%';
   });
+
+  // Les boutons de partage portent l'adresse de la page en dur, pour que
+  // l'aperçu des réseaux fonctionne sans JavaScript. Mais une page copiée
+  // d'un modèle, ou renommée, hériterait de l'adresse d'une autre : on la
+  // recalcule à l'affichage.
+  (function(){
+    var url = location.href.split('#')[0].split('?')[0];
+    var titre = (document.title || '').split(' \u2013 Procom')[0];
+    var u = encodeURIComponent(url), t = encodeURIComponent(titre);
+    var liens = {
+      'share-fb': 'https://www.facebook.com/sharer/sharer.php?u=' + u,
+      'share-tw': 'https://twitter.com/intent/tweet?url=' + u + '&text=' + t,
+      'share-li': 'https://www.linkedin.com/sharing/share-offsite/?url=' + u,
+      'share-wa': 'https://wa.me/?text=' + t + '%20' + u
+    };
+    for (var id in liens) {
+      var a = document.getElementById(id);
+      if (a) a.setAttribute('href', liens[id]);
+    }
+  })();
+
+
+  // Les boutons de partage portent l'adresse de la page en dur, pour que
+  // l'aperçu des réseaux fonctionne sans JavaScript. Mais une page copiée
+  // d'un modèle, ou renommée, hériterait de l'adresse d'une autre : on la
+  // recalcule à l'affichage.
+  (function () {
+    var url = location.href.split('#')[0].split('?')[0];
+    var titre = (document.title || '').split(' \u2013 Procom')[0];
+    var u = encodeURIComponent(url), t = encodeURIComponent(titre);
+    var liens = {
+      fb: 'https://www.facebook.com/sharer/sharer.php?u=' + u,
+      tw: 'https://twitter.com/intent/tweet?url=' + u + '&text=' + t,
+      li: 'https://www.linkedin.com/sharing/share-offsite/?url=' + u,
+      wa: 'https://wa.me/?text=' + t + '%20' + u
+    };
+    for (var r in liens) {
+      // Deux jeux de boutons : sous l'article, et dans la barre latérale.
+      ['share-' + r, 'sw-' + r].forEach(function (id) {
+        var a = document.getElementById(id);
+        if (a) a.setAttribute('href', liens[r]);
+      });
+    }
+  })();
+
   function copyLink(){
     navigator.clipboard.writeText(window.location.href).then(()=>alert('Lien copié !'));
   }
