@@ -51,6 +51,13 @@ window.ADMIN_CONFIG = {
     },
   ],
 
+  // Couleurs proposées quand on colore un mot dans un texte. Ce sont celles
+  // du site : mieux vaut six teintes justes qu'un sélecteur libre, qui laisse
+  // poser du jaune fluo sur un titre.
+  texte: {
+    couleurs: ['#112338', '#509ea4', '#3a5068', '#6b8a9a', '#b3261e', '#1d7a3e'],
+  },
+
   scan: {
     // Le menu, le pied de page et le formulaire restent pilotés par le code :
     // les rendre éditables exposerait Audrey à casser la navigation du site.
