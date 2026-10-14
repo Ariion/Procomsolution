@@ -17,7 +17,7 @@
     }
     html{scroll-behavior:smooth;}
     body{font-family:'Inter',sans-serif;color:var(--text-dark);background:var(--white);line-height:1.6;overflow-x:hidden;}
-    img{max-width:100%;display:block;}
+    img{max-width:100%;height:auto;display:block;}
     a{text-decoration:none;color:inherit;}
     .container{width:90%;max-width:1100px;margin:0 auto;}
 
@@ -480,6 +480,49 @@
     var menu = document.getElementById('mobileMenu');
     if (menu && menu.classList.contains('open')) toggleMenu();
   });
+</script>
+<script data-admin-script="cartes">
+  // Carte cliquable : cliquer l'image, le résumé ou le fond d'une carte suit
+  // le lien qu'elle porte déjà. On ne pose pas de <a> autour de la carte —
+  // imbriquer des liens est invalide, et le module perdrait l'identité des
+  // éléments qu'il connaît. Le lien du titre reste la référence pour les
+  // moteurs et le clavier ; ceci n'est qu'un raccourci à la souris.
+  (function () {
+    // Dans l'éditeur, la page est affichée dans un cadre : un clic y sert à
+    // choisir un élément, pas à naviguer.
+    if (window.top !== window.self) return;
+
+    var CARTES = '.article-card, .blog-card, .ressource-card, .offre-card';
+
+    function lienDe(carte) {
+      var liens = carte.querySelectorAll('a[href]');
+      for (var i = 0; i < liens.length; i++) {
+        var h = liens[i].getAttribute('href') || '';
+        if (h && h.charAt(0) !== '#' && !/^(mailto|tel|sms|javascript):/i.test(h)) return liens[i];
+      }
+      return null;
+    }
+
+    // Le curseur dit que c'est cliquable, et seulement quand ça l'est.
+    document.querySelectorAll(CARTES).forEach(function (carte) {
+      if (lienDe(carte)) carte.style.cursor = 'pointer';
+    });
+
+    document.addEventListener('click', function (e) {
+      var carte = e.target.closest && e.target.closest(CARTES);
+      if (!carte) return;
+      // Un lien ou un bouton fait déjà son travail.
+      if (e.target.closest('a, button, input, select, textarea, label')) return;
+      // On ne vole pas un clic qui termine une sélection de texte.
+      var sel = window.getSelection();
+      if (sel && String(sel).length > 0) return;
+      var lien = lienDe(carte);
+      if (!lien) return;
+      // Ctrl, Cmd ou molette : nouvel onglet, comme sur un vrai lien.
+      if (e.metaKey || e.ctrlKey || e.shiftKey) window.open(lien.href, '_blank', 'noopener');
+      else window.location.href = lien.href;
+    });
+  })();
 </script>
 <script src="/admin-config.js"></script>
 <script type="module" src="/admin/runtime.js"></script>

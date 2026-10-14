@@ -37,7 +37,7 @@
     /* Compense la hauteur du header sticky pour que les ancres ne soient pas cachées */
     section[id]{scroll-margin-top:96px;}
     body{font-family:'Inter',sans-serif;color:var(--text-dark);background:var(--white);line-height:1.6;overflow-x:hidden;}
-    img{max-width:100%;display:block;}
+    img{max-width:100%;height:auto;display:block;}
     a{text-decoration:none;color:inherit;}
     .container{width:90%;max-width:1100px;margin:0 auto;}
 
@@ -73,7 +73,7 @@
     .hero-stats{display:flex;gap:32px;margin-top:44px;flex-wrap:wrap;}
     .stat strong{display:block;font-size:1.8rem;font-weight:700;color:var(--turquoise);}
     .stat span{font-size:.78rem;color:var(--text-light);font-weight:500;line-height:1.3;}
-    .hero-image{max-width:100%;position:relative;}
+    .hero-image{flex:0 0 clamp(280px,42%,500px);max-width:100%;position:relative;}
     .hero-image img{width:100%;border-radius:24px;box-shadow:var(--shadow);}
     .hero-tag{position:absolute;bottom:-16px;left:50%;transform:translateX(-50%);background:var(--white);border-radius:var(--radius);padding:12px 20px;box-shadow:var(--shadow);display:flex;align-items:center;gap:10px;white-space:nowrap;}
     .hero-tag .emoji{font-size:1.4rem;}
@@ -107,7 +107,7 @@
     /* À PROPOS */
     #apropos{background:var(--white);}
     .apropos-inner{display:flex;align-items:center;gap:72px;}
-    .apropos-image{max-width:100%;}
+    .apropos-image{flex:0 0 clamp(280px,42%,500px);max-width:100%;}
     .apropos-image img{width:100%;border-radius:24px;box-shadow:var(--shadow);}
     .apropos-tags{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0;}
     .tag{background:rgba(80,158,164,.1);color:var(--turquoise);font-size:.8rem;font-weight:600;padding:6px 14px;border-radius:50px;}
@@ -222,10 +222,10 @@
     @media(max-width:900px){
       .nav-links{display:none;}.hamburger{display:flex;}
       .hero-inner{flex-direction:column;gap:40px;}
-      .hero-image{flex:none;width:100%;max-width:380px;}
+      .hero-image{flex:none;width:100%;max-width:300px;}
       .offres-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto;}
       .apropos-inner{flex-direction:column;gap:40px;}
-      .apropos-image{flex:none;width:100%;max-width:380px;}
+      .apropos-image{flex:none;width:100%;max-width:300px;}
       .temoignages-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto 40px;}
       .blog-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto;}
       .carousel-slide{flex:0 0 calc((100% - 24px)/2);}
@@ -630,6 +630,49 @@
     var menu = document.getElementById('mobileMenu');
     if (menu && menu.classList.contains('open')) toggleMenu();
   });
+</script>
+<script data-admin-script="cartes">
+  // Carte cliquable : cliquer l'image, le résumé ou le fond d'une carte suit
+  // le lien qu'elle porte déjà. On ne pose pas de <a> autour de la carte —
+  // imbriquer des liens est invalide, et le module perdrait l'identité des
+  // éléments qu'il connaît. Le lien du titre reste la référence pour les
+  // moteurs et le clavier ; ceci n'est qu'un raccourci à la souris.
+  (function () {
+    // Dans l'éditeur, la page est affichée dans un cadre : un clic y sert à
+    // choisir un élément, pas à naviguer.
+    if (window.top !== window.self) return;
+
+    var CARTES = '.article-card, .blog-card, .ressource-card, .offre-card';
+
+    function lienDe(carte) {
+      var liens = carte.querySelectorAll('a[href]');
+      for (var i = 0; i < liens.length; i++) {
+        var h = liens[i].getAttribute('href') || '';
+        if (h && h.charAt(0) !== '#' && !/^(mailto|tel|sms|javascript):/i.test(h)) return liens[i];
+      }
+      return null;
+    }
+
+    // Le curseur dit que c'est cliquable, et seulement quand ça l'est.
+    document.querySelectorAll(CARTES).forEach(function (carte) {
+      if (lienDe(carte)) carte.style.cursor = 'pointer';
+    });
+
+    document.addEventListener('click', function (e) {
+      var carte = e.target.closest && e.target.closest(CARTES);
+      if (!carte) return;
+      // Un lien ou un bouton fait déjà son travail.
+      if (e.target.closest('a, button, input, select, textarea, label')) return;
+      // On ne vole pas un clic qui termine une sélection de texte.
+      var sel = window.getSelection();
+      if (sel && String(sel).length > 0) return;
+      var lien = lienDe(carte);
+      if (!lien) return;
+      // Ctrl, Cmd ou molette : nouvel onglet, comme sur un vrai lien.
+      if (e.metaKey || e.ctrlKey || e.shiftKey) window.open(lien.href, '_blank', 'noopener');
+      else window.location.href = lien.href;
+    });
+  })();
 </script>
 <script src="/admin-config.js"></script>
 <script type="module" src="/admin/runtime.js"></script>
