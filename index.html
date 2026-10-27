@@ -124,6 +124,7 @@
     .stars{color:#f59e0b;font-size:1rem;letter-spacing:2px;margin-bottom:14px;}
     .temoignage-card blockquote{font-size:.9rem;color:var(--text-mid);font-style:italic;line-height:1.7;margin-bottom:20px;}
     .temoignage-author{display:flex;align-items:center;gap:12px;}
+    img.avatar{object-fit:cover;}
     .avatar{width:42px;height:42px;border-radius:50%;background:var(--turquoise);color:var(--white);font-size:.85rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
     .author-info strong{font-size:.88rem;color:var(--navy);display:block;}
     .author-info span{font-size:.78rem;color:var(--text-light);}
@@ -362,7 +363,7 @@
           <div class="stars">★★★★★</div>
           <blockquote>"Audrey m'a proposé plusieurs visuels répondant à mes demandes et le tout avec un délai record. Talentueuse et professionnelle, je recommande."</blockquote>
           <div class="temoignage-author">
-            <div class="avatar">NS</div>
+            <img class="avatar" src="assets/avatar-nahman-sroussi.jpg" alt="Nahman Sroussi" width="128" height="128" loading="lazy" decoding="async">
             <div class="author-info"><strong>Nahman Sroussi</strong><span>Audioprothésiste – Audition Lefeuvre · Jan. 2024</span></div>
           </div>
         </div>
@@ -370,7 +371,7 @@
           <div class="stars">★★★★★</div>
           <blockquote>"Audrey a réalisé une superbe bannière pour mon profil LinkedIn. Je trouve que ça met en valeur ma vision des choses ! Merci beaucoup !"</blockquote>
           <div class="temoignage-author">
-            <div class="avatar">TM</div>
+            <img class="avatar" src="assets/avatar-tifheret-mamou.jpg" alt="Tifheret Mamou" width="128" height="128" loading="lazy" decoding="async">
             <div class="author-info"><strong>Tifheret Mamou</strong><span>Audioprothésiste D.E. · Mars 2024</span></div>
           </div>
         </div>
@@ -378,7 +379,7 @@
           <div class="stars">★★★★★</div>
           <blockquote>"Audrey a réalisé ma bannière LinkedIn. Elle a été très à l'écoute de mes demandes et très réactive. Je recommande son travail."</blockquote>
           <div class="temoignage-author">
-            <div class="avatar">LB</div>
+            <img class="avatar" src="assets/avatar-lea-besnainou.jpg" alt="Léa Besnainou" width="128" height="128" loading="lazy" decoding="async">
             <div class="author-info"><strong>Léa Besnainou</strong><span>Étudiante Audioprothésiste · Mars 2024</span></div>
           </div>
         </div>
@@ -561,6 +562,7 @@
       <div class="contact-form">
         <h3>Envoie-moi un message</h3>
         <form id="contactForm">
+          <input type="text" name="site" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px">
           <div class="form-row">
             <div class="form-group"><label>Prénom *</label><input type="text" name="prenom" placeholder="Jean" required=""></div>
             <div class="form-group"><label>Nom *</label><input type="text" name="nom" placeholder="Dupont" required=""></div>
@@ -671,6 +673,104 @@
       // Ctrl, Cmd ou molette : nouvel onglet, comme sur un vrai lien.
       if (e.metaKey || e.ctrlKey || e.shiftKey) window.open(lien.href, '_blank', 'noopener');
       else window.location.href = lien.href;
+    });
+  })();
+</script>
+<script data-admin-script="contact">
+  // Envoi des formulaires de contact.
+  //
+  // Aucun des deux n'envoyait quoi que ce soit : celui de l'accueil n'avait
+  // pas de gestionnaire, celui de la barre latérale affichait « Envoyé ! »
+  // sans rien transmettre. Tous deux passent maintenant par /api/contact.
+  //
+  // Si l'envoi n'est pas encore configuré côté serveur, on ouvre le client de
+  // messagerie du visiteur avec tout pré-rempli. Moins confortable, mais le
+  // message part — c'est la seule chose qui compte.
+  (function () {
+    if (window.top !== window.self) return;   // dans l'éditeur, on n'envoie pas
+
+    function valeurs(form) {
+      var d = {}, els = form.elements;
+      for (var i = 0; i < els.length; i++) {
+        var e = els[i];
+        if (!e.name || e.type === 'submit') continue;
+        d[e.name] = e.value;
+      }
+      d.page = location.pathname;
+      return d;
+    }
+
+    // Repli. On ne redirige pas vers mailto: — sur un poste sans client de
+    // messagerie, rien ne se passe et le formulaire a l'air cassé. On montre
+    // un lien, que le visiteur clique s'il le veut, en gardant sa saisie.
+    function replier(form, d, dest) {
+      var corps = (d.prenom || d.nom ? ((d.prenom || '') + ' ' + (d.nom || '')).trim() + '\n' : '')
+        + (d.email ? d.email + '\n' : '') + '\n' + (d.message || '');
+      var adresse = 'mailto:' + (dest || 'procomsolution23@gmail.com')
+        + '?subject=' + encodeURIComponent(d.sujet || 'Message depuis le site')
+        + '&body=' + encodeURIComponent(corps);
+
+      var zone = form.querySelector('.form-repli');
+      if (!zone) {
+        zone = document.createElement('p');
+        zone.className = 'form-repli';
+        zone.style.cssText = 'margin-top:12px;font-size:.88rem;line-height:1.5;';
+        form.appendChild(zone);
+      }
+      zone.innerHTML = '';
+      zone.appendChild(document.createTextNode('L’envoi direct est momentanément indisponible. '));
+      var lien = document.createElement('a');
+      lien.href = adresse;
+      lien.className = 'form-repli-lien';
+      lien.style.cssText = 'font-weight:600;text-decoration:underline;';
+      lien.textContent = 'Envoyer par votre messagerie';
+      zone.appendChild(lien);
+      zone.appendChild(document.createTextNode(' — votre message est conservé ci-dessus.'));
+    }
+
+    function brancher(form, bouton, libelle) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (bouton.disabled) return;
+        var d = valeurs(form);
+        var initial = bouton.textContent;
+        bouton.disabled = true;
+        bouton.textContent = 'Envoi…';
+
+        fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(d)
+        }).then(function (r) {
+          return r.json().then(function (j) { return { ok: r.ok, j: j }; });
+        }).then(function (res) {
+          if (res.ok && res.j.envoye) {
+            bouton.textContent = '✅ Message envoyé';
+            form.reset();
+            setTimeout(function () { bouton.textContent = initial; bouton.disabled = false; }, 4000);
+            return;
+          }
+          if (res.j && res.j.repli === 'mailto') { replier(form, d, res.j.destinataire); throw new Error('repli'); }
+          throw new Error(res.j && res.j.error || 'Envoi impossible.');
+        }).catch(function (err) {
+          if (String(err.message) !== 'repli') {
+            // Hors ligne, ou endpoint absent : le message ne doit pas se perdre.
+            replier(form, d);
+          }
+          bouton.textContent = initial;
+          bouton.disabled = false;
+        });
+      });
+    }
+
+    var principal = document.getElementById('contactForm');
+    if (principal) {
+      var b = principal.querySelector('.form-submit');
+      if (b) brancher(principal, b);
+    }
+    document.querySelectorAll('.contact-widget-form').forEach(function (f) {
+      var b = f.querySelector('.btn-send');
+      if (b) brancher(f, b);
     });
   })();
 </script>
